@@ -3,10 +3,12 @@ import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { appCardIssue } from '@/lib/app/app-card-issue'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 
 import { WalletConnect } from './blockchain/wallet-connect'
+import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 
 const validationSchema = yup.object({
@@ -91,25 +93,28 @@ export function FormIssueCard() {
       </div>
 
       <div className="">
-        <BranchIsWalletConnected>
-          {rest.formState.isSubmitted ? (
-            <button type="button" className="btn btn-emerald">
-              Chance Card Sent
-            </button>
-          ) : (
-            <button type="submit" className="btn btn-emerald w-full">
-              {rest.formState.isSubmitting || isSubmitting ? (
-                <svg className="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v1a7 7 0 00-7 7h1z"></path>
-                </svg>
-              ) : (
-                'Send Crytpo Card'
-              )}
-            </button>
-          )}
-          <WalletConnect />
-        </BranchIsWalletConnected>
+        <BranchIsAuthenticated>
+          <BranchIsWalletConnected>
+            {rest.formState.isSubmitted ? (
+              <button type="button" className="btn btn-emerald">
+                Chance Card Sent
+              </button>
+            ) : (
+              <button type="submit" className="btn btn-emerald w-full">
+                {rest.formState.isSubmitting || isSubmitting ? (
+                  <svg className="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v1a7 7 0 00-7 7h1z"></path>
+                  </svg>
+                ) : (
+                  'Send Crytpo Card'
+                )}
+              </button>
+            )}
+            <WalletConnect />
+          </BranchIsWalletConnected>
+          <ButtonSIWELogin className="btn btn-sm btn-emerald" label="Web3 Login" />
+        </BranchIsAuthenticated>
       </div>
     </form>
   )

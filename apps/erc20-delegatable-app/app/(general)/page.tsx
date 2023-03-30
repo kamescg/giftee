@@ -5,14 +5,16 @@ import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import CardsReceived from '@/components/cards-received'
 import CardsSent from '@/components/cards-sent'
 import { FormIssueCard } from '@/components/form-issue-card'
+import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 
 export default function Home() {
   return (
     <>
-      <section className="py-0">
+      <section className="lg:py-12">
         <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4 lg:gap-10">
           <div className="col-span-12 md:col-span-4">
             <div className="card">
@@ -20,7 +22,7 @@ export default function Home() {
                 <>
                   <h3 className="text-lg font-semibold">Wallet Connected</h3>
                   <hr className="my-2" />
-                  <p className="text-xs leading-6 text-neutral-600 dark:text-white">Start issuing crypto cards to your friends and family.</p>
+                  <p className="text-xs leading-6 text-neutral-600 dark:text-white">Start issuing crypto gift cards to your friends and family.</p>
 
                   <h3 className="mt-4 text-lg font-semibold">How It Works</h3>
                   <hr className="my-2" />
@@ -66,17 +68,33 @@ export default function Home() {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="received" className="bg-white dark:bg-neutral-800">
-                <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
-                  <CardsReceived className="col-span-12 md:col-span-6" />
-                </div>
+                <BranchIsWalletConnected>
+                  <BranchIsAuthenticated>
+                    <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
+                      <CardsReceived className="col-span-12 md:col-span-6" />
+                    </div>
+                    <div className="flex-center flex p-10 w-full">
+                      <ButtonSIWELogin className="btn btn-sm btn-emerald" label="Web3 Login" />
+                    </div>
+                  </BranchIsAuthenticated>
+                  <p className="text-sm text-neutral-600 text-center lg:py-6">Connect a Wallet to see your received cards.</p>
+                </BranchIsWalletConnected>
               </TabsContent>
               <TabsContent value="issue" className="bg-white dark:bg-neutral-800">
                 <FormIssueCard />
               </TabsContent>
               <TabsContent value="sent" className="bg-white dark:bg-neutral-800">
-                <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
-                  <CardsSent className="col-span-12 md:col-span-6" />
-                </div>
+                <BranchIsWalletConnected>
+                  <BranchIsAuthenticated>
+                    <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
+                      <CardsSent className="col-span-12 md:col-span-6" />
+                    </div>
+                    <div className="flex-center flex p-10 w-full">
+                      <ButtonSIWELogin className="btn btn-sm btn-emerald" label="Web3 Login" />
+                    </div>
+                  </BranchIsAuthenticated>
+                  <p className="text-sm text-neutral-600 text-center lg:py-6">Connect a Wallet to see your sent cards.</p>
+                </BranchIsWalletConnected>
               </TabsContent>
             </Tabs>
           </div>

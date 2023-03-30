@@ -18,7 +18,8 @@ export function DashboardFooter(props: Props) {
     <footer className={classes}>
       <h3>{siteConfig.title}</h3>
       <a className="link my-2 text-xs" target={'_blank'} href="https://districtlabs.com/" rel="noreferrer">
-        Built by District Labs
+        Built by <LinkComponent href="https://twitter.com/McOso_">McOso</LinkComponent> and{' '}
+        <LinkComponent href="https://twitter.com/KamesGeraghty">KamesGeraghty</LinkComponent>
       </a>
       <div className="mt-2 flex items-center">
         <LinkComponent href={`${siteConfig.links.github}`}>

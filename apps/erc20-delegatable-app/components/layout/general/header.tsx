@@ -39,13 +39,19 @@ export function Header(props: Props) {
         <>
           <div className="flex w-full justify-between p-4">
             <LinkComponent href="/" className="flex flex-1 items-center ">
-              <BranchColorMode>
-                <Image alt="Logo" src="/logo-dark.png" width={32} height={32} />
-                <Image alt="Logo" src="/logo-white.png" width={32} height={32} />
-              </BranchColorMode>
+              {siteConfig.emoji ? (
+                <span className="text-2xl font-bold">
+                  {siteConfig.emoji} {siteConfig.name}
+                </span>
+              ) : (
+                <BranchColorMode>
+                  <Image alt="Logo" src="/logo-dark.png" width={32} height={32} />
+                  <Image alt="Logo" src="/logo-white.png" width={32} height={32} />
+                </BranchColorMode>
+              )}
             </LinkComponent>
             <div className="">
-              <UserDropdown />
+              <ThemeToggle />
             </div>
           </div>
         </>
