@@ -8,7 +8,7 @@
     },
     "export": {
       "outputs": ["out/**"],
-      "dependsOn": ["^build", "^export"]
+      "dependsOn": ["^build"]
     },
     "test": {
       "outputs": ["coverage/**"],

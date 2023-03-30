@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <section className="lg:py-32">
-        <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4">
+        <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4 lg:gap-10">
           <div className="col-span-12 md:col-span-4">
             <div className="card">
               <BranchIsWalletConnected>
@@ -33,16 +33,20 @@ export default function Home() {
                   </p>
                 </>
                 <>
-                  <div className="relative -top-32 p-4">
-                    <QRCode value="winnnnnnning" className="w-full cursor-pointer rounded-xl bg-white p-2 shadow-md hover:shadow-lg" />
+                  <div className="relative -mt-32 p-4">
+                    <div className='w-full rounded-xl bg-white flex flex-center py-8 shadow-sm'>
+                      <QRCode value="winnnnnnning" className="w-full cursor-pointer rounded-xl bg-white p-4 shadow-md hover:shadow-lg max-h-[208px] w-auto" />
+                    </div>
+                    </div>
                     <p className="my-3 text-center text-xs text-neutral-500 dark:text-neutral-200">Scan QR code to connect wallet</p>
-                    <WalletConnect />
+                    <div className='flex flex-center w-full'>
+                      <WalletConnect />
+                    </div>
                     <div className="mt-4 text-xs leading-6 text-neutral-600">
                       <p className="mb-2">When you connect your wallet, you will be able to issue, send, and receive cards.</p>
                       <p className="">
                         The cards use a special delegation technique to allow you to send and receive cards without having to pay gas fees.
                       </p>
-                    </div>
                   </div>
                 </>
               </BranchIsWalletConnected>
@@ -50,19 +54,19 @@ export default function Home() {
           </div>
           <div className="col-span-12 md:col-span-8">
             <Tabs defaultValue="received" className="w-full">
-              <TabsList className="w-full bg-neutral-100 p-2">
+              <TabsList className="w-full bg-neutral-100 p-3">
                 <TabsTrigger className="w-1/2 py-4" value="received">
-                  💰 Received
+                  🤑 Received
                 </TabsTrigger>
                 <TabsTrigger className="w-1/2 py-4" value="sent">
-                  🏧 Sent
+                  💸 Sent
                 </TabsTrigger>
                 <TabsTrigger className="w-1/2 py-4" value="issue">
-                  🤑 Issue
+                  🏧 Issue
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="received" className="bg-white dark:bg-neutral-800">
-                <div className="grid grid-cols-12 gap-4 w-full">
+                <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
                   <ReceivedCards className="col-span-12 md:col-span-6" />
                 </div>
               </TabsContent>
