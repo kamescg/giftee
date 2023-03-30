@@ -20,9 +20,6 @@ export function FormIssueCard() {
   const resolver = useYupValidationResolver(validationSchema)
   const { handleSubmit, register, setValue, ...rest } = useForm({ resolver })
 
-
-
-
   const [isSubmitting, setIsSubmitting] = useState<Boolean>(false)
   const onSubmit = async (data: any) => {
     setIsSubmitting(true)
