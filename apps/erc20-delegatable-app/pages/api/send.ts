@@ -13,10 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse,
     try {
       // const { address } = req.session.siwe
 
-      await redis.zadd('scores', { score: 1, member: 'team1' })
-      await redis.zadd('scores', { score: 1, member: 'team2' })
-    const data = await redis.zrange('scores', 0, 100 )
-    console.log(data)
+      const data = await redis.zrange('scores', 0, 100)
+      console.log(data)
       res.json({ ok: true })
     } catch (ex) {
       console.error(ex)

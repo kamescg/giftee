@@ -14,7 +14,7 @@ export const AutomaticWalletConnectQRCode = ({ className }: AutomaticWalletConne
       <QRCode
         // TODO: Add value to initialize a wallet connection. Can be done via the WalletConnect API?
         value="winnnnnnningwinnnnnnningwinnnnnnningwinnnnnnningwinnnnnnningwinnnnnnning"
-        className="w-full cursor-pointer rounded-xl bg-white p-4 shadow-md hover:shadow-lg max-h-[208px] w-auto"
+        className="w-full cursor-pointer rounded-xl bg-white p-4 shadow-md hover:shadow-lg max-h-[208px]"
       />
     </div>
   )
