@@ -4,6 +4,7 @@ import QRCode from 'react-qr-code'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { FormIssueCard } from '@/components/form-issue-card'
+import ReceivedCards from '@/components/received-cards'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -48,23 +49,27 @@ export default function Home() {
             </div>
           </div>
           <div className="col-span-12 md:col-span-8">
-            <Tabs defaultValue="issue" className="w-full">
+            <Tabs defaultValue="received" className="w-full">
               <TabsList className="w-full bg-neutral-100 p-2">
-                <TabsTrigger className="w-1/2 py-4" value="issue">
-                  Issue
+                <TabsTrigger className="w-1/2 py-4" value="received">
+                  💰 Received
                 </TabsTrigger>
                 <TabsTrigger className="w-1/2 py-4" value="sent">
-                  Sent
+                  🏧 Sent
                 </TabsTrigger>
-                <TabsTrigger className="w-1/2 py-4" value="received">
-                  Received
+                <TabsTrigger className="w-1/2 py-4" value="issue">
+                  🤑 Issue
                 </TabsTrigger>
               </TabsList>
+              <TabsContent value="received" className="bg-white dark:bg-neutral-800">
+                <div className="grid grid-cols-12 gap-4 w-full">
+                  <ReceivedCards className="col-span-12 md:col-span-6" />
+                </div>
+              </TabsContent>
               <TabsContent value="issue" className="bg-white dark:bg-neutral-800">
                 <FormIssueCard />
               </TabsContent>
               <TabsContent value="sent" className="bg-white dark:bg-neutral-800"></TabsContent>
-              <TabsContent value="received" className="bg-white dark:bg-neutral-800"></TabsContent>
             </Tabs>
           </div>
         </div>

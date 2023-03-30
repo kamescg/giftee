@@ -12,12 +12,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse,
   if (req.method === 'POST') {
     try {
       const { address } = req.session.siwe
-      const delegations = await redis.zadd(address, {
-        key: `delegations:${address}`,
-        score: Date.now(),
-        value: JSON.stringify(req.body),
-      })
-      res.json({ delegations })
+
+      // res.json({ delegations })
+      res.json({ ok: true })
     } catch (ex) {
       return res.json({ ok: false })
     }
