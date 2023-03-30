@@ -9,6 +9,8 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 import { LinkComponent } from '@/components/shared/link-component'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
+import AutomaticWalletConnectQRCode from './automatic-wallet-connect-qr-code'
+
 export default function Home() {
   return (
     <>
@@ -34,19 +36,19 @@ export default function Home() {
                 </>
                 <>
                   <div className="relative -mt-32 p-4">
-                    <div className='w-full rounded-xl bg-white flex flex-center py-8 shadow-sm'>
-                      <QRCode value="winnnnnnning" className="w-full cursor-pointer rounded-xl bg-white p-4 shadow-md hover:shadow-lg max-h-[208px] w-auto" />
+                    <div className="flex-center w-full rounded-xl bg-white flex py-8 shadow-sm">
+                      <AutomaticWalletConnectQRCode />
                     </div>
-                    </div>
-                    <p className="my-3 text-center text-xs text-neutral-500 dark:text-neutral-200">Scan QR code to connect wallet</p>
-                    <div className='flex flex-center w-full'>
-                      <WalletConnect />
-                    </div>
-                    <div className="mt-4 text-xs leading-6 text-neutral-600">
-                      <p className="mb-2">When you connect your wallet, you will be able to issue, send, and receive cards.</p>
-                      <p className="">
-                        The cards use a special delegation technique to allow you to send and receive cards without having to pay gas fees.
-                      </p>
+                  </div>
+                  <p className="my-3 text-center text-xs text-neutral-500 dark:text-neutral-200">Scan QR code to connect wallet</p>
+                  <div className="flex-center flex w-full">
+                    <WalletConnect />
+                  </div>
+                  <div className="mt-4 text-xs leading-6 text-neutral-600">
+                    <p className="mb-2">When you connect your wallet, you will be able to issue, send, and receive cards.</p>
+                    <p className="">
+                      The cards use a special delegation technique to allow you to send and receive cards without having to pay gas fees.
+                    </p>
                   </div>
                 </>
               </BranchIsWalletConnected>
@@ -62,7 +64,7 @@ export default function Home() {
                   💸 Sent
                 </TabsTrigger>
                 <TabsTrigger className="w-1/2 py-4" value="issue">
-                  🏧 Issue
+                  🏧 Issue Card
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="received" className="bg-white dark:bg-neutral-800">
