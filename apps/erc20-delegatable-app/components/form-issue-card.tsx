@@ -56,6 +56,36 @@ export function FormIssueCard() {
           />
         </div>
       </div>
+      <div className="flex w-full gap-10">
+        <div className="mb-6 w-1/2">
+          <label htmlFor="date" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+            Start Date
+          </label>
+          <input
+            {...register('date')}
+            type="date"
+            id="date"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            placeholder=""
+            required
+          />
+          <p className="text-xs text-gray-500">If you don't set a start date, the card will be available immediately.</p>
+        </div>
+        <div className="mb-6 w-1/2">
+          <label htmlFor="endDate" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+            End Date
+          </label>
+          <input
+            {...register('endDate')}
+            type="date"
+            id="endDate"
+            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            placeholder=""
+            required
+          />
+          <p className="text-xs text-gray-500">If you don't set an end date, the card will be available until you manually revoke p.</p>
+        </div>
+      </div>
 
       <div className="">
         <BranchIsWalletConnected>
@@ -64,14 +94,14 @@ export function FormIssueCard() {
               Chance Card Sent
             </button>
           ) : (
-            <button type="submit" className="btn btn-emerald">
+            <button type="submit" className="btn btn-emerald w-full">
               {rest.formState.isSubmitting || isSubmitting ? (
                 <svg className="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v1a7 7 0 00-7 7h1z"></path>
                 </svg>
               ) : (
-                'Send'
+                'Send Crytpo Card'
               )}
             </button>
           )}

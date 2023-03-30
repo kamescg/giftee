@@ -1,0 +1,32 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local","NODE_ENV"],
+  "pipeline": {
+    "build": {
+      "outputs": ["build/**", "dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "export": {
+      "outputs": ["out/**"],
+      "dependsOn": ["^build", "^export"]
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "format": {},
+    "dev": {
+      "inputs": ["src/**", "public/**", "package.json"],
+      "outputs": ["dist/**", ".next/**", "node_modules/**"],
+      "cache": false,
+      "persistent": true
+    },
+    "deployt:dev": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+} 
+
