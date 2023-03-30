@@ -3,13 +3,15 @@
 import QRCode from 'react-qr-code'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
+import CardsReceived from '@/components/cards-received'
+import CardsSent from '@/components/cards-sent'
 import { FormIssueCard } from '@/components/form-issue-card'
-import ReceivedCards from '@/components/received-cards'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 import AutomaticWalletConnectQRCode from './automatic-wallet-connect-qr-code'
+import AppUserDelegations from '@/components/app-user-delegations'
 
 export default function Home() {
   return (
@@ -22,11 +24,11 @@ export default function Home() {
                 <>
                   <h3 className="text-lg font-semibold">Wallet Connected</h3>
                   <hr className="my-2" />
-                  <p className="text-xs leading-6 text-neutral-600">Start issuing crypto cards to your friends and family.</p>
+                  <p className="text-xs leading-6 text-neutral-600 dark:text-white">Start issuing crypto cards to your friends and family.</p>
 
                   <h3 className="mt-4 text-lg font-semibold">How It Works</h3>
                   <hr className="my-2" />
-                  <p className="text-xs leading-6 text-neutral-600">
+                  <p className="text-xs leading-6 text-neutral-600 dark:text-white">
                     Cards are issued using the{' '}
                     <LinkComponent className="link" href="https://github.com/delegatable">
                       Delegatable framework
@@ -36,15 +38,15 @@ export default function Home() {
                 </>
                 <>
                   <div className="relative -mt-32 p-4">
-                    <div className="flex-center w-full rounded-xl bg-white flex py-8 shadow-sm">
+                    <div className="flex-center w-full rounded-xl bg-white flex pt-8 px-8 pb-2 shadow-sm flex-col">
                       <AutomaticWalletConnectQRCode />
+                      <p className="my-3 text-center text-xs text-neutral-500 dark:text-neutral-700">Scan QR code to connect wallet</p>
                     </div>
                   </div>
-                  <p className="my-3 text-center text-xs text-neutral-500 dark:text-neutral-200">Scan QR code to connect wallet</p>
                   <div className="flex-center flex w-full">
                     <WalletConnect />
                   </div>
-                  <div className="mt-4 text-xs leading-6 text-neutral-600">
+                  <div className="mt-4 text-xs leading-6 text-neutral-600 dark:text-white">
                     <p className="mb-2">When you connect your wallet, you will be able to issue, send, and receive cards.</p>
                     <p className="">
                       The cards use a special delegation technique to allow you to send and receive cards without having to pay gas fees.
@@ -69,13 +71,17 @@ export default function Home() {
               </TabsList>
               <TabsContent value="received" className="bg-white dark:bg-neutral-800">
                 <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
-                  <ReceivedCards className="col-span-12 md:col-span-6" />
+                  <CardsReceived className="col-span-12 md:col-span-6" />
                 </div>
               </TabsContent>
               <TabsContent value="issue" className="bg-white dark:bg-neutral-800">
                 <FormIssueCard />
               </TabsContent>
-              <TabsContent value="sent" className="bg-white dark:bg-neutral-800"></TabsContent>
+              <TabsContent value="sent" className="bg-white dark:bg-neutral-800">
+                <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
+                  <CardsSent className="col-span-12 md:col-span-6" />
+                </div>
+              </TabsContent>
             </Tabs>
           </div>
         </div>

@@ -66,6 +66,12 @@ export function Header(props: Props) {
           <div className="flex flex-1 justify-center lg:px-10">{/* <NavigationMenuGeneral /> */}</div>
 
           <div className="flex items-center gap-4">
+            <BranchIsWalletConnected>
+              <BranchIsAuthenticated>
+                <ButtonSIWELogout />
+                <ButtonSIWELogin />
+              </BranchIsAuthenticated>
+            </BranchIsWalletConnected>
             <ThemeToggle />
           </div>
         </>

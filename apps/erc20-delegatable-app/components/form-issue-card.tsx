@@ -3,13 +3,14 @@ import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
+import { appCardIssue } from '@/lib/app/app-card-issue'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 
 import { WalletConnect } from './blockchain/wallet-connect'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 
 const validationSchema = yup.object({
-  name: yup.string().required('Required'),
+  to: yup.string().required('Required'),
   image: yup.string(),
   content: yup.string(),
   chainId: yup.number(),
@@ -22,9 +23,11 @@ export function FormIssueCard() {
 
   const [isSubmitting, setIsSubmitting] = useState<Boolean>(false)
   const onSubmit = async (data: any) => {
+    console.log('wtfd')
     setIsSubmitting(true)
     // @TODO - Sign the delegation
     // @TODO - Send the data to the blockchain
+    appCardIssue(data)
     setIsSubmitting(false)
   }
 
@@ -32,11 +35,11 @@ export function FormIssueCard() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex w-full gap-10">
         <div className="mb-6 w-2/3">
-          <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+          <label htmlFor="to" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
             To
           </label>
           <input
-            {...register('name')}
+            {...register('to')}
             type="text"
             id="name"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
@@ -69,7 +72,6 @@ export function FormIssueCard() {
             id="date"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder=""
-            required
           />
           <p className="mt-2 text-xs text-gray-500">Leave empty and the card will be available immediately.</p>
         </div>
@@ -83,7 +85,6 @@ export function FormIssueCard() {
             id="endDate"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder=""
-            required
           />
           <p className="mt-2 text-xs text-gray-500">Leave empty and the card will be available forever.</p>
         </div>
