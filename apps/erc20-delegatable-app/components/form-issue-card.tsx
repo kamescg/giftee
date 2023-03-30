@@ -20,9 +20,14 @@ export function FormIssueCard() {
   const resolver = useYupValidationResolver(validationSchema)
   const { handleSubmit, register, setValue, ...rest } = useForm({ resolver })
 
+
+
+
   const [isSubmitting, setIsSubmitting] = useState<Boolean>(false)
   const onSubmit = async (data: any) => {
     setIsSubmitting(true)
+    // @TODO - Sign the delegation
+    // @TODO - Send the data to the blockchain
     setIsSubmitting(false)
   }
 
@@ -69,7 +74,7 @@ export function FormIssueCard() {
             placeholder=""
             required
           />
-          <p className="text-xs text-gray-500">If you don't set a start date, the card will be available immediately.</p>
+          <p className="mt-2 text-xs text-gray-500">Leave empty and the card will be available immediately.</p>
         </div>
         <div className="mb-6 w-1/2">
           <label htmlFor="endDate" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
@@ -83,7 +88,7 @@ export function FormIssueCard() {
             placeholder=""
             required
           />
-          <p className="text-xs text-gray-500">If you don't set an end date, the card will be available until you manually revoke p.</p>
+          <p className="mt-2 text-xs text-gray-500">Leave empty and the card will be available forever.</p>
         </div>
       </div>
 
