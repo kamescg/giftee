@@ -1,7 +1,6 @@
 'use client'
 
-import QRCode from 'react-qr-code'
-
+import AutomaticWalletConnectQRCode from '@/components/automatic-wallet-connect-qr-code'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import CardsReceived from '@/components/cards-received'
 import CardsSent from '@/components/cards-sent'
@@ -10,13 +9,10 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 import { LinkComponent } from '@/components/shared/link-component'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-import AutomaticWalletConnectQRCode from './automatic-wallet-connect-qr-code'
-import AppUserDelegations from '@/components/app-user-delegations'
-
 export default function Home() {
   return (
     <>
-      <section className="lg:py-32">
+      <section className="py-0">
         <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4 lg:gap-10">
           <div className="col-span-12 md:col-span-4">
             <div className="card">
