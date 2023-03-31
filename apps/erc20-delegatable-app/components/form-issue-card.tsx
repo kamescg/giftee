@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react'
 
+import { utils } from 'ethers'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
@@ -20,10 +21,7 @@ import { useErc20Manager } from '@/lib/blockchain'
 
 const validationSchema = yup.object({
   to: yup.string().required('Required'),
-  image: yup.string(),
-  content: yup.string(),
-  chainId: yup.number(),
-  address: yup.string(),
+  amount: yup.string().required('Required'),
 })
 
 export function FormIssueCard() {
@@ -42,7 +40,10 @@ export function FormIssueCard() {
   const signer = useSigner();
 
   const onSubmit = async (data: any) => {
-    console.log('wtfd')
+    const formData = {
+      ...data,
+      amount: utils.parseUnits(data.amount, 6).toString(),
+    }
     setIsSubmitting(true)
 
     console.log('data input', data)
@@ -153,7 +154,7 @@ export function FormIssueCard() {
       invocation: signedDelegation2,
     });
     // @TODO - Send the data to the blockchain
-    appCardIssue(data)
+    appCardIssue(formData)
     setIsSubmitting(false)
   }
 

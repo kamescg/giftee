@@ -15,7 +15,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { turboIntegrations } from '@/data/turbo-integrations'
 import { cn } from '@/lib/utils'
 
 import { BranchColorMode } from '../shared/branch-color-mode'
@@ -26,21 +25,38 @@ export function NavigationMenuGeneral() {
     <NavigationMenu className="self-center">
       <NavigationMenuList className="w-full">
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Integrations</NavigationMenuTrigger>
+          <NavigationMenuTrigger>How It Works</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[600px] gap-3 p-4 md:grid-cols-2">
-              {Object.values(turboIntegrations).map((component) => (
-                <ListItem key={component.title} title={component.title} href={component.href} {...component}>
-                  {component.description}
-                </ListItem>
-              ))}
+            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
+              <li className="row-span-3">
+                <NavigationMenuLink asChild>
+                  <div className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-emerald-500 to-purple-700 p-6 no-underline outline-none focus:shadow-md relative overflow-hidden">
+                    <div className="bg-cover z-0 opacity-20 absolute -top-6 h-48 w-48 right-0 bg-[url('https://em-content.zobj.net/thumbs/120/google/350/magic-wand_1fa84.png')]" />
+                    <div className="z-10">
+                      <div className="mt-4 mb-2 text-lg font-medium text-white z-10">
+                        {/* 🪄 */}
+                        <br /> A Magical Experience
+                      </div>
+                      <p className="mb-3 text-sm leading-tight text-white/90">
+                        Gifty is a digital gift card platform that allows you to send and receive gift cards from your favorite Web3 wallet without
+                        submittig an onchain transaction.
+                      </p>
+                      <p className="text-sm leading-tight text-white/90 font-bold">A new world of possibilities!</p>
+                    </div>
+                  </div>
+                </NavigationMenuLink>
+              </li>
+              <LinkComponent href="https://delegatable.org/">
+                <div className="card">
+                  <h3 className="font-normal text-lg">Developer Documentation</h3>
+                  <div className="my-2" />
+                  <p className="text-xs">
+                    Delegatable is a Solidity framework for extending smart contracts with counterfactual revocable-delegation
+                  </p>
+                </div>
+              </LinkComponent>
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <LinkComponent href="https://docs.turboeth.xyz/overview" isExternal>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
-          </LinkComponent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

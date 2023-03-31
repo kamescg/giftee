@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/general/footer'
 import { Header } from '@/components/layout/general/header'
 
 export default function GeneralLayout({ children }: any) {
-  const classes = classNames('App', 'bg-gradient-dark min-h-[100vh] flex flex-col pb-10 lg:pb-32')
+  const classes = classNames('App', 'bg-gradient-dark min-h-[100vh] flex flex-col pb-10 lg:pb-10')
   return (
     <>
       <div className={classes}>

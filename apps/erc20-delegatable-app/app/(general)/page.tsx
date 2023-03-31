@@ -9,12 +9,20 @@ import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticat
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import USDCBalanceMultiChain from '@/components/usdc-balance-multi-chain'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 
 export default function Home() {
   return (
     <>
       <section className="lg:py-12">
+        <div className="container mx-auto max-w-screen-xl flex justify-between items-center mb-4">
+          <span className="text-xl font-semibold flex items-center gap-x-2">
+            <img className="w-8 h-8 rounded-full" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png" />
+            <span className="">USDC Balance</span>
+          </span>
+          <USDCBalanceMultiChain className="text-gradient-primary text-5xl font-bold bg-white dark:bg-slate-700 rounded-full shadow-sm py-3 px-8" />
+        </div>
         <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4 lg:gap-10">
           <div className="col-span-12 md:col-span-4">
             <div className="card">
@@ -58,7 +66,7 @@ export default function Home() {
             <Tabs defaultValue="received" className="w-full">
               <TabsList className="w-full bg-neutral-100 p-3">
                 <TabsTrigger className="w-1/2 py-4" value="received">
-                  🤑 Received
+                  🧧 Received
                 </TabsTrigger>
                 <TabsTrigger className="w-1/2 py-4" value="sent">
                   💸 Sent

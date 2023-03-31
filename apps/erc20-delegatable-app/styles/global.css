@@ -33,11 +33,15 @@ body {
   @apply px-10;
 }
 
-.content h3, {
+.content h1,
+.content h2,
+.content h3,
+ {
   @apply mt-5 mb-2;
 }
+
 .content p {
-  @apply leading-7 text-base;
+  @apply leading-6 mb-3;
 }
 
 .content .list-disc li {
