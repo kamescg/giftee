@@ -28,7 +28,7 @@
 }
 
 .text-gradient-primary {
-  @apply bg-gradient-to-br from-emerald-500 to-emerald-700 bg-clip-text dark:from-emerald-100 dark:to-emerald-200 text-transparent;
+  @apply bg-gradient-to-br from-blue-500 to-blue-700 bg-clip-text dark:from-blue-100 dark:to-blue-200 text-transparent;
 }
 
 .text-gradient-secondary {

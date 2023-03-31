@@ -23,7 +23,7 @@ export const CardsSent = ({ className }: CardsSentProps) => {
         return (
           <div key={index} className={classes}>
             <div className="card-blue">
-              <div className="bg-cover z-0 opacity-10 absolute top-6 h-48 w-48 right-0 bg-[url('https://cryptologos.cc/logos/usd-coin-usdc-logo.png')]"></div>
+              <div className="bg-cover z-0 opacity-10 absolute top-6 h-48 w-48 right-0 bg-[url('https://cryptologos.cc/logos/usd-coin-usdc-logo.png')]" />
               <div className="flex-1 flex justify-between z-10">
                 <div className="">
                   <h3 className="font-normal text-4xl lg:text-6xl">{utils.formatUnits(received.amount, received.decimals)}</h3>
