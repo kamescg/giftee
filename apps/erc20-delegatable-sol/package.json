@@ -80,7 +80,7 @@
     "deploy/**"
   ],
   "dependencies": {
-    "@delegatable/delegatable-sol": "^0.0.0-beta.2",
+    "@delegatable/delegatable-sol": "^0.0.0-beta.3",
     "@foundry-rs/hardhat": "^0.1.6",
     "@foundry-rs/hardhat-anvil": "^0.1.5",
     "@foundry-rs/hardhat-forge": "^0.1.7",
