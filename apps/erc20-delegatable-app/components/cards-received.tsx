@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import classNames from 'clsx'
-import { utils } from 'ethers'
+import { ethers, utils } from 'ethers'
 
 import { useAppUserCardsReceived } from '@/lib/hooks/app/use-app-users-cards-received'
 
@@ -10,6 +10,7 @@ import { FormClaimCard } from './form-claim-card'
 import TimeFromEpoch from './shared/time-from-epoch'
 import { TimeFromUtc } from './shared/time-from-utc'
 import { Dialog, DialogContent, DialogContentXL, DialogTrigger } from './ui/dialog'
+import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 
 interface CardsReceivedProps {
   className?: string
@@ -18,9 +19,27 @@ interface CardsReceivedProps {
 export const CardsReceived = ({ className }: CardsReceivedProps) => {
   const classes = classNames(className, 'CardsReceived')
   const { data } = useAppUserCardsReceived()
+
+  const contractTimestampBeforeEnforcer = useContractAutoLoad('TimestampBeforeEnforcer')
+  const contractTimestampAfterEnforcer = useContractAutoLoad('TimestampAfterEnforcer')
+  
   return (
     <>
       {data?.content?.map((received, index) => {
+        console.log('received', received)
+
+        // get time enforcer details
+        let startTime;
+        let endTime;
+        received.delegations.delegation.caveats.forEach((caveat: any) => {
+          if (caveat.enforcer === contractTimestampBeforeEnforcer.address) {
+            endTime = ethers.BigNumber.from(caveat.terms).toNumber()
+          }
+          if (caveat.enforcer === contractTimestampAfterEnforcer.address) {
+            startTime = ethers.BigNumber.from(caveat.terms).toNumber()
+          }
+        })
+
         return (
           <div key={index} className={classes}>
             {/* <div className="bg-gradient-to-tr from-red-500 to-orange-500 text-white rounded-lg min-h-[245px] flex flex-col p-4"> */}
@@ -61,15 +80,17 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
                             <div className="flex items-center justify-between">
                               <span className="text-xs font-semibold">Start</span>
                               <span className="text-xs">
-                                <TimeFromUtc date={received.createdAt} />
+                                {startTime ? <TimeFromEpoch epoch={startTime} /> : <TimeFromUtc date={received.createdAt} />}
                               </span>
                             </div>
                             <div className="flex items-center justify-between text-xs">
                               <span className="text-xs font-semibold">Expiration</span>
-                              <span className="text-xs">None</span>
+                              <span className="text-xs">
+                                {endTime ? <TimeFromEpoch epoch={endTime} /> : 'Never'}
+                              </span>
                             </div>
                           </div>
-                          <FormClaimCard />
+                          <FormClaimCard delegationData={received}/>
                         </div>
                       </div>
                     </DialogContentXL>
