@@ -16,12 +16,12 @@ export default function Home() {
   return (
     <>
       <section className="lg:py-12">
-        <div className="container mx-auto max-w-screen-xl flex justify-between items-center mb-4">
-          <span className="text-xl font-semibold flex items-center gap-x-2">
-            <img className="w-8 h-8 rounded-full" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png" />
+        <div className="container mx-auto mb-4 flex max-w-screen-xl items-center justify-between">
+          <span className="flex items-center gap-x-2 text-xl font-semibold">
+            <img className="h-8 w-8 rounded-full" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png" />
             <span className="">USDC Balance</span>
           </span>
-          <USDCBalanceMultiChain className="text-gradient-primary text-5xl font-bold bg-white dark:bg-slate-700 rounded-full shadow-sm py-3 px-8" />
+          <USDCBalanceMultiChain className="text-gradient-primary rounded-full bg-white px-8 py-3 text-5xl font-bold shadow-sm dark:bg-slate-700" />
         </div>
         <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4 lg:gap-10">
           <div className="col-span-12 md:col-span-4">
@@ -44,7 +44,7 @@ export default function Home() {
                 </>
                 <>
                   <div className="relative -mt-32 p-4">
-                    <div className="flex-center w-full rounded-xl bg-white flex pt-8 px-8 pb-2 shadow-sm flex-col">
+                    <div className="flex-center flex w-full flex-col rounded-xl bg-white px-8 pb-2 pt-8 shadow-sm">
                       <AutomaticWalletConnectQRCode />
                       <p className="my-3 text-center text-xs text-neutral-500 dark:text-neutral-700">Scan QR code to connect wallet</p>
                     </div>
@@ -78,14 +78,14 @@ export default function Home() {
               <TabsContent value="received" className="bg-white dark:bg-neutral-800">
                 <BranchIsWalletConnected>
                   <BranchIsAuthenticated>
-                    <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
+                    <div className="grid w-full grid-cols-12 gap-4 lg:gap-8">
                       <CardsReceived className="col-span-12 md:col-span-6" />
                     </div>
-                    <div className="flex-center flex p-10 w-full">
+                    <div className="flex-center flex w-full p-10">
                       <ButtonSIWELogin className="btn btn-sm btn-emerald" label="Web3 Login" />
                     </div>
                   </BranchIsAuthenticated>
-                  <p className="text-sm text-neutral-600 text-center lg:py-6">Connect a Wallet to see your received cards.</p>
+                  <p className="text-center text-sm text-neutral-600 lg:py-6">Connect a Wallet to see your received cards.</p>
                 </BranchIsWalletConnected>
               </TabsContent>
               <TabsContent value="issue" className="bg-white dark:bg-neutral-800">
@@ -94,14 +94,14 @@ export default function Home() {
               <TabsContent value="sent" className="bg-white dark:bg-neutral-800">
                 <BranchIsWalletConnected>
                   <BranchIsAuthenticated>
-                    <div className="grid grid-cols-12 gap-4 lg:gap-8 w-full">
+                    <div className="grid w-full grid-cols-12 gap-4 lg:gap-8">
                       <CardsSent className="col-span-12 md:col-span-6" />
                     </div>
-                    <div className="flex-center flex p-10 w-full">
+                    <div className="flex-center flex w-full p-10">
                       <ButtonSIWELogin className="btn btn-sm btn-emerald" label="Web3 Login" />
                     </div>
                   </BranchIsAuthenticated>
-                  <p className="text-sm text-neutral-600 text-center lg:py-6">Connect a Wallet to see your sent cards.</p>
+                  <p className="text-center text-sm text-neutral-600 lg:py-6">Connect a Wallet to see your sent cards.</p>
                 </BranchIsWalletConnected>
               </TabsContent>
             </Tabs>

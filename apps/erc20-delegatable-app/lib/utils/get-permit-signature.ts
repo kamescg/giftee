@@ -1,23 +1,15 @@
-import { BigNumber, ethers } from "ethers";
+import { BigNumber, ethers } from 'ethers'
 
-export async function getPermitSignature(
-  signer: any,
-  token: any,
-  spender: any,
-  value: any,
-  deadline: any,
-  name: any,
-) {
+export async function getPermitSignature(signer: any, token: any, spender: any, value: any, deadline: any, name: any) {
   // const [nonce, name, version, chainId] = await Promise.all([
   //   token.nonces(signer.address),
   //   token.name(),
   //   '1',
   //   signer.getChainId(),
   // ]);
-  const version = '1';
-  const nonce = BigNumber.from(0);
-  const chainId = await signer.getChainId();
-
+  const version = '1'
+  const nonce = BigNumber.from(0)
+  const chainId = await signer.getChainId()
 
   return ethers.utils.splitSignature(
     await signer._signTypedData(
@@ -57,7 +49,7 @@ export async function getPermitSignature(
         value,
         nonce,
         deadline,
-      },
-    ),
-  );
+      }
+    )
+  )
 }

@@ -57,7 +57,7 @@ export const TablePagination = ({
           </strong>{' '}
         </span>
         |
-        <span className="bg-card mx-2 inline-block rounded-xl py-3 px-2">
+        <span className="bg-card mx-2 inline-block rounded-xl px-2 py-3">
           <span className="p-2">
             Go to page:{' '}
             <input

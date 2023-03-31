@@ -2,7 +2,7 @@ export const domain = {
   name: 'ERC20Manager',
   version: '1',
   chainId: 84531,
-};
+}
 
 export const types = {
   EIP712Domain: [
@@ -50,7 +50,7 @@ export const types = {
     { name: 'signature', type: 'bytes' },
     { name: 'intentionToRevoke', type: 'IntentionToRevoke' },
   ],
-};
+}
 
 export const typedMessage = {
   primaryType: 'Delegation',
@@ -64,10 +64,10 @@ export const typedMessage = {
     caveat: 'Caveat',
     authority: 'SignedDelegation',
   },
-};
+}
 
 export default {
   domain,
   types,
   typedMessage,
-};
+}

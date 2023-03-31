@@ -25,10 +25,10 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
           <div key={index} className={classes}>
             {/* <div className="bg-gradient-to-tr from-red-500 to-orange-500 text-white rounded-lg min-h-[245px] flex flex-col p-4"> */}
             <div className="card-blue">
-              <div className="bg-cover z-0 opacity-10 absolute top-6 h-48 w-48 right-0 bg-[url('https://cryptologos.cc/logos/usd-coin-usdc-logo.png')]"></div>
-              <div className="flex-1 flex justify-between z-10">
+              <div className="absolute right-0 top-6 z-0 h-48 w-48 bg-[url('https://cryptologos.cc/logos/usd-coin-usdc-logo.png')] bg-cover opacity-10"></div>
+              <div className="z-10 flex flex-1 justify-between">
                 <div className="">
-                  <h3 className="font-normal text-4xl lg:text-6xl">{utils.formatUnits(received.amount, received.decimals)}</h3>
+                  <h3 className="text-4xl font-normal lg:text-6xl">{utils.formatUnits(received.amount, received.decimals)}</h3>
                   <span className="text-xs">USDC Amount</span>
                 </div>
                 <span className="">
@@ -39,7 +39,7 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
                     <DialogContentXL className="lg:p-10">
                       <div className="grid grid-cols-12 lg:gap-x-10">
                         <div className="col-span-12 lg:col-span-5">
-                          <h3 className="font-normal text-4xl">How It Works</h3>
+                          <h3 className="text-4xl font-normal">How It Works</h3>
                           <hr className="my-4" />
                           <div className="content text-xs">
                             <p className="font-semibold">A friend sent you USDC.</p>
@@ -58,13 +58,13 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
                         <div className="col-span-12 lg:col-span-7">
                           <CardRender to={received.to} amount={received.amount} decimals={received.decimals} />
                           <div className="my-4 flex flex-col gap-2">
-                            <div className="flex justify-between items-center">
+                            <div className="flex items-center justify-between">
                               <span className="text-xs font-semibold">Start</span>
                               <span className="text-xs">
                                 <TimeFromUtc date={received.createdAt} />
                               </span>
                             </div>
-                            <div className="text-xs flex justify-between items-center">
+                            <div className="flex items-center justify-between text-xs">
                               <span className="text-xs font-semibold">Expiration</span>
                               <span className="text-xs">None</span>
                             </div>

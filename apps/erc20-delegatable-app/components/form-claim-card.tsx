@@ -33,7 +33,7 @@ export function FormClaimCard() {
             placeholder="0x000...000"
             required
           />
-          <p className="text-xs text-center mt-2">Leave this field blank if you want to claim your USDC to your wallet.</p>
+          <p className="mt-2 text-center text-xs">Leave this field blank if you want to claim your USDC to your wallet.</p>
         </div>
       </div>
 
