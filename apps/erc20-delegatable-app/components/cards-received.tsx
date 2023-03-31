@@ -23,7 +23,7 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
       {data?.content?.map((received, index) => {
         return (
           <div key={index} className={classes}>
-            {/* <div className="bg-gradient-to-tr  from-red-500 to-orange-500 text-white rounded-lg min-h-[245px] flex flex-col p-4"> */}
+            {/* <div className="bg-gradient-to-tr from-red-500 to-orange-500 text-white rounded-lg min-h-[245px] flex flex-col p-4"> */}
             <div className="card-blue">
               <div className="bg-cover z-0 opacity-10 absolute top-6 h-48 w-48 right-0 bg-[url('https://cryptologos.cc/logos/usd-coin-usdc-logo.png')]"></div>
               <div className="flex-1 flex justify-between z-10">

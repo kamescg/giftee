@@ -3,13 +3,10 @@ import * as React from 'react'
 import classNames from 'clsx'
 import { utils } from 'ethers'
 
-import { useAppUserCardsReceived } from '@/lib/hooks/app/use-app-users-cards-received'
 import { useAppUserCardsSent } from '@/lib/hooks/app/use-app-users-cards-sent'
 
 import { ButtonRevokeCard } from './button-revoke-card'
 import CardRender from './card-render'
-import { FormClaimCard } from './form-claim-card'
-import { FormRevokeCard } from './form-revoke-card'
 import { TimeFromUtc } from './shared/time-from-utc'
 import { Dialog, DialogContentXL, DialogTrigger } from './ui/dialog'
 
@@ -25,7 +22,7 @@ export const CardsSent = ({ className }: CardsSentProps) => {
       {data?.content?.map((received, index) => {
         return (
           <div key={index} className={classes}>
-            <div className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-lg min-h-[245px] flex flex-col p-4 relative">
+            <div className="card-blue">
               <div className="bg-cover z-0 opacity-10 absolute top-6 h-48 w-48 right-0 bg-[url('https://cryptologos.cc/logos/usd-coin-usdc-logo.png')]"></div>
               <div className="flex-1 flex justify-between z-10">
                 <div className="">

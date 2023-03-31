@@ -1,5 +1,9 @@
 .card-blue {
-  @apply bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-lg min-h-[245px] flex flex-col p-4 relative shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out;
+  @apply bg-gradient-to-tr from-indigo-500 to-blue-500 text-white rounded-lg min-h-[245px] flex flex-col p-4 relative shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out;
+}
+
+.card-red {
+  @apply bg-gradient-to-tr from-red-500 to-orange-500 text-white rounded-lg min-h-[245px] flex flex-col p-4 relative shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out;
 }
 
 

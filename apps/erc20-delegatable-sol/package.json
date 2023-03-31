@@ -1,7 +1,7 @@
 {
-  "name": "use-my-erc20",
+  "name": "gifty-sol",
   "version": "0.0.0-beta.0",
-  "description": "Delegatable erc20 implementation",
+  "description": "Delegatable ERC20 implementation",
   "main": "index.js",
   "license": "MIT",
   "author": {
