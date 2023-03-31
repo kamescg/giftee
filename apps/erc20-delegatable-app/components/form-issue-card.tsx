@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react'
 
-import { utils } from 'ethers'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
@@ -12,11 +11,10 @@ import { WalletConnect } from './blockchain/wallet-connect'
 import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
-import { useSigner, useSignTypedData } from 'wagmi'
-import { BigNumber, ethers, utils } from 'ethers'
+import { useSigner } from 'wagmi'
+import { BigNumber, ethers } from 'ethers'
 import { getPermitSignature } from '@/lib/utils/get-permit-signature'
 import { createDelegation } from '@/lib/utils/create-delegation'
-import { createIntention } from '@/lib/utils/create-intention'
 import { useErc20Manager } from '@/lib/blockchain'
 
 const validationSchema = yup.object({
@@ -40,10 +38,6 @@ export function FormIssueCard() {
   const signer = useSigner();
 
   const onSubmit = async (data: any) => {
-    const formData = {
-      ...data,
-      amount: utils.parseUnits(data.amount, 6).toString(),
-    }
     setIsSubmitting(true)
 
     console.log('data input', data)
@@ -107,53 +101,38 @@ export function FormIssueCard() {
       contract.address,
       rawUSDCAmount,
       ethers.constants.MaxUint256,
-      "Token"
+      "USDC"
     );
 
     console.log(v, r, s);
-
-    const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
-      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
-      me,
-      rawUSDCAmount,
-      ethers.constants.MaxUint256,
-      v,
-      r,
-      s
-    );
-
-    const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(
-      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
-      data.to,
-      rawUSDCAmount
-    );
     
     const delegation = createDelegation(data.to, contract.address, enforcers);
 
     console.log(delegation);
     // @ts-ignore
-    const signedDelegation1 = await signer.data?.provider?.send(method, [
+    const signedDelegation = await signer.data?.provider?.send(method, [
       me,
       delegation.string,
     ]);
-    const intention = createIntention(
-      data.to,
-      delegation.delegation,
-      signedDelegation1,
-      contract.address,
-      approveTrxPopulated.data,
-      transferTrxPopulated.data
-    );
-    // @ts-ignore
-    const signedDelegation2 = await signer.data?.provider.send(method, [
-      me,
-      intention.string,
-    ]);
+
     setSignatures({
-      delegation: signedDelegation1,
-      invocation: signedDelegation2,
+      delegation: signedDelegation,
+      invocation: "",
     });
     // @TODO - Send the data to the blockchain
+
+    const formData = {
+      from: me,
+      to: data.to,
+      token: 'USDC',
+      decimals: '6',
+      amount: rawUSDCAmount.toString(),
+      delegations: {
+        ...delegation,
+        signedDelegation: signedDelegation,
+      },
+      signature: { v, r, s, }
+    }
     appCardIssue(formData)
     setIsSubmitting(false)
   }
