@@ -8,8 +8,20 @@ datasource db {
 }
 
 model User {
-  id        String @id @map("_id")
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id        String   @id @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   address   String
+}
+
+model Card {
+  id          String   @id @default(cuid()) @map("_id")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  from        String
+  to          String
+  token       String
+  decimals    String
+  amount      String
+  delegations Json?
 }
