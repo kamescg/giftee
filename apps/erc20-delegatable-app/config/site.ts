@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
   title: 'gifty 🧧 magical gift cards',
   tagline: 'Magical Gift Cards',
   emoji: '🧧',
-  description: 'A magical way to send gift cards to your friends.',
+  description: 'a magical way to send USDC gift cards.',
   previewImg: `${SITE_CANONICAL}/preview.png`,
   localeDefault: 'en',
   links: {
