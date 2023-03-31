@@ -31,7 +31,7 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
         // get time enforcer details
         let startTime;
         let endTime;
-        received.delegations.delegation.caveats.forEach((caveat: any) => {
+        received?.delegations?.delegation?.caveats.forEach((caveat: any) => {
           if (caveat.enforcer === contractTimestampBeforeEnforcer.address) {
             endTime = ethers.BigNumber.from(caveat.terms).toNumber()
           }
