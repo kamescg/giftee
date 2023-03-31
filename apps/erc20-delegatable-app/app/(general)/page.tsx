@@ -58,7 +58,7 @@ export default function Home() {
             <Tabs defaultValue="received" className="w-full">
               <TabsList className="w-full bg-neutral-100 p-3">
                 <TabsTrigger className="w-1/2 py-4" value="received">
-                  🤑 Received
+                  🧧 Received
                 </TabsTrigger>
                 <TabsTrigger className="w-1/2 py-4" value="sent">
                   💸 Sent
