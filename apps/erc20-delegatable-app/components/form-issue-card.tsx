@@ -37,6 +37,8 @@ export function FormIssueCard() {
   const managerContract = useErc20Manager({address: contract.address})
 
   const contractAllowanceEnforcer = useContractAutoLoad("ERC20FromAllowanceEnforcer")
+  const contractTimestampBeforeEnforcer = useContractAutoLoad("TimestampBeforeEnforcer")
+  const contractTimestampAfterEnforcer = useContractAutoLoad("TimestampAfterEnforcer")
   const signer = useSigner();
 
   const onSubmit = async (data: any) => {
@@ -54,6 +56,45 @@ export function FormIssueCard() {
 
     const rawUSDCAmount = BigNumber.from(data.amount * 10 ** 6);
 
+    const inputTerms = ethers.utils.hexZeroPad(rawUSDCAmount.toHexString(), 32);
+
+    const enforcers = [
+      {
+        enforcer: contractAllowanceEnforcer.address,
+        terms: inputTerms,
+      },
+    ]
+
+    // check if times are inputted
+    if (data.startDate){
+      // handle start date enforcer
+      const time = new Date(data.startDate).getTime() / 1000;
+      console.log('start time', time);
+      const timestampAfterRawValue = ethers.utils.hexZeroPad(
+        ethers.utils.hexValue(time),
+        8,
+      );
+
+      enforcers.push({
+        enforcer: contractTimestampAfterEnforcer.address,
+        terms: timestampAfterRawValue,
+      })
+    }
+
+    if (data.endDate){
+      // handle end date enforcer
+      const time = new Date(data.endDate).getTime() / 1000;
+      console.log('end time', time);
+      const timestampBeforeRawValue = ethers.utils.hexZeroPad(
+        ethers.utils.hexValue(time),
+        8,
+      );
+      enforcers.push({
+        enforcer: contractTimestampBeforeEnforcer.address,
+        terms: timestampBeforeRawValue,
+      })
+    }
+
     // @TODO - Sign the delegation
     const method = 'eth_signTypedData_v4';
 
@@ -70,8 +111,6 @@ export function FormIssueCard() {
 
     console.log(v, r, s);
 
-    const inputTerms = ethers.utils.hexZeroPad(rawUSDCAmount.toHexString(), 32);
-
     const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
       '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
       me,
@@ -87,16 +126,8 @@ export function FormIssueCard() {
       data.to,
       rawUSDCAmount
     );
-
-
     
-    const delegation = createDelegation(data.to, contract.address,
-    [
-      {
-        enforcer: contractAllowanceEnforcer.address,
-        terms: inputTerms,
-      },
-    ]);
+    const delegation = createDelegation(data.to, contract.address, enforcers);
 
     console.log(delegation);
     // @ts-ignore
@@ -176,7 +207,7 @@ export function FormIssueCard() {
           </label>
           <input
             {...register('startDate')}
-            type="date"
+            type="datetime-local"
             id="startDate"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder=""
@@ -189,7 +220,7 @@ export function FormIssueCard() {
           </label>
           <input
             {...register('endDate')}
-            type="date"
+            type="datetime-local"
             id="endDate"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder=""

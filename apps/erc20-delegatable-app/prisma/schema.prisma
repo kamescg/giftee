@@ -24,4 +24,5 @@ model Card {
   decimals    String
   amount      String
   delegations Json?
+  signature   Json?
 }
