@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -80,6 +80,8 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       transferTrxPopulated.data
     );
     
+    console.log(intention, 'intention')
+
     // @ts-ignore
     const signedIntention = await signer.data?.provider.send(method, [
       await signer.data?.getAddress(),
@@ -88,10 +90,16 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
 
     console.log('signedIntention', signedIntention)
 
-    setIntentionData({invocations: {...intention.intention, signature: signedIntention}})
+    setIntentionData({invocations: {...intention.intention}, signature: signedIntention})
 
-    write()
+    // write()
   }
+
+  useEffect( () => { 
+    if (intentionData && write) {
+      write()
+    }
+  }, [intentionData])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
