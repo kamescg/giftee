@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -12,7 +12,7 @@ import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 import { ethers } from 'ethers'
 import { useSigner } from 'wagmi'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
-import { useErc20Manager } from '@/lib/blockchain'
+import { useErc20Manager, useErc20ManagerInvoke } from '@/lib/blockchain'
 import { createIntention } from '@/lib/utils/create-intention'
 
 const validationSchema = yup.object({
@@ -27,10 +27,20 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
   const resolver = useYupValidationResolver(validationSchema)
   const { handleSubmit, register, setValue, setError, ...rest } = useForm({ resolver })
 
+  const [intentionData, setIntentionData] = useState<any>()
+
   const contract = useContractAutoLoad("ERC20Manager")
   const managerContract = useErc20Manager({address: contract.address})
 
   const signer = useSigner()
+
+  const { write } = useErc20ManagerInvoke({
+    address: contract.address,
+    args: [[intentionData]],
+    enabled: Boolean(intentionData),
+  })
+
+  console.log('intentionData', intentionData)
 
   const onSubmit = async (data: any) => {
     console.log('data input', data)
@@ -77,6 +87,10 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
     ]);
 
     console.log('signedIntention', signedIntention)
+
+    setIntentionData({invocations: {...intention.intention, signature: signedIntention}})
+
+    write()
   }
 
   return (
