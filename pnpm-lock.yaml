@@ -262,7 +262,7 @@ importers:
 
   apps/erc20-delegatable-sol:
     specifiers:
-      '@delegatable/delegatable-sol': ^0.0.0-beta.2
+      '@delegatable/delegatable-sol': ^0.0.0-beta.3
       '@ethersproject/abi': 5.6.1
       '@foundry-rs/hardhat': ^0.1.6
       '@foundry-rs/hardhat-anvil': ^0.1.5
@@ -306,7 +306,7 @@ importers:
       typechain: 7.0.0
       typescript: ^4.7.4
     dependencies:
-      '@delegatable/delegatable-sol': 0.0.0-beta.2
+      '@delegatable/delegatable-sol': 0.0.0-beta.3
       '@foundry-rs/hardhat': 0.1.8_454z5ank5u2co6ackgsgslbtxu
       '@foundry-rs/hardhat-anvil': 0.1.7_454z5ank5u2co6ackgsgslbtxu
       '@foundry-rs/hardhat-forge': 0.1.17_454z5ank5u2co6ackgsgslbtxu
@@ -2896,8 +2896,8 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  /@delegatable/delegatable-sol/0.0.0-beta.2:
-    resolution: {integrity: sha512-qkUE6yy6t8aajXlnUUpNFA3moPQ0MlCgv5SzF/Fbb0G3Bpeg0+xKuvLm95t0bipYRzZIhzVHASzUbwTewmV8zA==}
+  /@delegatable/delegatable-sol/0.0.0-beta.3:
+    resolution: {integrity: sha512-2P5bZgD2Hj31VOCDQ499e8AnzHcAlHGWBCHo79z9LI0y7CWxJbD41MTZZb2lZx4QIDVZOL+kPbQQj9m3CKkRZg==}
     dependencies:
       '@openzeppelin/contracts': 4.8.2
     dev: false
@@ -8370,7 +8370,7 @@ packages:
   /axios/0.21.4_debug@4.3.3:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.3
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: true
@@ -8378,7 +8378,7 @@ packages:
   /axios/1.3.4:
     resolution: {integrity: sha512-toYm+Bsyl6VC5wSkfkbbNB6ROv7KY93PEBBL6xyDczaIHasAiv4wPqQ/c4RjoQzipxRD2W5g21cOqQulZ7rHwQ==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.3
+      follow-redirects: 1.15.2
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -12977,18 +12977,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  /follow-redirects/1.15.2_debug@4.3.3:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.3
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -19992,7 +19980,7 @@ packages:
     dependencies:
       command-exists: 1.2.9
       commander: 3.0.2
-      follow-redirects: 1.15.2_debug@4.3.3
+      follow-redirects: 1.15.2
       fs-extra: 0.30.0
       js-sha3: 0.8.0
       memorystream: 0.3.1
@@ -20009,7 +19997,7 @@ packages:
     dependencies:
       command-exists: 1.2.9
       commander: 8.3.0
-      follow-redirects: 1.15.2_debug@4.3.3
+      follow-redirects: 1.15.2
       js-sha3: 0.8.0
       memorystream: 0.3.1
       semver: 5.7.1

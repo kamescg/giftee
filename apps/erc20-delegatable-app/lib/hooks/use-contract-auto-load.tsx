@@ -11,7 +11,7 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
             abi: [],
           }
         default:
-          // throw new Error(`Unknown contract ${contract}`)
+        // throw new Error(`Unknown contract ${contract}`)
       }
     case 84531:
       switch (contract) {
@@ -36,9 +36,9 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
             abi: [],
           }
         default:
-          // throw new Error(`Unknown contract ${contract}`)
+        // throw new Error(`Unknown contract ${contract}`)
       }
     default:
-      // throw new Error(`Unknown network ${chain?.id}`)
+    // throw new Error(`Unknown network ${chain?.id}`)
   }
 }
