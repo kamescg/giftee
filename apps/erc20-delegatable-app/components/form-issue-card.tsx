@@ -7,9 +7,16 @@ import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 
 import { WalletConnect } from './blockchain/wallet-connect'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
+import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
+import { useSigner, useSignTypedData } from 'wagmi'
+import { BigNumber, ethers, utils } from 'ethers'
+import { getPermitSignature } from '@/lib/utils/get-permit-signature'
+import { createDelegation } from '@/lib/utils/create-delegation'
+import { createIntention } from '@/lib/utils/create-intention'
+import { useErc20Manager } from '@/lib/blockchain'
 
 const validationSchema = yup.object({
-  name: yup.string().required('Required'),
+  to: yup.string().required('Required'),
   image: yup.string(),
   content: yup.string(),
   chainId: yup.number(),
@@ -18,61 +25,156 @@ const validationSchema = yup.object({
 
 export function FormIssueCard() {
   const resolver = useYupValidationResolver(validationSchema)
-  const { handleSubmit, register, setValue, ...rest } = useForm({ resolver })
-
-
-
+  const { handleSubmit, register, setValue, setError, ...rest } = useForm({ resolver })
 
   const [isSubmitting, setIsSubmitting] = useState<Boolean>(false)
+  const [signatures, setSignatures] = useState<any>();
+
+  const contract = useContractAutoLoad("ERC20Manager")
+  const managerContract = useErc20Manager({address: contract.address})
+
+  const contractAllowanceEnforcer = useContractAutoLoad("ERC20FromAllowanceEnforcer")
+  const signer = useSigner();
+
   const onSubmit = async (data: any) => {
     setIsSubmitting(true)
+
+    console.log('data input', data)
+
+    // check if valid send to address
+    if (!ethers.utils.isAddress(data.to)) {
+      setError('to', { type: 'manual', message: 'Invalid address' })
+      setIsSubmitting(false)
+      return false;
+    }
+
+    const rawUSDCAmount = BigNumber.from(data.amount * 10 ** 6);
+
     // @TODO - Sign the delegation
+    const method = 'eth_signTypedData_v4';
+
+    const me = await signer.data?.getAddress();
+
+    const { v, r, s } = await getPermitSignature(
+      signer.data,
+      {address: '0x0000000000000000000000000000000000000000'}, // fill with correct USDC token address
+      contract.address,
+      rawUSDCAmount,
+      ethers.constants.MaxUint256,
+      "Token"
+    );
+
+    console.log(v, r, s);
+
+    const inputTerms = ethers.utils.hexZeroPad(rawUSDCAmount.toHexString(), 32);
+
+    const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
+      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
+      me,
+      rawUSDCAmount,
+      ethers.constants.MaxUint256,
+      v,
+      r,
+      s
+    );
+
+    const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(
+      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
+      data.to,
+      rawUSDCAmount
+    );
+
+
+    
+    const delegation = createDelegation(data.to, contract.address,
+    [
+      {
+        enforcer: contractAllowanceEnforcer.address,
+        terms: inputTerms,
+      },
+    ]);
+
+    console.log(delegation);
+    // @ts-ignore
+    const signedDelegation1 = await signer.data?.provider?.send(method, [
+      me,
+      delegation.string,
+    ]);
+    const intention = createIntention(
+      data.to,
+      delegation.delegation,
+      signedDelegation1,
+      contract.address,
+      approveTrxPopulated.data,
+      transferTrxPopulated.data
+    );
+    // @ts-ignore
+    const signedDelegation2 = await signer.data?.provider.send(method, [
+      me,
+      intention.string,
+    ]);
+    setSignatures({
+      delegation: signedDelegation1,
+      invocation: signedDelegation2,
+    });
     // @TODO - Send the data to the blockchain
     setIsSubmitting(false)
   }
 
   return (
+    <>
+    {signatures && (
+        <div className="text-sm">
+          <span className="block break-all">
+            Delegation: <br /> {signatures.delegation}
+          </span>
+          <span className="block break-all">
+            Invocation: <br /> {signatures.invocation}
+          </span>
+        </div>
+      )}
+
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex w-full gap-10">
         <div className="mb-6 w-2/3">
-          <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+          <label htmlFor="to" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
             To
           </label>
           <input
-            {...register('name')}
+            {...register('to')}
             type="text"
-            id="name"
+            id="to"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder=""
+            placeholder="0xd61FA937b8f648901D354f48f6b14995fE468bF3"
             required
           />
+          {rest.formState.errors.to && <p className="text-red-500 text-xs italic">{rest.formState.errors.to.message as string}</p>}
         </div>
         <div className="mb-6 w-1/3">
           <label htmlFor="amount" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-            Amount
+            Amount of USDC
           </label>
           <input
-            {...register('amount')}
-            type="text"
+            {...register('amount', { valueAsNumber: true })}
+            type="number"
             id="amount"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder=""
+            placeholder="100"
             required
           />
         </div>
       </div>
       <div className="flex w-full gap-10">
         <div className="mb-6 w-1/2">
-          <label htmlFor="date" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+          <label htmlFor="startDate" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
             Start Date
           </label>
           <input
-            {...register('date')}
+            {...register('startDate')}
             type="date"
-            id="date"
+            id="startDate"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder=""
-            required
           />
           <p className="mt-2 text-xs text-gray-500">Leave empty and the card will be available immediately.</p>
         </div>
@@ -86,7 +188,6 @@ export function FormIssueCard() {
             id="endDate"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder=""
-            required
           />
           <p className="mt-2 text-xs text-gray-500">Leave empty and the card will be available forever.</p>
         </div>
@@ -96,7 +197,7 @@ export function FormIssueCard() {
         <BranchIsWalletConnected>
           {rest.formState.isSubmitted ? (
             <button type="button" className="btn btn-emerald">
-              Chance Card Sent
+              Crypto Card Sent
             </button>
           ) : (
             <button type="submit" className="btn btn-emerald w-full">
@@ -106,7 +207,7 @@ export function FormIssueCard() {
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v1a7 7 0 00-7 7h1z"></path>
                 </svg>
               ) : (
-                'Send Crytpo Card'
+                'Send Crypto Card'
               )}
             </button>
           )}
@@ -114,5 +215,7 @@ export function FormIssueCard() {
         </BranchIsWalletConnected>
       </div>
     </form>
+    </>
+
   )
 }
