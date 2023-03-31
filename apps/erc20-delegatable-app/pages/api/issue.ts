@@ -26,6 +26,7 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
           to: req.body.to,
           delegations: req.body.delegations,
           amount: req.body.amount,
+          signature: req.body.signature,
         },
       })
       res.json({ content: data, object: 'Delegation' })
