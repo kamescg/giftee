@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -9,31 +9,106 @@ import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { WalletConnect } from './blockchain/wallet-connect'
 import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
+import { ethers } from 'ethers'
+import { useSigner } from 'wagmi'
+import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
+import { useErc20Manager, useErc20ManagerInvoke } from '@/lib/blockchain'
+import { createIntention } from '@/lib/utils/create-intention'
 
 const validationSchema = yup.object({
-  to: yup.string().required('Required'),
-  amount: yup.string().required('Required'),
+  to: yup.string(),
 })
 
-export function FormClaimCard() {
-  const resolver = useYupValidationResolver(validationSchema)
-  const { handleSubmit, register, setValue, ...rest } = useForm({ resolver })
+interface FormClaimCardProps {
+  delegationData: any
+}
 
-  const onSubmit = async (data: any) => {}
+export function FormClaimCard({ delegationData }: FormClaimCardProps) {
+  const resolver = useYupValidationResolver(validationSchema)
+  const { handleSubmit, register, setValue, setError, ...rest } = useForm({ resolver })
+
+  const [intentionData, setIntentionData] = useState<any>()
+
+  const contract = useContractAutoLoad("ERC20Manager")
+  const managerContract = useErc20Manager({address: contract.address})
+
+  const signer = useSigner()
+
+  const { write } = useErc20ManagerInvoke({
+    address: contract.address,
+    args: [[intentionData]],
+    enabled: Boolean(intentionData),
+  })
+
+  console.log('intentionData', intentionData)
+
+  const onSubmit = async (data: any) => {
+    console.log('data input', data)
+
+    // check if valid send to address
+    if (data.to && !ethers.utils.isAddress(data.to)) {
+      setError('to', { type: 'manual', message: 'Invalid address' })
+      return false
+    }
+
+    const sendToAddress = data.to ? data.to : await signer.data?.getAddress()
+
+    const method = 'eth_signTypedData_v4'
+
+    const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
+      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
+      delegationData.from,
+      delegationData.amount,
+      ethers.constants.MaxUint256,
+      delegationData.signature.v,
+      delegationData.signature.r,
+      delegationData.signature.s
+    );
+
+    const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(
+      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
+      sendToAddress,
+      delegationData.amount
+    );
+
+    const intention = createIntention(
+      sendToAddress,
+      delegationData.delegations.delegation,
+      delegationData.delegations.signedDelegation,
+      contract.address,
+      approveTrxPopulated.data,
+      transferTrxPopulated.data
+    );
+    
+    // @ts-ignore
+    const signedIntention = await signer.data?.provider.send(method, [
+      await signer.data?.getAddress(),
+      intention.string,
+    ]);
+
+    console.log('signedIntention', signedIntention)
+
+    setIntentionData({invocations: {...intention.intention, signature: signedIntention}})
+
+    write()
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex w-full gap-10">
         <div className="mb-6 w-full">
+          <label htmlFor="to" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+            Send To
+          </label>
           <input
             {...register('to')}
             type="text"
             id="name"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="0x000...000"
-            required
           />
-          <p className="text-xs text-center mt-2">Leave this field blank if you want to claim your USDC to your wallet.</p>
+          {rest.formState.errors.to && <p className="text-xs italic text-red-500">{rest.formState.errors.to.message as string}</p>}
+          <p className="mt-2 text-center text-xs">Leave this field blank if you want to claim your USDC to your wallet.</p>
         </div>
       </div>
 

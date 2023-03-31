@@ -30,10 +30,10 @@ export function NavigationMenuGeneral() {
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
-                  <div className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-emerald-500 to-purple-700 p-6 no-underline outline-none focus:shadow-md relative overflow-hidden">
-                    <div className="bg-cover z-0 opacity-20 absolute -top-6 h-48 w-48 right-0 bg-[url('https://em-content.zobj.net/thumbs/120/google/350/magic-wand_1fa84.png')]" />
+                  <div className="relative flex h-full w-full select-none flex-col justify-end overflow-hidden rounded-md bg-gradient-to-b from-emerald-500 to-purple-700 p-6 no-underline outline-none focus:shadow-md">
+                    <div className="absolute -top-6 right-0 z-0 h-48 w-48 bg-[url('https://em-content.zobj.net/thumbs/120/google/350/magic-wand_1fa84.png')] bg-cover opacity-20" />
                     <div className="z-10">
-                      <div className="mt-4 mb-2 text-lg font-medium text-white z-10">
+                      <div className="z-10 mb-2 mt-4 text-lg font-medium text-white">
                         {/* 🪄 */}
                         <br /> A Magical Experience
                       </div>
@@ -41,14 +41,14 @@ export function NavigationMenuGeneral() {
                         Gifty is a digital gift card platform that allows you to send and receive gift cards from your favorite Web3 wallet without
                         submittig an onchain transaction.
                       </p>
-                      <p className="text-sm leading-tight text-white/90 font-bold">A new world of possibilities!</p>
+                      <p className="text-sm font-bold leading-tight text-white/90">A new world of possibilities!</p>
                     </div>
                   </div>
                 </NavigationMenuLink>
               </li>
               <LinkComponent href="https://delegatable.org/">
                 <div className="card">
-                  <h3 className="font-normal text-lg">Developer Documentation</h3>
+                  <h3 className="text-lg font-normal">Developer Documentation</h3>
                   <div className="my-2" />
                   <p className="text-xs">
                     Delegatable is a Solidity framework for extending smart contracts with counterfactual revocable-delegation
@@ -81,7 +81,7 @@ const ListItem = React.forwardRef<React.ElementRef<'a'>, React.ComponentPropsWit
               <Image className="mb-3 h-7 w-7 rounded-full" alt="Etherscan logo" src={imgLight} width={100} height={100} />
             </BranchColorMode>
             <div className="text-sm font-medium leading-none">{name}</div>
-            <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">{children}</p>
+            <p className="line-clamp-2 text-sm leading-snug text-slate-500 dark:text-slate-400">{children}</p>
           </a>
         </NavigationMenuLink>
       </li>
