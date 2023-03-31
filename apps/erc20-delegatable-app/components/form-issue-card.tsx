@@ -35,6 +35,9 @@ export function FormIssueCard() {
   const contractAllowanceEnforcer = useContractAutoLoad('ERC20FromAllowanceEnforcer')
   const contractTimestampBeforeEnforcer = useContractAutoLoad('TimestampBeforeEnforcer')
   const contractTimestampAfterEnforcer = useContractAutoLoad('TimestampAfterEnforcer')
+
+  const contractUSDC = useContractAutoLoad('USDC')
+
   const signer = useSigner()
 
   const onSubmit = async (data: any) => {
@@ -91,7 +94,7 @@ export function FormIssueCard() {
 
     const { v, r, s } = await getPermitSignature(
       signer.data,
-      { address: '0x0000000000000000000000000000000000000000' }, // fill with correct USDC token address
+      { address: contractUSDC.address },
       contract.address,
       rawUSDCAmount,
       ethers.constants.MaxUint256,

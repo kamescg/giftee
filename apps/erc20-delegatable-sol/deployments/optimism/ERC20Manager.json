@@ -1,0 +1,1518 @@
+{
+  "address": "0xD63adCa091f56694fC97e66d10085cc9192dE1Bc",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "enforcer",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "terms",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct Caveat[]",
+          "name": "_input",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "GET_CAVEAT_ARRAY_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "enforcer",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "terms",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct Caveat",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_CAVEAT_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "delegate",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "authority",
+              "type": "bytes32"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "enforcer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "terms",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Caveat[]",
+              "name": "caveats",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Delegation",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_DELEGATION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "gasLimit",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Transaction",
+                  "name": "transaction",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "delegate",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes32",
+                          "name": "authority",
+                          "type": "bytes32"
+                        },
+                        {
+                          "components": [
+                            {
+                              "internalType": "address",
+                              "name": "enforcer",
+                              "type": "address"
+                            },
+                            {
+                              "internalType": "bytes",
+                              "name": "terms",
+                              "type": "bytes"
+                            }
+                          ],
+                          "internalType": "struct Caveat[]",
+                          "name": "caveats",
+                          "type": "tuple[]"
+                        }
+                      ],
+                      "internalType": "struct Delegation",
+                      "name": "delegation",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "signature",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct SignedDelegation[]",
+                  "name": "authority",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Invocation[]",
+              "name": "batch",
+              "type": "tuple[]"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "queue",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ReplayProtection",
+              "name": "replayProtection",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct Invocations",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_INVOCATIONS_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Transaction",
+              "name": "transaction",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "delegate",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "authority",
+                      "type": "bytes32"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "enforcer",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "terms",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct Caveat[]",
+                      "name": "caveats",
+                      "type": "tuple[]"
+                    }
+                  ],
+                  "internalType": "struct Delegation",
+                  "name": "delegation",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "signature",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct SignedDelegation[]",
+              "name": "authority",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Invocation[]",
+          "name": "_input",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "GET_INVOCATION_ARRAY_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Transaction",
+              "name": "transaction",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "delegate",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "authority",
+                      "type": "bytes32"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "enforcer",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "terms",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct Caveat[]",
+                      "name": "caveats",
+                      "type": "tuple[]"
+                    }
+                  ],
+                  "internalType": "struct Delegation",
+                  "name": "delegation",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "signature",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct SignedDelegation[]",
+              "name": "authority",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Invocation",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_INVOCATION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "nonce",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "queue",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ReplayProtection",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_REPLAYPROTECTION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "delegate",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "authority",
+                  "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "enforcer",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "terms",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Caveat[]",
+                  "name": "caveats",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Delegation",
+              "name": "delegation",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SignedDelegation[]",
+          "name": "_input",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "GET_SIGNEDDELEGATION_ARRAY_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "delegate",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "authority",
+                  "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "enforcer",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "terms",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Caveat[]",
+                  "name": "caveats",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Delegation",
+              "name": "delegation",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SignedDelegation",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_SIGNEDDELEGATION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "gasLimit",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct Transaction",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_TRANSACTION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "approveTransferProxy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Transaction",
+              "name": "transaction",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "delegate",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "authority",
+                      "type": "bytes32"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "enforcer",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "terms",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct Caveat[]",
+                      "name": "caveats",
+                      "type": "tuple[]"
+                    }
+                  ],
+                  "internalType": "struct Delegation",
+                  "name": "delegation",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "signature",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct SignedDelegation[]",
+              "name": "authority",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Invocation[]",
+          "name": "batch",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "contractInvoke",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "domainHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "delegate",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "authority",
+              "type": "bytes32"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "enforcer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "terms",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Caveat[]",
+              "name": "caveats",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Delegation",
+          "name": "delegation",
+          "type": "tuple"
+        }
+      ],
+      "name": "getDelegationTypedDataHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "contractName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "chainId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "verifyingContract",
+          "type": "address"
+        }
+      ],
+      "name": "getEIP712DomainHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "gasLimit",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Transaction",
+                  "name": "transaction",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "delegate",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes32",
+                          "name": "authority",
+                          "type": "bytes32"
+                        },
+                        {
+                          "components": [
+                            {
+                              "internalType": "address",
+                              "name": "enforcer",
+                              "type": "address"
+                            },
+                            {
+                              "internalType": "bytes",
+                              "name": "terms",
+                              "type": "bytes"
+                            }
+                          ],
+                          "internalType": "struct Caveat[]",
+                          "name": "caveats",
+                          "type": "tuple[]"
+                        }
+                      ],
+                      "internalType": "struct Delegation",
+                      "name": "delegation",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "signature",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct SignedDelegation[]",
+                  "name": "authority",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Invocation[]",
+              "name": "batch",
+              "type": "tuple[]"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "queue",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ReplayProtection",
+              "name": "replayProtection",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct Invocations",
+          "name": "invocations",
+          "type": "tuple"
+        }
+      ],
+      "name": "getInvocationsTypedDataHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "intendedSender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "queue",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNonce",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "to",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "gasLimit",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "data",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct Transaction",
+                      "name": "transaction",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "internalType": "address",
+                              "name": "delegate",
+                              "type": "address"
+                            },
+                            {
+                              "internalType": "bytes32",
+                              "name": "authority",
+                              "type": "bytes32"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "internalType": "address",
+                                  "name": "enforcer",
+                                  "type": "address"
+                                },
+                                {
+                                  "internalType": "bytes",
+                                  "name": "terms",
+                                  "type": "bytes"
+                                }
+                              ],
+                              "internalType": "struct Caveat[]",
+                              "name": "caveats",
+                              "type": "tuple[]"
+                            }
+                          ],
+                          "internalType": "struct Delegation",
+                          "name": "delegation",
+                          "type": "tuple"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "signature",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct SignedDelegation[]",
+                      "name": "authority",
+                      "type": "tuple[]"
+                    }
+                  ],
+                  "internalType": "struct Invocation[]",
+                  "name": "batch",
+                  "type": "tuple[]"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint256",
+                      "name": "nonce",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "queue",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ReplayProtection",
+                  "name": "replayProtection",
+                  "type": "tuple"
+                }
+              ],
+              "internalType": "struct Invocations",
+              "name": "invocations",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SignedInvocation[]",
+          "name": "signedInvocations",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "invoke",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferProxy",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "delegate",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "authority",
+                  "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "enforcer",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "terms",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Caveat[]",
+                  "name": "caveats",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Delegation",
+              "name": "delegation",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SignedDelegation",
+          "name": "signedDelegation",
+          "type": "tuple"
+        }
+      ],
+      "name": "verifyDelegationSignature",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "to",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "uint256",
+                          "name": "gasLimit",
+                          "type": "uint256"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "data",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct Transaction",
+                      "name": "transaction",
+                      "type": "tuple"
+                    },
+                    {
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "internalType": "address",
+                              "name": "delegate",
+                              "type": "address"
+                            },
+                            {
+                              "internalType": "bytes32",
+                              "name": "authority",
+                              "type": "bytes32"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "internalType": "address",
+                                  "name": "enforcer",
+                                  "type": "address"
+                                },
+                                {
+                                  "internalType": "bytes",
+                                  "name": "terms",
+                                  "type": "bytes"
+                                }
+                              ],
+                              "internalType": "struct Caveat[]",
+                              "name": "caveats",
+                              "type": "tuple[]"
+                            }
+                          ],
+                          "internalType": "struct Delegation",
+                          "name": "delegation",
+                          "type": "tuple"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "signature",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct SignedDelegation[]",
+                      "name": "authority",
+                      "type": "tuple[]"
+                    }
+                  ],
+                  "internalType": "struct Invocation[]",
+                  "name": "batch",
+                  "type": "tuple[]"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint256",
+                      "name": "nonce",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "queue",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ReplayProtection",
+                  "name": "replayProtection",
+                  "type": "tuple"
+                }
+              ],
+              "internalType": "struct Invocations",
+              "name": "invocations",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SignedInvocation",
+          "name": "signedInvocation",
+          "type": "tuple"
+        }
+      ],
+      "name": "verifyInvocationSignature",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x2984da6d9fe84ea2afcdcb352ade67b9547a7366cd71dac19d6fe5994a93047a",
+  "receipt": {
+    "to": null,
+    "from": "0xd61FA937b8f237901D354f48f6b14995fE468bF2",
+    "contractAddress": "0xD63adCa091f56694fC97e66d10085cc9192dE1Bc",
+    "transactionIndex": 0,
+    "gasUsed": "1886716",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000001000000000000000000000000000000000000020000000000000000000810000000000000000000000000000000400000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000200000000000000000000000000000000000000000020200000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x6fe511909f18157136acefb3d330ec1a6dda73066d9e186ed95ed4b6de120f26",
+    "transactionHash": "0x2984da6d9fe84ea2afcdcb352ade67b9547a7366cd71dac19d6fe5994a93047a",
+    "logs": [
+      {
+        "transactionIndex": 0,
+        "blockNumber": 85247745,
+        "transactionHash": "0x2984da6d9fe84ea2afcdcb352ade67b9547a7366cd71dac19d6fe5994a93047a",
+        "address": "0xD63adCa091f56694fC97e66d10085cc9192dE1Bc",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000d61fa937b8f237901d354f48f6b14995fe468bf2"
+        ],
+        "data": "0x",
+        "logIndex": 0,
+        "blockHash": "0x6fe511909f18157136acefb3d330ec1a6dda73066d9e186ed95ed4b6de120f26"
+      }
+    ],
+    "blockNumber": 85247745,
+    "cumulativeGasUsed": "1886716",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "ce641da708df7368b930baf2e41d5a34",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"_input\",\"type\":\"tuple[]\"}],\"name\":\"GET_CAVEAT_ARRAY_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat\",\"name\":\"_input\",\"type\":\"tuple\"}],\"name\":\"GET_CAVEAT_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"_input\",\"type\":\"tuple\"}],\"name\":\"GET_DELEGATION_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"transaction\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"authority\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Invocation[]\",\"name\":\"batch\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"queue\",\"type\":\"uint256\"}],\"internalType\":\"struct ReplayProtection\",\"name\":\"replayProtection\",\"type\":\"tuple\"}],\"internalType\":\"struct Invocations\",\"name\":\"_input\",\"type\":\"tuple\"}],\"name\":\"GET_INVOCATIONS_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"transaction\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"authority\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Invocation[]\",\"name\":\"_input\",\"type\":\"tuple[]\"}],\"name\":\"GET_INVOCATION_ARRAY_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"transaction\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"authority\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Invocation\",\"name\":\"_input\",\"type\":\"tuple\"}],\"name\":\"GET_INVOCATION_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"queue\",\"type\":\"uint256\"}],\"internalType\":\"struct ReplayProtection\",\"name\":\"_input\",\"type\":\"tuple\"}],\"name\":\"GET_REPLAYPROTECTION_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"_input\",\"type\":\"tuple[]\"}],\"name\":\"GET_SIGNEDDELEGATION_ARRAY_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation\",\"name\":\"_input\",\"type\":\"tuple\"}],\"name\":\"GET_SIGNEDDELEGATION_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"_input\",\"type\":\"tuple\"}],\"name\":\"GET_TRANSACTION_PACKETHASH\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"approveTransferProxy\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"transaction\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"authority\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Invocation[]\",\"name\":\"batch\",\"type\":\"tuple[]\"}],\"name\":\"contractInvoke\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"domainHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"}],\"name\":\"getDelegationTypedDataHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"contractName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"version\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"chainId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"verifyingContract\",\"type\":\"address\"}],\"name\":\"getEIP712DomainHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"transaction\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"authority\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Invocation[]\",\"name\":\"batch\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"queue\",\"type\":\"uint256\"}],\"internalType\":\"struct ReplayProtection\",\"name\":\"replayProtection\",\"type\":\"tuple\"}],\"internalType\":\"struct Invocations\",\"name\":\"invocations\",\"type\":\"tuple\"}],\"name\":\"getInvocationsTypedDataHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"intendedSender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"queue\",\"type\":\"uint256\"}],\"name\":\"getNonce\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"transaction\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"authority\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Invocation[]\",\"name\":\"batch\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"queue\",\"type\":\"uint256\"}],\"internalType\":\"struct ReplayProtection\",\"name\":\"replayProtection\",\"type\":\"tuple\"}],\"internalType\":\"struct Invocations\",\"name\":\"invocations\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedInvocation[]\",\"name\":\"signedInvocations\",\"type\":\"tuple[]\"}],\"name\":\"invoke\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"transferProxy\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation\",\"name\":\"signedDelegation\",\"type\":\"tuple\"}],\"name\":\"verifyDelegationSignature\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Transaction\",\"name\":\"transaction\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"delegate\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"authority\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"enforcer\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"terms\",\"type\":\"bytes\"}],\"internalType\":\"struct Caveat[]\",\"name\":\"caveats\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Delegation\",\"name\":\"delegation\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedDelegation[]\",\"name\":\"authority\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Invocation[]\",\"name\":\"batch\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"queue\",\"type\":\"uint256\"}],\"internalType\":\"struct ReplayProtection\",\"name\":\"replayProtection\",\"type\":\"tuple\"}],\"internalType\":\"struct Invocations\",\"name\":\"invocations\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"internalType\":\"struct SignedInvocation\",\"name\":\"signedInvocation\",\"type\":\"tuple\"}],\"name\":\"verifyInvocationSignature\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"McOso\",\"kind\":\"dev\",\"methods\":{\"contractInvoke(((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[])\":{\"params\":{\"batch\":\"Invocation[] - The batch of invocations to process.\"},\"returns\":{\"_0\":\"success bool - Whether the batch of invocations was successfully processed.\"}},\"getDelegationTypedDataHash((address,bytes32,(address,bytes)[]))\":{\"params\":{\"delegation\":\"Delegation - The delegation to get the type of\"},\"returns\":{\"_0\":\"bytes32 - The type of the delegation\"}},\"getInvocationsTypedDataHash((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)))\":{\"params\":{\"invocations\":\"Invocations\"},\"returns\":{\"_0\":\"bytes32 - The type of the Invocations\"}},\"invoke(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes)[])\":{\"params\":{\"signedInvocations\":\"SignedInvocation[] - The batch of signed invocations to process.\"},\"returns\":{\"success\":\"bool - Whether the batch of invocations was successfully processed.\"}},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"verifyInvocationSignature(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes))\":{\"params\":{\"signedInvocation\":\"- The signed invocation to verify\"},\"returns\":{\"_0\":\"address - The address of the account authorizing this invocation to act on its behalf.\"}}},\"title\":\"ERC20Manager\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"contractInvoke(((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[])\":{\"notice\":\"Allows a smart contract to submit a batch of invocations for processing, allowing itself to be the delegate.\"},\"domainHash()\":{\"notice\":\"The hash of the domain separator used in the EIP712 domain hash.\"},\"getDelegationTypedDataHash((address,bytes32,(address,bytes)[]))\":{\"notice\":\"Returns the typehash for this contract's delegation signatures.\"},\"getInvocationsTypedDataHash((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)))\":{\"notice\":\"Returns the typehash for this contract's invocation signatures.\"},\"invoke(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes)[])\":{\"notice\":\"Allows anyone to submit a batch of signed invocations for processing.\"},\"verifyInvocationSignature(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes))\":{\"notice\":\"Verifies that the given invocation is valid.\"}},\"notice\":\"Manages the erc20 delegation\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ERC20Manager.sol\":\"ERC20Manager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@delegatable/delegatable-sol/contracts/CaveatEnforcer.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity 0.8.15;\\n\\nimport \\\"./TypesAndDecoders.sol\\\";\\n\\nabstract contract CaveatEnforcer {\\n    function enforceCaveat(\\n        bytes calldata terms,\\n        Transaction calldata tx,\\n        bytes32 delegationHash\\n    ) public virtual returns (bool);\\n}\\n\",\"keccak256\":\"0x14ec17bfb3cc94c4a0a81bbddf681150be2b574176294cee3c6fb21ab0f62fa3\",\"license\":\"MIT\"},\"@delegatable/delegatable-sol/contracts/Delegatable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity 0.8.15;\\n\\n// import \\\"hardhat/console.sol\\\";\\nimport {EIP712DOMAIN_TYPEHASH} from \\\"./TypesAndDecoders.sol\\\";\\nimport {Delegation, Invocation, Invocations, SignedInvocation, SignedDelegation} from \\\"./CaveatEnforcer.sol\\\";\\nimport {DelegatableCore} from \\\"./DelegatableCore.sol\\\";\\nimport {IDelegatable} from \\\"./interfaces/IDelegatable.sol\\\";\\n\\nabstract contract Delegatable is IDelegatable, DelegatableCore {\\n    /// @notice The hash of the domain separator used in the EIP712 domain hash.\\n    bytes32 public immutable domainHash;\\n\\n    /**\\n     * @notice Delegatable Constructor\\n     * @param contractName string - The name of the contract\\n     * @param version string - The version of the contract\\n     */\\n    constructor(string memory contractName, string memory version) {\\n        domainHash = getEIP712DomainHash(\\n            contractName,\\n            version,\\n            block.chainid,\\n            address(this)\\n        );\\n    }\\n\\n    /* ===================================================================================== */\\n    /* External Functions                                                                    */\\n    /* ===================================================================================== */\\n\\n    /// @inheritdoc IDelegatable\\n    function getDelegationTypedDataHash(Delegation memory delegation)\\n        public\\n        view\\n        returns (bytes32)\\n    {\\n        bytes32 digest = keccak256(\\n            abi.encodePacked(\\n                \\\"\\\\x19\\\\x01\\\",\\n                domainHash,\\n                GET_DELEGATION_PACKETHASH(delegation)\\n            )\\n        );\\n        return digest;\\n    }\\n\\n    /// @inheritdoc IDelegatable\\n    function getInvocationsTypedDataHash(Invocations memory invocations)\\n        public\\n        view\\n        returns (bytes32)\\n    {\\n        bytes32 digest = keccak256(\\n            abi.encodePacked(\\n                \\\"\\\\x19\\\\x01\\\",\\n                domainHash,\\n                GET_INVOCATIONS_PACKETHASH(invocations)\\n            )\\n        );\\n        return digest;\\n    }\\n\\n    function getEIP712DomainHash(\\n        string memory contractName,\\n        string memory version,\\n        uint256 chainId,\\n        address verifyingContract\\n    ) public pure returns (bytes32) {\\n        bytes memory encoded = abi.encode(\\n            EIP712DOMAIN_TYPEHASH,\\n            keccak256(bytes(contractName)),\\n            keccak256(bytes(version)),\\n            chainId,\\n            verifyingContract\\n        );\\n        return keccak256(encoded);\\n    }\\n\\n    function verifyDelegationSignature(SignedDelegation memory signedDelegation)\\n        public\\n        view\\n        virtual\\n        override(IDelegatable, DelegatableCore)\\n        returns (address)\\n    {\\n        Delegation memory delegation = signedDelegation.delegation;\\n        bytes32 sigHash = getDelegationTypedDataHash(delegation);\\n        address recoveredSignatureSigner = recover(\\n            sigHash,\\n            signedDelegation.signature\\n        );\\n        return recoveredSignatureSigner;\\n    }\\n\\n    function verifyInvocationSignature(SignedInvocation memory signedInvocation)\\n        public\\n        view\\n        returns (address)\\n    {\\n        bytes32 sigHash = getInvocationsTypedDataHash(\\n            signedInvocation.invocations\\n        );\\n        address recoveredSignatureSigner = recover(\\n            sigHash,\\n            signedInvocation.signature\\n        );\\n        return recoveredSignatureSigner;\\n    }\\n\\n    // --------------------------------------\\n    // WRITES\\n    // --------------------------------------\\n\\n    /// @inheritdoc IDelegatable\\n    function contractInvoke(Invocation[] calldata batch)\\n        external\\n        override\\n        returns (bool)\\n    {\\n        return _invoke(batch, msg.sender);\\n    }\\n\\n    /// @inheritdoc IDelegatable\\n    function invoke(SignedInvocation[] calldata signedInvocations)\\n        external\\n        override\\n        returns (bool success)\\n    {\\n        for (uint256 i = 0; i < signedInvocations.length; i++) {\\n            SignedInvocation calldata signedInvocation = signedInvocations[i];\\n            address invocationSigner = verifyInvocationSignature(\\n                signedInvocation\\n            );\\n            _enforceReplayProtection(\\n                invocationSigner,\\n                signedInvocations[i].invocations.replayProtection\\n            );\\n            _invoke(signedInvocation.invocations.batch, invocationSigner);\\n        }\\n    }\\n\\n    /* ===================================================================================== */\\n    /* Internal Functions                                                                    */\\n    /* ===================================================================================== */\\n}\\n\",\"keccak256\":\"0x930e2a249c77eca89f4a1a8f2535a43dd179cc787197c8eae6bebebe080645ab\",\"license\":\"MIT\"},\"@delegatable/delegatable-sol/contracts/DelegatableCore.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity 0.8.15;\\n\\nimport {EIP712Decoder, EIP712DOMAIN_TYPEHASH} from \\\"./TypesAndDecoders.sol\\\";\\nimport {Delegation, Invocation, Invocations, SignedInvocation, SignedDelegation, Transaction, ReplayProtection, CaveatEnforcer} from \\\"./CaveatEnforcer.sol\\\";\\n\\nabstract contract DelegatableCore is EIP712Decoder {\\n    /// @notice Account delegation nonce manager\\n    mapping(address => mapping(uint256 => uint256)) internal multiNonce;\\n\\n    function getNonce(address intendedSender, uint256 queue)\\n        external\\n        view\\n        returns (uint256)\\n    {\\n        return multiNonce[intendedSender][queue];\\n    }\\n\\n    function verifyDelegationSignature(SignedDelegation memory signedDelegation)\\n        public\\n        view\\n        virtual\\n        returns (address);\\n\\n    function _enforceReplayProtection(\\n        address intendedSender,\\n        ReplayProtection memory protection\\n    ) internal {\\n        uint256 queue = protection.queue;\\n        uint256 nonce = protection.nonce;\\n        require(\\n            nonce == (multiNonce[intendedSender][queue] + 1),\\n            \\\"DelegatableCore:nonce2-out-of-order\\\"\\n        );\\n        multiNonce[intendedSender][queue] = nonce;\\n    }\\n\\n    function _execute(\\n        address to,\\n        bytes memory data,\\n        uint256 gasLimit,\\n        address sender\\n    ) internal returns (bool success) {\\n        bytes memory full = abi.encodePacked(data, sender);\\n        bytes memory errorMessage;\\n        (success, errorMessage) = address(to).call{gas: gasLimit}(full);\\n\\n        if (!success) {\\n            if (errorMessage.length > 0) {\\n                string memory reason = extractRevertReason(errorMessage);\\n                revert(reason);\\n            } else {\\n                revert(\\\"DelegatableCore::execution-failed\\\");\\n            }\\n        }\\n    }\\n\\n    function extractRevertReason(bytes memory revertData)\\n        internal\\n        pure\\n        returns (string memory reason)\\n    {\\n        uint256 l = revertData.length;\\n        if (l < 68) return \\\"\\\";\\n        uint256 t;\\n        assembly {\\n            revertData := add(revertData, 4)\\n            t := mload(revertData) // Save the content of the length slot\\n            mstore(revertData, sub(l, 4)) // Set proper length\\n        }\\n        reason = abi.decode(revertData, (string));\\n        assembly {\\n            mstore(revertData, t) // Restore the content of the length slot\\n        }\\n    }\\n\\n    function _invoke(Invocation[] calldata batch, address sender)\\n        internal\\n        returns (bool success)\\n    {\\n        for (uint256 x = 0; x < batch.length; x++) {\\n            Invocation memory invocation = batch[x];\\n            address intendedSender;\\n            address canGrant;\\n\\n            // If there are no delegations, this invocation comes from the signer\\n            if (invocation.authority.length == 0) {\\n                intendedSender = sender;\\n                canGrant = intendedSender;\\n            }\\n\\n            bytes32 authHash = 0x0;\\n\\n            for (uint256 d = 0; d < invocation.authority.length; d++) {\\n                SignedDelegation memory signedDelegation = invocation.authority[\\n                    d\\n                ];\\n                address delegationSigner = verifyDelegationSignature(\\n                    signedDelegation\\n                );\\n\\n                // Implied sending account is the signer of the first delegation\\n                if (d == 0) {\\n                    intendedSender = delegationSigner;\\n                    canGrant = intendedSender;\\n                }\\n\\n                require(\\n                    delegationSigner == canGrant,\\n                    \\\"DelegatableCore:invalid-delegation-signer\\\"\\n                );\\n\\n                Delegation memory delegation = signedDelegation.delegation;\\n                require(\\n                    delegation.authority == authHash,\\n                    \\\"DelegatableCore:invalid-authority-delegation-link\\\"\\n                );\\n\\n                // TODO: maybe delegations should have replay protection, at least a nonce (non order dependent),\\n                // otherwise once it's revoked, you can't give the exact same permission again.\\n                bytes32 delegationHash = GET_SIGNEDDELEGATION_PACKETHASH(\\n                    signedDelegation\\n                );\\n\\n                // Each delegation can include any number of caveats.\\n                // A caveat is any condition that may reject a proposed transaction.\\n                // The caveats specify an external contract that is passed the proposed tx,\\n                // As well as some extra terms that are used to parameterize the enforcer.\\n                for (uint16 y = 0; y < delegation.caveats.length; y++) {\\n                    CaveatEnforcer enforcer = CaveatEnforcer(\\n                        delegation.caveats[y].enforcer\\n                    );\\n                    bool caveatSuccess = enforcer.enforceCaveat(\\n                        delegation.caveats[y].terms,\\n                        invocation.transaction,\\n                        delegationHash\\n                    );\\n                    require(caveatSuccess, \\\"DelegatableCore:caveat-rejected\\\");\\n                }\\n\\n                // Store the hash of this delegation in `authHash`\\n                // That way the next delegation can be verified against it.\\n                authHash = delegationHash;\\n                canGrant = delegation.delegate;\\n            }\\n\\n            // Here we perform the requested invocation.\\n            Transaction memory transaction = invocation.transaction;\\n\\n            require(\\n                transaction.to == address(this),\\n                \\\"DelegatableCore:invalid-invocation-target\\\"\\n            );\\n\\n            // TODO(@kames): Can we bubble up the error message from the enforcer? Why not? Optimizations?\\n            success = _execute(\\n                transaction.to,\\n                transaction.data,\\n                transaction.gasLimit,\\n                intendedSender\\n            );\\n            require(success, \\\"DelegatableCore::execution-failed\\\");\\n        }\\n    }\\n\\n    function _msgSender() internal view virtual returns (address sender) {\\n        if (msg.sender == address(this)) {\\n            bytes memory array = msg.data;\\n            uint256 index = msg.data.length;\\n            assembly {\\n                sender := and(\\n                    mload(add(array, index)),\\n                    0xffffffffffffffffffffffffffffffffffffffff\\n                )\\n            }\\n        } else {\\n            sender = msg.sender;\\n        }\\n        return sender;\\n    }\\n}\\n\",\"keccak256\":\"0x52f02d0092aab2990010f6acf8199231b638e03fe0c87a156849f035fd74df15\",\"license\":\"MIT\"},\"@delegatable/delegatable-sol/contracts/TypesAndDecoders.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity 0.8.15;\\nimport \\\"./libraries/ECRecovery.sol\\\";\\n\\n// BEGIN EIP712 AUTOGENERATED SETUP\\nstruct EIP712Domain {\\n    string name;\\n    string version;\\n    uint256 chainId;\\n    address verifyingContract;\\n}\\n\\nbytes32 constant EIP712DOMAIN_TYPEHASH = keccak256(\\n    \\\"EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)\\\"\\n);\\n\\nstruct Invocation {\\n    Transaction transaction;\\n    SignedDelegation[] authority;\\n}\\n\\nbytes32 constant INVOCATION_TYPEHASH = keccak256(\\n    \\\"Invocation(Transaction transaction,SignedDelegation[] authority)Caveat(address enforcer,bytes terms)Delegation(address delegate,bytes32 authority,Caveat[] caveats)SignedDelegation(Delegation delegation,bytes signature)Transaction(address to,uint256 gasLimit,bytes data)\\\"\\n);\\n\\nstruct Invocations {\\n    Invocation[] batch;\\n    ReplayProtection replayProtection;\\n}\\n\\nbytes32 constant INVOCATIONS_TYPEHASH = keccak256(\\n    \\\"Invocations(Invocation[] batch,ReplayProtection replayProtection)Caveat(address enforcer,bytes terms)Delegation(address delegate,bytes32 authority,Caveat[] caveats)Invocation(Transaction transaction,SignedDelegation[] authority)ReplayProtection(uint nonce,uint queue)SignedDelegation(Delegation delegation,bytes signature)Transaction(address to,uint256 gasLimit,bytes data)\\\"\\n);\\n\\nstruct SignedInvocation {\\n    Invocations invocations;\\n    bytes signature;\\n}\\n\\nbytes32 constant SIGNEDINVOCATION_TYPEHASH = keccak256(\\n    \\\"SignedInvocation(Invocations invocations,bytes signature)Caveat(address enforcer,bytes terms)Delegation(address delegate,bytes32 authority,Caveat[] caveats)Invocation(Transaction transaction,SignedDelegation[] authority)Invocations(Invocation[] batch,ReplayProtection replayProtection)ReplayProtection(uint nonce,uint queue)SignedDelegation(Delegation delegation,bytes signature)Transaction(address to,uint256 gasLimit,bytes data)\\\"\\n);\\n\\nstruct Transaction {\\n    address to;\\n    uint256 gasLimit;\\n    bytes data;\\n}\\n\\nbytes32 constant TRANSACTION_TYPEHASH = keccak256(\\n    \\\"Transaction(address to,uint256 gasLimit,bytes data)\\\"\\n);\\n\\nstruct ReplayProtection {\\n    uint256 nonce;\\n    uint256 queue;\\n}\\n\\nbytes32 constant REPLAYPROTECTION_TYPEHASH = keccak256(\\n    \\\"ReplayProtection(uint nonce,uint queue)\\\"\\n);\\n\\nstruct Delegation {\\n    address delegate;\\n    bytes32 authority;\\n    Caveat[] caveats;\\n}\\n\\nbytes32 constant DELEGATION_TYPEHASH = keccak256(\\n    \\\"Delegation(address delegate,bytes32 authority,Caveat[] caveats)Caveat(address enforcer,bytes terms)\\\"\\n);\\n\\nstruct Caveat {\\n    address enforcer;\\n    bytes terms;\\n}\\n\\nbytes32 constant CAVEAT_TYPEHASH = keccak256(\\n    \\\"Caveat(address enforcer,bytes terms)\\\"\\n);\\n\\nstruct SignedDelegation {\\n    Delegation delegation;\\n    bytes signature;\\n}\\n\\nbytes32 constant SIGNEDDELEGATION_TYPEHASH = keccak256(\\n    \\\"SignedDelegation(Delegation delegation,bytes signature)Caveat(address enforcer,bytes terms)Delegation(address delegate,bytes32 authority,Caveat[] caveats)\\\"\\n);\\n\\n// END EIP712 AUTOGENERATED SETUP\\n\\ncontract EIP712Decoder is ECRecovery {\\n    // BEGIN EIP712 AUTOGENERATED BODY. See scripts/typesToCode.js\\n\\n    // function GET_EIP712DOMAIN_PACKETHASH(EIP712Domain memory _input)\\n    //     public\\n    //     pure\\n    //     returns (bytes32)\\n    // {\\n    //     bytes memory encoded = abi.encode(\\n    //         EIP712DOMAIN_TYPEHASH,\\n    //         _input.name,\\n    //         _input.version,\\n    //         _input.chainId,\\n    //         _input.verifyingContract\\n    //     );\\n\\n    //     return keccak256(encoded);\\n    // }\\n\\n    function GET_INVOCATION_PACKETHASH(Invocation memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded = abi.encode(\\n            INVOCATION_TYPEHASH,\\n            GET_TRANSACTION_PACKETHASH(_input.transaction),\\n            GET_SIGNEDDELEGATION_ARRAY_PACKETHASH(_input.authority)\\n        );\\n\\n        return keccak256(encoded);\\n    }\\n\\n    function GET_SIGNEDDELEGATION_ARRAY_PACKETHASH(\\n        SignedDelegation[] memory _input\\n    ) public pure returns (bytes32) {\\n        bytes memory encoded;\\n        for (uint256 i = 0; i < _input.length; i++) {\\n            encoded = bytes.concat(\\n                encoded,\\n                GET_SIGNEDDELEGATION_PACKETHASH(_input[i])\\n            );\\n        }\\n\\n        bytes32 hash = keccak256(encoded);\\n        return hash;\\n    }\\n\\n    function GET_INVOCATIONS_PACKETHASH(Invocations memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded = abi.encode(\\n            INVOCATIONS_TYPEHASH,\\n            GET_INVOCATION_ARRAY_PACKETHASH(_input.batch),\\n            GET_REPLAYPROTECTION_PACKETHASH(_input.replayProtection)\\n        );\\n\\n        return keccak256(encoded);\\n    }\\n\\n    function GET_INVOCATION_ARRAY_PACKETHASH(Invocation[] memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded;\\n        for (uint256 i = 0; i < _input.length; i++) {\\n            encoded = bytes.concat(\\n                encoded,\\n                GET_INVOCATION_PACKETHASH(_input[i])\\n            );\\n        }\\n\\n        bytes32 hash = keccak256(encoded);\\n        return hash;\\n    }\\n\\n    // function GET_SIGNEDINVOCATION_PACKETHASH(SignedInvocation memory _input)\\n    //     public\\n    //     pure\\n    //     returns (bytes32)\\n    // {\\n    //     bytes memory encoded = abi.encode(\\n    //         SIGNEDINVOCATION_TYPEHASH,\\n    //         GET_INVOCATIONS_PACKETHASH(_input.invocations),\\n    //         keccak256(_input.signature)\\n    //     );\\n\\n    //     return keccak256(encoded);\\n    // }\\n\\n    function GET_TRANSACTION_PACKETHASH(Transaction memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded = abi.encode(\\n            TRANSACTION_TYPEHASH,\\n            _input.to,\\n            _input.gasLimit,\\n            keccak256(_input.data)\\n        );\\n\\n        return keccak256(encoded);\\n    }\\n\\n    function GET_REPLAYPROTECTION_PACKETHASH(ReplayProtection memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded = abi.encode(\\n            REPLAYPROTECTION_TYPEHASH,\\n            _input.nonce,\\n            _input.queue\\n        );\\n\\n        return keccak256(encoded);\\n    }\\n\\n    function GET_DELEGATION_PACKETHASH(Delegation memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded = abi.encode(\\n            DELEGATION_TYPEHASH,\\n            _input.delegate,\\n            _input.authority,\\n            GET_CAVEAT_ARRAY_PACKETHASH(_input.caveats)\\n        );\\n\\n        return keccak256(encoded);\\n    }\\n\\n    function GET_CAVEAT_ARRAY_PACKETHASH(Caveat[] memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded;\\n        for (uint256 i = 0; i < _input.length; i++) {\\n            encoded = bytes.concat(encoded, GET_CAVEAT_PACKETHASH(_input[i]));\\n        }\\n\\n        bytes32 hash = keccak256(encoded);\\n        return hash;\\n    }\\n\\n    function GET_CAVEAT_PACKETHASH(Caveat memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded = abi.encode(\\n            CAVEAT_TYPEHASH,\\n            _input.enforcer,\\n            keccak256(_input.terms)\\n        );\\n\\n        return keccak256(encoded);\\n    }\\n\\n    function GET_SIGNEDDELEGATION_PACKETHASH(SignedDelegation memory _input)\\n        public\\n        pure\\n        returns (bytes32)\\n    {\\n        bytes memory encoded = abi.encode(\\n            SIGNEDDELEGATION_TYPEHASH,\\n            GET_DELEGATION_PACKETHASH(_input.delegation),\\n            keccak256(_input.signature)\\n        );\\n\\n        return keccak256(encoded);\\n    }\\n}\\n\",\"keccak256\":\"0x62c25b5d5fd7e3390c184c776b29a08a4c3b9859efc54483114e6e8c817b4cfa\",\"license\":\"MIT\"},\"@delegatable/delegatable-sol/contracts/interfaces/IDelegatable.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity 0.8.15;\\n\\nimport \\\"../TypesAndDecoders.sol\\\";\\n\\ninterface IDelegatable {\\n    /**\\n     * @notice Allows a smart contract to submit a batch of invocations for processing, allowing itself to be the delegate.\\n     * @param batch Invocation[] - The batch of invocations to process.\\n     * @return success bool - Whether the batch of invocations was successfully processed.\\n     */\\n    function contractInvoke(Invocation[] calldata batch)\\n        external\\n        returns (bool);\\n\\n    /**\\n     * @notice Allows anyone to submit a batch of signed invocations for processing.\\n     * @param signedInvocations SignedInvocation[] - The batch of signed invocations to process.\\n     * @return success bool - Whether the batch of invocations was successfully processed.\\n     */\\n    function invoke(SignedInvocation[] calldata signedInvocations)\\n        external\\n        returns (bool success);\\n\\n    /**\\n     * @notice Returns the typehash for this contract's delegation signatures.\\n     * @param delegation Delegation - The delegation to get the type of\\n     * @return bytes32 - The type of the delegation\\n     */\\n    function getDelegationTypedDataHash(Delegation memory delegation)\\n        external\\n        view\\n        returns (bytes32);\\n\\n    /**\\n     * @notice Returns the typehash for this contract's invocation signatures.\\n     * @param invocations Invocations\\n     * @return bytes32 - The type of the Invocations\\n     */\\n    function getInvocationsTypedDataHash(Invocations memory invocations)\\n        external\\n        view\\n        returns (bytes32);\\n\\n    function getEIP712DomainHash(\\n        string memory contractName,\\n        string memory version,\\n        uint256 chainId,\\n        address verifyingContract\\n    ) external pure returns (bytes32);\\n\\n    /**\\n     * @notice Verifies that the given invocation is valid.\\n     * @param signedInvocation - The signed invocation to verify\\n     * @return address - The address of the account authorizing this invocation to act on its behalf.\\n     */\\n    function verifyInvocationSignature(SignedInvocation memory signedInvocation)\\n        external\\n        view\\n        returns (address);\\n\\n    /**\\n     * @notice Verifies that the given delegation is valid.\\n     * @param signedDelegation - The delegation to verify\\n     * @return address - The address of the account authorizing this delegation to act on its behalf.\\n     */\\n    function verifyDelegationSignature(SignedDelegation memory signedDelegation)\\n        external\\n        view\\n        returns (address);\\n}\\n\",\"keccak256\":\"0x1b536288fc232c912492fd39e361bab56e81676b31225e1a33503819c604be11\",\"license\":\"MIT\"},\"@delegatable/delegatable-sol/contracts/libraries/ECRecovery.sol\":{\"content\":\"pragma solidity 0.8.15;\\n\\n// SPDX-License-Identifier: MIT\\n\\ncontract ECRecovery {\\n    /**\\n     * @dev Recover signer address from a message by using their signature\\n     * @param hash bytes32 message, the hash is the signed message. What is recovered is the signer address.\\n     * @param sig bytes signature, the signature is generated using web3.eth.sign()\\n     */\\n    function recover(bytes32 hash, bytes memory sig)\\n        internal\\n        pure\\n        returns (address)\\n    {\\n        bytes32 r;\\n        bytes32 s;\\n        uint8 v;\\n\\n        //Check the signature length\\n        if (sig.length != 65) {\\n            return (address(0));\\n        }\\n\\n        // Divide the signature in r, s and v variables\\n        assembly {\\n            r := mload(add(sig, 32))\\n            s := mload(add(sig, 64))\\n            v := byte(0, mload(add(sig, 96)))\\n        }\\n        // Version of signature should be 27 or 28, but 0 and 1 are also possible versions\\n        if (v < 27) {\\n            v += 27;\\n        }\\n\\n        // If the version is correct return the signer address\\n        if (v != 27 && v != 28) {\\n            return (address(0));\\n        } else {\\n            return ecrecover(hash, v, r, s);\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0xdcd8b97fb382a5e43e7a9000515dfad14263e8ab7f548b276b5952e7970fee03\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.7.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * By default, the owner account will be the one that deploys the contract. This\\n * can later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the deployer as the initial owner.\\n     */\\n    constructor() {\\n        _transferOwnership(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        require(owner() == _msgSender(), \\\"Ownable: caller is not the owner\\\");\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions anymore. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby removing any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        require(newOwner != address(0), \\\"Ownable: new owner is the zero address\\\");\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.6.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the amount of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the amount of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves `amount` tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Moves `amount` tokens from `from` to `to` using the\\n     * allowance mechanism. `amount` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(\\n        address from,\\n        address to,\\n        uint256 amount\\n    ) external returns (bool);\\n}\\n\",\"keccak256\":\"0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (token/ERC20/extensions/draft-IERC20Permit.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC20 Permit extension allowing approvals to be made via signatures, as defined in\\n * https://eips.ethereum.org/EIPS/eip-2612[EIP-2612].\\n *\\n * Adds the {permit} method, which can be used to change an account's ERC20 allowance (see {IERC20-allowance}) by\\n * presenting a message signed by the account. By not relying on {IERC20-approve}, the token holder account doesn't\\n * need to send a transaction, and thus is not required to hold Ether at all.\\n */\\ninterface IERC20Permit {\\n    /**\\n     * @dev Sets `value` as the allowance of `spender` over ``owner``'s tokens,\\n     * given ``owner``'s signed approval.\\n     *\\n     * IMPORTANT: The same issues {IERC20-approve} has related to transaction\\n     * ordering also apply here.\\n     *\\n     * Emits an {Approval} event.\\n     *\\n     * Requirements:\\n     *\\n     * - `spender` cannot be the zero address.\\n     * - `deadline` must be a timestamp in the future.\\n     * - `v`, `r` and `s` must be a valid `secp256k1` signature from `owner`\\n     * over the EIP712-formatted function arguments.\\n     * - the signature must use ``owner``'s current nonce (see {nonces}).\\n     *\\n     * For more information on the signature format, see the\\n     * https://eips.ethereum.org/EIPS/eip-2612#specification[relevant EIP\\n     * section].\\n     */\\n    function permit(\\n        address owner,\\n        address spender,\\n        uint256 value,\\n        uint256 deadline,\\n        uint8 v,\\n        bytes32 r,\\n        bytes32 s\\n    ) external;\\n\\n    /**\\n     * @dev Returns the current nonce for `owner`. This value must be\\n     * included whenever a signature is generated for {permit}.\\n     *\\n     * Every successful call to {permit} increases ``owner``'s nonce by one. This\\n     * prevents a signature from being used multiple times.\\n     */\\n    function nonces(address owner) external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the domain separator used in the encoding of the signature for {permit}, as defined by {EIP712}.\\n     */\\n    // solhint-disable-next-line func-name-mixedcase\\n    function DOMAIN_SEPARATOR() external view returns (bytes32);\\n}\\n\",\"keccak256\":\"0xf41ca991f30855bf80ffd11e9347856a517b977f0a6c2d52e6421a99b7840329\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n}\\n\",\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\"},\"contracts/ERC20Manager.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity 0.8.15;\\n\\nimport { Delegatable } from \\\"@delegatable/delegatable-sol/contracts/Delegatable.sol\\\";\\nimport { DelegatableCore } from \\\"@delegatable/delegatable-sol/contracts/DelegatableCore.sol\\\";\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\nimport \\\"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol\\\";\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\n\\n/**\\n * @title ERC20Manager\\n * @author McOso\\n * @notice Manages the erc20 delegation\\n */\\ncontract ERC20Manager is Delegatable, Ownable {\\n  /* ===================================================================================== */\\n  /* Constructor & Modifiers                                                               */\\n  /* ===================================================================================== */\\n\\n  constructor() Delegatable(\\\"ERC20Manager\\\", \\\"1\\\") {}\\n\\n  /* ===================================================================================== */\\n  /* External Functions                                                                    */\\n  /* ===================================================================================== */\\n\\n  // ========================\\n  // READS\\n  // ========================\\n\\n  // ========================\\n  // WRITES\\n  // ========================\\n  function approveTransferProxy(\\n    address _token,\\n    address _from,\\n    uint256 _amount,\\n    uint256 _deadline,\\n    uint8 v,\\n    bytes32 r,\\n    bytes32 s\\n  ) external {\\n    require(msg.sender == address(this), \\\"ERC20Manager:invalid-sender\\\");\\n    IERC20Permit(_token).permit(_from, address(this), _amount, _deadline, v, r, s);\\n  }\\n\\n  function transferProxy(\\n    address _token,\\n    address _to,\\n    uint256 _amount\\n  ) external returns (bool) {\\n    require(msg.sender == address(this), \\\"ERC20Manager:transferProxy-not-authorized\\\");\\n    return IERC20(_token).transferFrom(_msgSender(), _to, _amount);\\n  }\\n\\n  /* ===================================================================================== */\\n  /* Internal Functions                                                                    */\\n  /* ===================================================================================== */\\n  function _msgSender()\\n    internal\\n    view\\n    virtual\\n    override(DelegatableCore, Context)\\n    returns (address sender)\\n  {\\n    if (msg.sender == address(this)) {\\n      bytes memory array = msg.data;\\n      uint256 index = msg.data.length;\\n      assembly {\\n        sender := and(mload(add(array, index)), 0xffffffffffffffffffffffffffffffffffffffff)\\n      }\\n    } else {\\n      sender = msg.sender;\\n    }\\n    return sender;\\n  }\\n}\\n\",\"keccak256\":\"0x37b13922e8ee2d80db2539477be96b7493b73d165b21085071db3320c7d7aef5\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60a06040523480156200001157600080fd5b506040518060400160405280600c81526020016b22a921991826b0b730b3b2b960a11b815250604051806040016040528060018152602001603160f81b81525062000065828246306200008560201b60201c565b608052506200007f90506200007962000101565b6200015f565b620001b1565b8351602094850120835193850193909320604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f8188015280820195909552606085019190915260808401929092526001600160a01b031660a0808401919091528151808403909101815260c09092019052805191012090565b60003033036200015957600080368080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152505050503601516001600160a01b031691506200015c9050565b50335b90565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a35050565b6080516120a1620001db600039600081816103b9015281816107a201526109ec01526120a16000f3fe608060405234801561001057600080fd5b50600436106101585760003560e01c8063736f7ce7116100c3578063a2e01f751161007c578063a2e01f7514610304578063caced6c514610317578063d327c1eb1461032a578063dfe86ac5146103b4578063e33150db146103db578063f2fde38b146103ee57600080fd5b8063736f7ce71461025b5780637b577b581461026e57806389535803146102815780638a04499e146102b55780638da5cb5b146102e057806397182ed6146102f157600080fd5b80635cf1b24a116101155780635cf1b24a146101f257806360b6d768146102055780636c2b1253146102185780636f9658031461022b578063715018a61461023e5780637234eefe1461024857600080fd5b806308aaf6b01461015d5780632f52a2fd146101835780632fad7efc146101965780633a481821146101b95780634733dc8f146101cc5780635c6d9f0c146101df575b600080fd5b61017061016b366004611514565b610401565b6040519081526020015b60405180910390f35b610170610191366004611657565b610481565b6101a96101a43660046116d6565b6104ec565b604051901515815260200161017a565b6101706101c736600461192f565b6105b3565b6101a96101da366004611963565b61062a565b6101a96101ed3660046116d6565b61072a565b61017061020036600461199f565b610740565b610170610213366004611a5c565b61079d565b610170610226366004611a90565b6107ed565b610170610239366004611ac4565b61084a565b61024661089b565b005b610170610256366004611a5c565b6108af565b610170610269366004611ae0565b6108ed565b61017061027c366004611b14565b610955565b61017061028f366004611b48565b6001600160a01b0391909116600090815260208181526040808320938352929052205490565b6102c86102c3366004611a90565b6109bd565b6040516001600160a01b03909116815260200161017a565b6001546001600160a01b03166102c8565b6101706102ff366004611657565b6109e7565b610170610312366004611b72565b610a14565b6102c8610325366004611be5565b610a80565b610170610338366004611c19565b8351602094850120835193850193909320604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f8188015280820195909552606085019190915260808401929092526001600160a01b031660a0808401919091528151808403909101815260c09092019052805191012090565b6101707f000000000000000000000000000000000000000000000000000000000000000081565b6102466103e9366004611c96565b610aa2565b6102466103fc366004611d09565b610b80565b6000807f80ad7e1b04ee6d994a125f4714ca0720908bd80ed16063ec8aee4b88e9253e2d8360000151846020015180519060200120604051602001610462939291909283526001600160a01b03919091166020830152604082015260600190565b60408051601f1981840301815291905280516020909101209392505050565b6000807f409f5114779a253e700d775d7845e6efc1e83685ac59868d2df3d4de51c7d621836000015184602001516104bc8660400151610955565b6040805160208101959095526001600160a01b03909316928401929092526060830152608082015260a001610462565b6000805b828110156105ac573684848381811061050b5761050b611d24565b905060200281019061051d9190611d3a565b9050600061052d61032583611d5a565b90506105798187878681811061054557610545611d24565b90506020028101906105579190611d3a565b6105619080611d66565b6020018036038101906105749190611ac4565b610bf9565b6105966105868380611d66565b6105909080611d7c565b83610cb3565b50505080806105a490611ddb565b9150506104f0565b5092915050565b6000606060005b835181101561061b57816105e68583815181106105d9576105d9611d24565b6020026020010151610740565b6040516020016105f7929190611e24565b6040516020818303038152906040529150808061061390611ddb565b9150506105ba565b50805160209091012092915050565b60003330146106925760405162461bcd60e51b815260206004820152602960248201527f45524332304d616e616765723a7472616e7366657250726f78792d6e6f742d616044820152681d5d1a1bdc9a5e995960ba1b60648201526084015b60405180910390fd5b836001600160a01b03166323b872dd6106a9611066565b6040516001600160e01b031960e084901b1681526001600160a01b0391821660048201529086166024820152604481018590526064016020604051808303816000875af11580156106fe573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107229190611e46565b949350505050565b6000610737838333610cb3565b90505b92915050565b6000807fd97dd99b404d177890f06a8f0fc8e5ed0333fb2ebb6684360709066e8984f5946107718460000151610a14565b61077e85602001516108ed565b6040805160208101949094528301919091526060820152608001610462565b6000807f00000000000000000000000000000000000000000000000000000000000000006107ca846108af565b60405161190160f01b602082015260228101929092526042820152606201610462565b6000807f3c36a06e1d288b0f94f565588317a46ad11bc3c96992109f9a2365a2737259a761081e8460000151610481565b602080860151805190820120604051610462949392019283526020830191909152604082015260600190565b6000807fe8d3d963b33868fb116316bc3fd55e8f49123f30e4418f71e140d54b7cd3b2b983600001518460200151604051602001610462939291909283526020830191909152604082015260600190565b6108a36110c2565b6108ad600061113b565b565b6000807f08c69a206c06f5334b35ceb1186181a713b21aff02cf66285f375084fbef2eb86108e084600001516105b3565b61077e856020015161084a565b6000606060005b835181101561061b578161092085838151811061091357610913611d24565b60200260200101516107ed565b604051602001610931929190611e24565b6040516020818303038152906040529150808061094d90611ddb565b9150506108f4565b6000606060005b835181101561061b578161098885838151811061097b5761097b611d24565b6020026020010151610401565b604051602001610999929190611e24565b604051602081830303815290604052915080806109b590611ddb565b91505061095c565b8051600090816109cc826109e7565b905060006109de82866020015161118d565b95945050505050565b6000807f00000000000000000000000000000000000000000000000000000000000000006107ca84610481565b6000807fb16dfdb3b8fa033fe30ac976cd4a50ad256b6811c80d90fcd0b323eec190047d8360000151846020015185604001518051906020012060405160200161046294939291909384526001600160a01b039290921660208401526040830152606082015260800190565b600080610a90836000015161079d565b9050600061072282856020015161118d565b333014610af15760405162461bcd60e51b815260206004820152601b60248201527f45524332304d616e616765723a696e76616c69642d73656e64657200000000006044820152606401610689565b60405163d505accf60e01b81526001600160a01b038781166004830152306024830152604482018790526064820186905260ff8516608483015260a4820184905260c4820183905288169063d505accf9060e401600060405180830381600087803b158015610b5f57600080fd5b505af1158015610b73573d6000803e3d6000fd5b5050505050505050505050565b610b886110c2565b6001600160a01b038116610bed5760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b6064820152608401610689565b610bf68161113b565b50565b60208082015182516001600160a01b038516600090815280845260408082208483529094529290922054909190610c31906001611e6f565b8114610c8b5760405162461bcd60e51b815260206004820152602360248201527f44656c6567617461626c65436f72653a6e6f6e6365322d6f75742d6f662d6f726044820152623232b960e91b6064820152608401610689565b6001600160a01b03909316600090815260208181526040808320938352929052209190915550565b6000805b8381101561105e576000858583818110610cd357610cd3611d24565b9050602002810190610ce59190611d3a565b610cee90611e87565b9050600080826020015151600003610d065750849050805b6000805b846020015151811015610fa157600085602001518281518110610d2f57610d2f611d24565b602002602001015190506000610d44826109bd565b905082600003610d55578095508594505b846001600160a01b0316816001600160a01b031614610dc85760405162461bcd60e51b815260206004820152602960248201527f44656c6567617461626c65436f72653a696e76616c69642d64656c656761746960448201526837b716b9b4b3b732b960b91b6064820152608401610689565b815160208101518514610e375760405162461bcd60e51b815260206004820152603160248201527f44656c6567617461626c65436f72653a696e76616c69642d617574686f726974604482015270792d64656c65676174696f6e2d6c696e6b60781b6064820152608401610689565b6000610e42846107ed565b905060005b8260400151518161ffff161015610f8457600083604001518261ffff1681518110610e7457610e74611d24565b60200260200101516000015190506000816001600160a01b0316635068de4c86604001518561ffff1681518110610ead57610ead611d24565b6020026020010151602001518e60000151876040518463ffffffff1660e01b8152600401610edd93929190611ebf565b6020604051808303816000875af1158015610efc573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610f209190611e46565b905080610f6f5760405162461bcd60e51b815260206004820152601f60248201527f44656c6567617461626c65436f72653a6361766561742d72656a6563746564006044820152606401610689565b50508080610f7c90611f1b565b915050610e47565b50905195509350829150610f99905081611ddb565b915050610d0a565b50835180516001600160a01b0316301461100f5760405162461bcd60e51b815260206004820152602960248201527f44656c6567617461626c65436f72653a696e76616c69642d696e766f636174696044820152681bdb8b5d185c99d95d60ba1b6064820152608401610689565b61102781600001518260400151836020015187611264565b9650866110465760405162461bcd60e51b815260040161068990611f3c565b5050505050808061105690611ddb565b915050610cb7565b509392505050565b60003033036110bc57600080368080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152505050503601516001600160a01b031691506110bf9050565b50335b90565b6110ca611066565b6001600160a01b03166110e56001546001600160a01b031690565b6001600160a01b0316146108ad5760405162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152606401610689565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a35050565b60008060008084516041146111a8576000935050505061073a565b50505060208201516040830151606084015160001a601b8110156111d4576111d1601b82611f7d565b90505b8060ff16601b141580156111ec57508060ff16601c14155b156111fd576000935050505061073a565b60408051600081526020810180835288905260ff831691810191909152606081018490526080810183905260019060a0016020604051602081039080840390855afa158015611250573d6000803e3d6000fd5b50505060206040510351935050505061073a565b600080848360405160200161127a929190611fa2565b60405160208183030381529060405290506060866001600160a01b031685836040516112a69190611fd9565b60006040518083038160008787f1925050503d80600081146112e4576040519150601f19603f3d011682016040523d82523d6000602084013e6112e9565b606091505b5090935090508261133a5780511561132257600061130682611344565b90508060405162461bcd60e51b81526004016106899190611feb565b60405162461bcd60e51b815260040161068990611f3c565b5050949350505050565b80516060906044811015611368575050604080516020810190915260008152919050565b60048301805160031983018252909361138a9083810160200190602401611ffe565b93525090919050565b634e487b7160e01b600052604160045260246000fd5b604080519081016001600160401b03811182821017156113cb576113cb611393565b60405290565b604051606081016001600160401b03811182821017156113cb576113cb611393565b604051601f8201601f191681016001600160401b038111828210171561141b5761141b611393565b604052919050565b80356001600160a01b038116811461143a57600080fd5b919050565b60006001600160401b0382111561145857611458611393565b50601f01601f191660200190565b600082601f83011261147757600080fd5b813561148a6114858261143f565b6113f3565b81815284602083860101111561149f57600080fd5b816020850160208301376000918101602001919091529392505050565b6000604082840312156114ce57600080fd5b6114d66113a9565b90506114e182611423565b815260208201356001600160401b038111156114fc57600080fd5b61150884828501611466565b60208301525092915050565b60006020828403121561152657600080fd5b81356001600160401b0381111561153c57600080fd5b610722848285016114bc565b60006001600160401b0382111561156157611561611393565b5060051b60200190565b600082601f83011261157c57600080fd5b8135602061158c61148583611548565b82815260059290921b840181019181810190868411156115ab57600080fd5b8286015b848110156115ea5780356001600160401b038111156115ce5760008081fd5b6115dc8986838b01016114bc565b8452509183019183016115af565b509695505050505050565b60006060828403121561160757600080fd5b61160f6113d1565b905061161a82611423565b81526020820135602082015260408201356001600160401b0381111561163f57600080fd5b61164b8482850161156b565b60408301525092915050565b60006020828403121561166957600080fd5b81356001600160401b0381111561167f57600080fd5b610722848285016115f5565b60008083601f84011261169d57600080fd5b5081356001600160401b038111156116b457600080fd5b6020830191508360208260051b85010111156116cf57600080fd5b9250929050565b600080602083850312156116e957600080fd5b82356001600160401b038111156116ff57600080fd5b61170b8582860161168b565b90969095509350505050565b60006060828403121561172957600080fd5b6117316113d1565b905061173c82611423565b81526020820135602082015260408201356001600160401b0381111561176157600080fd5b61164b84828501611466565b60006040828403121561177f57600080fd5b6117876113a9565b905081356001600160401b03808211156117a057600080fd5b6117ac858386016115f5565b835260208401359150808211156117c257600080fd5b5061150884828501611466565b600082601f8301126117e057600080fd5b813560206117f061148583611548565b82815260059290921b8401810191818101908684111561180f57600080fd5b8286015b848110156115ea5780356001600160401b038111156118325760008081fd5b6118408986838b010161176d565b845250918301918301611813565b60006040828403121561186057600080fd5b6118686113a9565b905081356001600160401b038082111561188157600080fd5b61188d85838601611717565b835260208401359150808211156118a357600080fd5b50611508848285016117cf565b600082601f8301126118c157600080fd5b813560206118d161148583611548565b82815260059290921b840181019181810190868411156118f057600080fd5b8286015b848110156115ea5780356001600160401b038111156119135760008081fd5b6119218986838b010161184e565b8452509183019183016118f4565b60006020828403121561194157600080fd5b81356001600160401b0381111561195757600080fd5b610722848285016118b0565b60008060006060848603121561197857600080fd5b61198184611423565b925061198f60208501611423565b9150604084013590509250925092565b6000602082840312156119b157600080fd5b81356001600160401b038111156119c757600080fd5b6107228482850161184e565b6000604082840312156119e557600080fd5b6119ed6113a9565b9050813581526020820135602082015292915050565b600060608284031215611a1557600080fd5b611a1d6113a9565b905081356001600160401b03811115611a3557600080fd5b611a41848285016118b0565b825250611a5183602084016119d3565b602082015292915050565b600060208284031215611a6e57600080fd5b81356001600160401b03811115611a8457600080fd5b61072284828501611a03565b600060208284031215611aa257600080fd5b81356001600160401b03811115611ab857600080fd5b6107228482850161176d565b600060408284031215611ad657600080fd5b61073783836119d3565b600060208284031215611af257600080fd5b81356001600160401b03811115611b0857600080fd5b610722848285016117cf565b600060208284031215611b2657600080fd5b81356001600160401b03811115611b3c57600080fd5b6107228482850161156b565b60008060408385031215611b5b57600080fd5b611b6483611423565b946020939093013593505050565b600060208284031215611b8457600080fd5b81356001600160401b03811115611b9a57600080fd5b61072284828501611717565b600060408284031215611bb857600080fd5b611bc06113a9565b905081356001600160401b0380821115611bd957600080fd5b6117ac85838601611a03565b600060208284031215611bf757600080fd5b81356001600160401b03811115611c0d57600080fd5b61072284828501611ba6565b60008060008060808587031215611c2f57600080fd5b84356001600160401b0380821115611c4657600080fd5b611c5288838901611466565b95506020870135915080821115611c6857600080fd5b50611c7587828801611466565b93505060408501359150611c8b60608601611423565b905092959194509250565b600080600080600080600060e0888a031215611cb157600080fd5b611cba88611423565b9650611cc860208901611423565b95506040880135945060608801359350608088013560ff81168114611cec57600080fd5b9699959850939692959460a0840135945060c09093013592915050565b600060208284031215611d1b57600080fd5b61073782611423565b634e487b7160e01b600052603260045260246000fd5b60008235603e19833603018112611d5057600080fd5b9190910192915050565b600061073a3683611ba6565b60008235605e19833603018112611d5057600080fd5b6000808335601e19843603018112611d9357600080fd5b8301803591506001600160401b03821115611dad57600080fd5b6020019150600581901b36038213156116cf57600080fd5b634e487b7160e01b600052601160045260246000fd5b600060018201611ded57611ded611dc5565b5060010190565b60005b83811015611e0f578181015183820152602001611df7565b83811115611e1e576000848401525b50505050565b60008351611e36818460208801611df4565b9190910191825250602001919050565b600060208284031215611e5857600080fd5b81518015158114611e6857600080fd5b9392505050565b60008219821115611e8257611e82611dc5565b500190565b600061073a368361184e565b60008151808452611eab816020860160208601611df4565b601f01601f19169290920160200192915050565b606081526000611ed26060830186611e93565b828103602084015260018060a01b03855116815260208501516020820152604085015160606040830152611f096060830182611e93565b92505050826040830152949350505050565b600061ffff808316818103611f3257611f32611dc5565b6001019392505050565b60208082526021908201527f44656c6567617461626c65436f72653a3a657865637574696f6e2d6661696c656040820152601960fa1b606082015260800190565b600060ff821660ff84168060ff03821115611f9a57611f9a611dc5565b019392505050565b60008351611fb4818460208801611df4565b60609390931b6bffffffffffffffffffffffff19169190920190815260140192915050565b60008251611d50818460208701611df4565b6020815260006107376020830184611e93565b60006020828403121561201057600080fd5b81516001600160401b0381111561202657600080fd5b8201601f8101841361203757600080fd5b80516120456114858261143f565b81815285602083850101111561205a57600080fd5b6109de826020830160208601611df456fea26469706673582212206bcc2efee0fdae971e634c72bc45373b3a0adb4883131b1ffd023e96a8acb3e064736f6c634300080f0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106101585760003560e01c8063736f7ce7116100c3578063a2e01f751161007c578063a2e01f7514610304578063caced6c514610317578063d327c1eb1461032a578063dfe86ac5146103b4578063e33150db146103db578063f2fde38b146103ee57600080fd5b8063736f7ce71461025b5780637b577b581461026e57806389535803146102815780638a04499e146102b55780638da5cb5b146102e057806397182ed6146102f157600080fd5b80635cf1b24a116101155780635cf1b24a146101f257806360b6d768146102055780636c2b1253146102185780636f9658031461022b578063715018a61461023e5780637234eefe1461024857600080fd5b806308aaf6b01461015d5780632f52a2fd146101835780632fad7efc146101965780633a481821146101b95780634733dc8f146101cc5780635c6d9f0c146101df575b600080fd5b61017061016b366004611514565b610401565b6040519081526020015b60405180910390f35b610170610191366004611657565b610481565b6101a96101a43660046116d6565b6104ec565b604051901515815260200161017a565b6101706101c736600461192f565b6105b3565b6101a96101da366004611963565b61062a565b6101a96101ed3660046116d6565b61072a565b61017061020036600461199f565b610740565b610170610213366004611a5c565b61079d565b610170610226366004611a90565b6107ed565b610170610239366004611ac4565b61084a565b61024661089b565b005b610170610256366004611a5c565b6108af565b610170610269366004611ae0565b6108ed565b61017061027c366004611b14565b610955565b61017061028f366004611b48565b6001600160a01b0391909116600090815260208181526040808320938352929052205490565b6102c86102c3366004611a90565b6109bd565b6040516001600160a01b03909116815260200161017a565b6001546001600160a01b03166102c8565b6101706102ff366004611657565b6109e7565b610170610312366004611b72565b610a14565b6102c8610325366004611be5565b610a80565b610170610338366004611c19565b8351602094850120835193850193909320604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f8188015280820195909552606085019190915260808401929092526001600160a01b031660a0808401919091528151808403909101815260c09092019052805191012090565b6101707f000000000000000000000000000000000000000000000000000000000000000081565b6102466103e9366004611c96565b610aa2565b6102466103fc366004611d09565b610b80565b6000807f80ad7e1b04ee6d994a125f4714ca0720908bd80ed16063ec8aee4b88e9253e2d8360000151846020015180519060200120604051602001610462939291909283526001600160a01b03919091166020830152604082015260600190565b60408051601f1981840301815291905280516020909101209392505050565b6000807f409f5114779a253e700d775d7845e6efc1e83685ac59868d2df3d4de51c7d621836000015184602001516104bc8660400151610955565b6040805160208101959095526001600160a01b03909316928401929092526060830152608082015260a001610462565b6000805b828110156105ac573684848381811061050b5761050b611d24565b905060200281019061051d9190611d3a565b9050600061052d61032583611d5a565b90506105798187878681811061054557610545611d24565b90506020028101906105579190611d3a565b6105619080611d66565b6020018036038101906105749190611ac4565b610bf9565b6105966105868380611d66565b6105909080611d7c565b83610cb3565b50505080806105a490611ddb565b9150506104f0565b5092915050565b6000606060005b835181101561061b57816105e68583815181106105d9576105d9611d24565b6020026020010151610740565b6040516020016105f7929190611e24565b6040516020818303038152906040529150808061061390611ddb565b9150506105ba565b50805160209091012092915050565b60003330146106925760405162461bcd60e51b815260206004820152602960248201527f45524332304d616e616765723a7472616e7366657250726f78792d6e6f742d616044820152681d5d1a1bdc9a5e995960ba1b60648201526084015b60405180910390fd5b836001600160a01b03166323b872dd6106a9611066565b6040516001600160e01b031960e084901b1681526001600160a01b0391821660048201529086166024820152604481018590526064016020604051808303816000875af11580156106fe573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107229190611e46565b949350505050565b6000610737838333610cb3565b90505b92915050565b6000807fd97dd99b404d177890f06a8f0fc8e5ed0333fb2ebb6684360709066e8984f5946107718460000151610a14565b61077e85602001516108ed565b6040805160208101949094528301919091526060820152608001610462565b6000807f00000000000000000000000000000000000000000000000000000000000000006107ca846108af565b60405161190160f01b602082015260228101929092526042820152606201610462565b6000807f3c36a06e1d288b0f94f565588317a46ad11bc3c96992109f9a2365a2737259a761081e8460000151610481565b602080860151805190820120604051610462949392019283526020830191909152604082015260600190565b6000807fe8d3d963b33868fb116316bc3fd55e8f49123f30e4418f71e140d54b7cd3b2b983600001518460200151604051602001610462939291909283526020830191909152604082015260600190565b6108a36110c2565b6108ad600061113b565b565b6000807f08c69a206c06f5334b35ceb1186181a713b21aff02cf66285f375084fbef2eb86108e084600001516105b3565b61077e856020015161084a565b6000606060005b835181101561061b578161092085838151811061091357610913611d24565b60200260200101516107ed565b604051602001610931929190611e24565b6040516020818303038152906040529150808061094d90611ddb565b9150506108f4565b6000606060005b835181101561061b578161098885838151811061097b5761097b611d24565b6020026020010151610401565b604051602001610999929190611e24565b604051602081830303815290604052915080806109b590611ddb565b91505061095c565b8051600090816109cc826109e7565b905060006109de82866020015161118d565b95945050505050565b6000807f00000000000000000000000000000000000000000000000000000000000000006107ca84610481565b6000807fb16dfdb3b8fa033fe30ac976cd4a50ad256b6811c80d90fcd0b323eec190047d8360000151846020015185604001518051906020012060405160200161046294939291909384526001600160a01b039290921660208401526040830152606082015260800190565b600080610a90836000015161079d565b9050600061072282856020015161118d565b333014610af15760405162461bcd60e51b815260206004820152601b60248201527f45524332304d616e616765723a696e76616c69642d73656e64657200000000006044820152606401610689565b60405163d505accf60e01b81526001600160a01b038781166004830152306024830152604482018790526064820186905260ff8516608483015260a4820184905260c4820183905288169063d505accf9060e401600060405180830381600087803b158015610b5f57600080fd5b505af1158015610b73573d6000803e3d6000fd5b5050505050505050505050565b610b886110c2565b6001600160a01b038116610bed5760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b6064820152608401610689565b610bf68161113b565b50565b60208082015182516001600160a01b038516600090815280845260408082208483529094529290922054909190610c31906001611e6f565b8114610c8b5760405162461bcd60e51b815260206004820152602360248201527f44656c6567617461626c65436f72653a6e6f6e6365322d6f75742d6f662d6f726044820152623232b960e91b6064820152608401610689565b6001600160a01b03909316600090815260208181526040808320938352929052209190915550565b6000805b8381101561105e576000858583818110610cd357610cd3611d24565b9050602002810190610ce59190611d3a565b610cee90611e87565b9050600080826020015151600003610d065750849050805b6000805b846020015151811015610fa157600085602001518281518110610d2f57610d2f611d24565b602002602001015190506000610d44826109bd565b905082600003610d55578095508594505b846001600160a01b0316816001600160a01b031614610dc85760405162461bcd60e51b815260206004820152602960248201527f44656c6567617461626c65436f72653a696e76616c69642d64656c656761746960448201526837b716b9b4b3b732b960b91b6064820152608401610689565b815160208101518514610e375760405162461bcd60e51b815260206004820152603160248201527f44656c6567617461626c65436f72653a696e76616c69642d617574686f726974604482015270792d64656c65676174696f6e2d6c696e6b60781b6064820152608401610689565b6000610e42846107ed565b905060005b8260400151518161ffff161015610f8457600083604001518261ffff1681518110610e7457610e74611d24565b60200260200101516000015190506000816001600160a01b0316635068de4c86604001518561ffff1681518110610ead57610ead611d24565b6020026020010151602001518e60000151876040518463ffffffff1660e01b8152600401610edd93929190611ebf565b6020604051808303816000875af1158015610efc573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610f209190611e46565b905080610f6f5760405162461bcd60e51b815260206004820152601f60248201527f44656c6567617461626c65436f72653a6361766561742d72656a6563746564006044820152606401610689565b50508080610f7c90611f1b565b915050610e47565b50905195509350829150610f99905081611ddb565b915050610d0a565b50835180516001600160a01b0316301461100f5760405162461bcd60e51b815260206004820152602960248201527f44656c6567617461626c65436f72653a696e76616c69642d696e766f636174696044820152681bdb8b5d185c99d95d60ba1b6064820152608401610689565b61102781600001518260400151836020015187611264565b9650866110465760405162461bcd60e51b815260040161068990611f3c565b5050505050808061105690611ddb565b915050610cb7565b509392505050565b60003033036110bc57600080368080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152505050503601516001600160a01b031691506110bf9050565b50335b90565b6110ca611066565b6001600160a01b03166110e56001546001600160a01b031690565b6001600160a01b0316146108ad5760405162461bcd60e51b815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152606401610689565b600180546001600160a01b038381166001600160a01b0319831681179093556040519116919082907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a35050565b60008060008084516041146111a8576000935050505061073a565b50505060208201516040830151606084015160001a601b8110156111d4576111d1601b82611f7d565b90505b8060ff16601b141580156111ec57508060ff16601c14155b156111fd576000935050505061073a565b60408051600081526020810180835288905260ff831691810191909152606081018490526080810183905260019060a0016020604051602081039080840390855afa158015611250573d6000803e3d6000fd5b50505060206040510351935050505061073a565b600080848360405160200161127a929190611fa2565b60405160208183030381529060405290506060866001600160a01b031685836040516112a69190611fd9565b60006040518083038160008787f1925050503d80600081146112e4576040519150601f19603f3d011682016040523d82523d6000602084013e6112e9565b606091505b5090935090508261133a5780511561132257600061130682611344565b90508060405162461bcd60e51b81526004016106899190611feb565b60405162461bcd60e51b815260040161068990611f3c565b5050949350505050565b80516060906044811015611368575050604080516020810190915260008152919050565b60048301805160031983018252909361138a9083810160200190602401611ffe565b93525090919050565b634e487b7160e01b600052604160045260246000fd5b604080519081016001600160401b03811182821017156113cb576113cb611393565b60405290565b604051606081016001600160401b03811182821017156113cb576113cb611393565b604051601f8201601f191681016001600160401b038111828210171561141b5761141b611393565b604052919050565b80356001600160a01b038116811461143a57600080fd5b919050565b60006001600160401b0382111561145857611458611393565b50601f01601f191660200190565b600082601f83011261147757600080fd5b813561148a6114858261143f565b6113f3565b81815284602083860101111561149f57600080fd5b816020850160208301376000918101602001919091529392505050565b6000604082840312156114ce57600080fd5b6114d66113a9565b90506114e182611423565b815260208201356001600160401b038111156114fc57600080fd5b61150884828501611466565b60208301525092915050565b60006020828403121561152657600080fd5b81356001600160401b0381111561153c57600080fd5b610722848285016114bc565b60006001600160401b0382111561156157611561611393565b5060051b60200190565b600082601f83011261157c57600080fd5b8135602061158c61148583611548565b82815260059290921b840181019181810190868411156115ab57600080fd5b8286015b848110156115ea5780356001600160401b038111156115ce5760008081fd5b6115dc8986838b01016114bc565b8452509183019183016115af565b509695505050505050565b60006060828403121561160757600080fd5b61160f6113d1565b905061161a82611423565b81526020820135602082015260408201356001600160401b0381111561163f57600080fd5b61164b8482850161156b565b60408301525092915050565b60006020828403121561166957600080fd5b81356001600160401b0381111561167f57600080fd5b610722848285016115f5565b60008083601f84011261169d57600080fd5b5081356001600160401b038111156116b457600080fd5b6020830191508360208260051b85010111156116cf57600080fd5b9250929050565b600080602083850312156116e957600080fd5b82356001600160401b038111156116ff57600080fd5b61170b8582860161168b565b90969095509350505050565b60006060828403121561172957600080fd5b6117316113d1565b905061173c82611423565b81526020820135602082015260408201356001600160401b0381111561176157600080fd5b61164b84828501611466565b60006040828403121561177f57600080fd5b6117876113a9565b905081356001600160401b03808211156117a057600080fd5b6117ac858386016115f5565b835260208401359150808211156117c257600080fd5b5061150884828501611466565b600082601f8301126117e057600080fd5b813560206117f061148583611548565b82815260059290921b8401810191818101908684111561180f57600080fd5b8286015b848110156115ea5780356001600160401b038111156118325760008081fd5b6118408986838b010161176d565b845250918301918301611813565b60006040828403121561186057600080fd5b6118686113a9565b905081356001600160401b038082111561188157600080fd5b61188d85838601611717565b835260208401359150808211156118a357600080fd5b50611508848285016117cf565b600082601f8301126118c157600080fd5b813560206118d161148583611548565b82815260059290921b840181019181810190868411156118f057600080fd5b8286015b848110156115ea5780356001600160401b038111156119135760008081fd5b6119218986838b010161184e565b8452509183019183016118f4565b60006020828403121561194157600080fd5b81356001600160401b0381111561195757600080fd5b610722848285016118b0565b60008060006060848603121561197857600080fd5b61198184611423565b925061198f60208501611423565b9150604084013590509250925092565b6000602082840312156119b157600080fd5b81356001600160401b038111156119c757600080fd5b6107228482850161184e565b6000604082840312156119e557600080fd5b6119ed6113a9565b9050813581526020820135602082015292915050565b600060608284031215611a1557600080fd5b611a1d6113a9565b905081356001600160401b03811115611a3557600080fd5b611a41848285016118b0565b825250611a5183602084016119d3565b602082015292915050565b600060208284031215611a6e57600080fd5b81356001600160401b03811115611a8457600080fd5b61072284828501611a03565b600060208284031215611aa257600080fd5b81356001600160401b03811115611ab857600080fd5b6107228482850161176d565b600060408284031215611ad657600080fd5b61073783836119d3565b600060208284031215611af257600080fd5b81356001600160401b03811115611b0857600080fd5b610722848285016117cf565b600060208284031215611b2657600080fd5b81356001600160401b03811115611b3c57600080fd5b6107228482850161156b565b60008060408385031215611b5b57600080fd5b611b6483611423565b946020939093013593505050565b600060208284031215611b8457600080fd5b81356001600160401b03811115611b9a57600080fd5b61072284828501611717565b600060408284031215611bb857600080fd5b611bc06113a9565b905081356001600160401b0380821115611bd957600080fd5b6117ac85838601611a03565b600060208284031215611bf757600080fd5b81356001600160401b03811115611c0d57600080fd5b61072284828501611ba6565b60008060008060808587031215611c2f57600080fd5b84356001600160401b0380821115611c4657600080fd5b611c5288838901611466565b95506020870135915080821115611c6857600080fd5b50611c7587828801611466565b93505060408501359150611c8b60608601611423565b905092959194509250565b600080600080600080600060e0888a031215611cb157600080fd5b611cba88611423565b9650611cc860208901611423565b95506040880135945060608801359350608088013560ff81168114611cec57600080fd5b9699959850939692959460a0840135945060c09093013592915050565b600060208284031215611d1b57600080fd5b61073782611423565b634e487b7160e01b600052603260045260246000fd5b60008235603e19833603018112611d5057600080fd5b9190910192915050565b600061073a3683611ba6565b60008235605e19833603018112611d5057600080fd5b6000808335601e19843603018112611d9357600080fd5b8301803591506001600160401b03821115611dad57600080fd5b6020019150600581901b36038213156116cf57600080fd5b634e487b7160e01b600052601160045260246000fd5b600060018201611ded57611ded611dc5565b5060010190565b60005b83811015611e0f578181015183820152602001611df7565b83811115611e1e576000848401525b50505050565b60008351611e36818460208801611df4565b9190910191825250602001919050565b600060208284031215611e5857600080fd5b81518015158114611e6857600080fd5b9392505050565b60008219821115611e8257611e82611dc5565b500190565b600061073a368361184e565b60008151808452611eab816020860160208601611df4565b601f01601f19169290920160200192915050565b606081526000611ed26060830186611e93565b828103602084015260018060a01b03855116815260208501516020820152604085015160606040830152611f096060830182611e93565b92505050826040830152949350505050565b600061ffff808316818103611f3257611f32611dc5565b6001019392505050565b60208082526021908201527f44656c6567617461626c65436f72653a3a657865637574696f6e2d6661696c656040820152601960fa1b606082015260800190565b600060ff821660ff84168060ff03821115611f9a57611f9a611dc5565b019392505050565b60008351611fb4818460208801611df4565b60609390931b6bffffffffffffffffffffffff19169190920190815260140192915050565b60008251611d50818460208701611df4565b6020815260006107376020830184611e93565b60006020828403121561201057600080fd5b81516001600160401b0381111561202657600080fd5b8201601f8101841361203757600080fd5b80516120456114858261143f565b81815285602083850101111561205a57600080fd5b6109de826020830160208601611df456fea26469706673582212206bcc2efee0fdae971e634c72bc45373b3a0adb4883131b1ffd023e96a8acb3e064736f6c634300080f0033",
+  "devdoc": {
+    "author": "McOso",
+    "kind": "dev",
+    "methods": {
+      "contractInvoke(((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[])": {
+        "params": {
+          "batch": "Invocation[] - The batch of invocations to process."
+        },
+        "returns": {
+          "_0": "success bool - Whether the batch of invocations was successfully processed."
+        }
+      },
+      "getDelegationTypedDataHash((address,bytes32,(address,bytes)[]))": {
+        "params": {
+          "delegation": "Delegation - The delegation to get the type of"
+        },
+        "returns": {
+          "_0": "bytes32 - The type of the delegation"
+        }
+      },
+      "getInvocationsTypedDataHash((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)))": {
+        "params": {
+          "invocations": "Invocations"
+        },
+        "returns": {
+          "_0": "bytes32 - The type of the Invocations"
+        }
+      },
+      "invoke(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes)[])": {
+        "params": {
+          "signedInvocations": "SignedInvocation[] - The batch of signed invocations to process."
+        },
+        "returns": {
+          "success": "bool - Whether the batch of invocations was successfully processed."
+        }
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      },
+      "verifyInvocationSignature(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes))": {
+        "params": {
+          "signedInvocation": "- The signed invocation to verify"
+        },
+        "returns": {
+          "_0": "address - The address of the account authorizing this invocation to act on its behalf."
+        }
+      }
+    },
+    "title": "ERC20Manager",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "contractInvoke(((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[])": {
+        "notice": "Allows a smart contract to submit a batch of invocations for processing, allowing itself to be the delegate."
+      },
+      "domainHash()": {
+        "notice": "The hash of the domain separator used in the EIP712 domain hash."
+      },
+      "getDelegationTypedDataHash((address,bytes32,(address,bytes)[]))": {
+        "notice": "Returns the typehash for this contract's delegation signatures."
+      },
+      "getInvocationsTypedDataHash((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)))": {
+        "notice": "Returns the typehash for this contract's invocation signatures."
+      },
+      "invoke(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes)[])": {
+        "notice": "Allows anyone to submit a batch of signed invocations for processing."
+      },
+      "verifyInvocationSignature(((((address,uint256,bytes),((address,bytes32,(address,bytes)[]),bytes)[])[],(uint256,uint256)),bytes))": {
+        "notice": "Verifies that the given invocation is valid."
+      }
+    },
+    "notice": "Manages the erc20 delegation",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 303,
+        "contract": "contracts/ERC20Manager.sol:ERC20Manager",
+        "label": "multiNonce",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_mapping(t_uint256,t_uint256))"
+      },
+      {
+        "astId": 1729,
+        "contract": "contracts/ERC20Manager.sol:ERC20Manager",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_mapping(t_uint256,t_uint256))": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => mapping(uint256 => uint256))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_uint256,t_uint256)"
+      },
+      "t_mapping(t_uint256,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

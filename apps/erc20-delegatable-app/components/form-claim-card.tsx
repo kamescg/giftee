@@ -32,6 +32,8 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
   const contract = useContractAutoLoad('ERC20Manager')
   const managerContract = useErc20Manager({ address: contract.address })
 
+  const contractUSDC = useContractAutoLoad('USDC')
+
   const signer = useSigner()
 
   const { write } = useErc20ManagerInvoke({
@@ -57,7 +59,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
     const method = 'eth_signTypedData_v4'
 
     const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
-      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
+      contractUSDC.address,
       delegationData.from,
       delegationData.amount,
       ethers.constants.MaxUint256,
@@ -66,11 +68,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       delegationData.signature.s
     )
 
-    const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(
-      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
-      sendToAddress,
-      delegationData.amount
-    )
+    const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(contractUSDC.address, sendToAddress, delegationData.amount)
 
     const intention = createIntention(
       sendToAddress,
