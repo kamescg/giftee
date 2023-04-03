@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
 import * as yup from 'yup'
@@ -39,6 +39,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
   const { write } = useErc20ManagerInvoke({
     address: contract.address,
     args: [[intentionData]],
+    overrides: { gasLimit: BigNumber.from(1000000)},
     // @ts-ignore
     enabled: Boolean(intentionData),
   })

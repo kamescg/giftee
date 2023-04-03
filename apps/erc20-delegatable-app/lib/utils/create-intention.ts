@@ -13,7 +13,7 @@ export function createIntention(usr: any, delegation: any, signedDelegation: any
         authority: [],
         transaction: {
           to: verifyingContract,
-          gasLimit: '2122222111000000000000000000',
+          gasLimit: '10000000000000000',
           data: approveTx,
         },
       },
@@ -26,7 +26,7 @@ export function createIntention(usr: any, delegation: any, signedDelegation: any
         ],
         transaction: {
           to: verifyingContract,
-          gasLimit: '2122222111000000000000000000',
+          gasLimit: '10000000000000000',
           data: transferTx,
         },
       },
