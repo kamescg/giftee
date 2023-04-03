@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 
 import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { useSigner } from 'wagmi'
+import { useNetwork, useSigner } from 'wagmi'
 import * as yup from 'yup'
 
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
@@ -36,8 +36,9 @@ export function FormIssueCard() {
   const contractTimestampBeforeEnforcer = useContractAutoLoad('TimestampBeforeEnforcer')
   const contractTimestampAfterEnforcer = useContractAutoLoad('TimestampAfterEnforcer')
 
-  const contractUSDC = useContractAutoLoad('USDC')
+  const contractUSDCAddress = useContractAutoLoad('USDC')
 
+  const { chain } = useNetwork()
   const signer = useSigner()
 
   const onSubmit = async (data: any) => {
@@ -94,16 +95,16 @@ export function FormIssueCard() {
 
     const { v, r, s } = await getPermitSignature(
       signer.data,
-      { address: contractUSDC.address },
+      {address: contractUSDCAddress.address},
       contract.address,
       rawUSDCAmount,
-      ethers.constants.MaxUint256,
-      'USDC'
+      BigNumber.from(1990549033),
+      "USD Coin (PoS)",
     )
 
     console.log(v, r, s)
 
-    const delegation = createDelegation(data.to, contract.address, enforcers)
+    const delegation = createDelegation(data.to, contract.address, chain?.id as number, enforcers)
 
     console.log(delegation)
     // @ts-ignore

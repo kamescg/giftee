@@ -1,7 +1,7 @@
 export const domain = {
   name: 'ERC20Manager',
   version: '1',
-  chainId: 84531,
+  chainId: 31337,
 }
 
 export const types = {

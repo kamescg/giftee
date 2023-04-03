@@ -2,7 +2,7 @@ import { BigNumber } from 'ethers'
 
 import { domain, types } from './types'
 
-export function createIntention(usr: any, delegation: any, signedDelegation: any, verifyingContract: string, approveTx: string, transferTx: string) {
+export function createIntention(usr: any, delegation: any, signedDelegation: any, verifyingContract: string, approveTx: string, transferTx: string, chainId: number) {
   const intention = {
     replayProtection: {
       nonce: '0x01',
@@ -32,6 +32,8 @@ export function createIntention(usr: any, delegation: any, signedDelegation: any
       },
     ],
   }
+
+  domain.chainId = chainId
 
   const intentionString = JSON.stringify({
     domain: { ...domain, verifyingContract: verifyingContract },
