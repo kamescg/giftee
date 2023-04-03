@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 
 import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
@@ -36,7 +36,7 @@ export function FormIssueCard() {
   const contractTimestampBeforeEnforcer = useContractAutoLoad('TimestampBeforeEnforcer')
   const contractTimestampAfterEnforcer = useContractAutoLoad('TimestampAfterEnforcer')
 
-  const contractUSDC = useContractAutoLoad('USDC')
+  const contractUSDCAddress = useContractAutoLoad('USDC')
 
   const { chain } = useNetwork()
   const signer = useSigner()
@@ -95,12 +95,11 @@ export function FormIssueCard() {
 
     const { v, r, s } = await getPermitSignature(
       signer.data,
-      { address: contractUSDC.address },
+      {address: contractUSDCAddress.address},
       contract.address,
       rawUSDCAmount,
-      ethers.constants.MaxUint256,
-      'UChildERC20Proxy',
-      chain?.id
+      BigNumber.from(1990549033),
+      "MyToken",//"USD Coin (PoS)",
     )
 
     console.log(v, r, s)

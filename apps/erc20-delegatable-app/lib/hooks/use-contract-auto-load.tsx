@@ -1,4 +1,4 @@
-import { useNetwork } from 'wagmi'
+import { useNetwork, erc20ABI } from 'wagmi'
 
 export function useContractAutoLoad(contract: string, chainId?: number): any {
   const { chain } = useNetwork()
@@ -28,7 +28,7 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
         case 'USDC':
           return {
             address: '0x95401dc811bb5740090279Ba06cfA8fcF6113778',
-            abi: [],
+            abi: erc20ABI,
           }
         default:
         // throw new Error(`Unknown contract ${contract}`)
@@ -58,7 +58,7 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
         case 'USDC':
           return {
             address: '0x7F5c764cBc14f9669B88837ca1490cCa17c31607',
-            abi: [],
+            abi: erc20ABI,
           }
         default:
         // throw new Error(`Unknown contract ${contract}`)
@@ -88,7 +88,38 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
         case 'USDC':
           return {
             address: '0x0000000000000000000000000000000000000000',
+            abi: erc20ABI,
+          }
+        default:
+        // throw new Error(`Unknown contract ${contract}`)
+      }
+
+    case 137:
+      switch (contract) {
+        case 'ERC20Manager':
+          return {
+            address: '0x09269D9dB99Ca2edbeaf3B4bc6D8F66821b73D74',
             abi: [],
+          }
+        case 'ERC20FromAllowanceEnforcer':
+          return {
+            address: '0xA0CB45B1e3C94202f1CadAB0a78D6B4139918C0F',
+            abi: [],
+          }
+        case 'TimestampBeforeEnforcer':
+          return {
+            address: '0x48Eb355d745DF1C11D70513eE7E43887eAc2681F',
+            abi: [],
+          }
+        case 'TimestampAfterEnforcer':
+          return {
+            address: '0x70069Bd09d1840Db56356323dBcf6716e05B771E',
+            abi: [],
+          }
+        case 'USDC':
+          return {
+            address: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+            abi: erc20ABI,
           }
         default:
         // throw new Error(`Unknown contract ${contract}`)

@@ -64,7 +64,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       contractUSDC.address,
       delegationData.from,
       delegationData.amount,
-      ethers.constants.MaxUint256,
+      BigNumber.from(1990549033),
       delegationData.signature.v,
       delegationData.signature.r,
       delegationData.signature.s
