@@ -16,7 +16,8 @@ export async function getPermitSignature(signer: any, token: any, spender: any, 
       {
         name,
         version,
-        chainId,
+        // chainId, // use salt instead of chainId for polygon deployment
+        salt: ethers.utils.hexZeroPad(ethers.BigNumber.from(137).toHexString(), 32),
         verifyingContract: token.address,
       },
       {

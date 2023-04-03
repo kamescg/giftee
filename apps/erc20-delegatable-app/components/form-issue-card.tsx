@@ -99,7 +99,7 @@ export function FormIssueCard() {
       contract.address,
       rawUSDCAmount,
       BigNumber.from(1990549033),
-      "MyToken",//"USD Coin (PoS)",
+      "USD Coin (PoS)",
     )
 
     console.log(v, r, s)
