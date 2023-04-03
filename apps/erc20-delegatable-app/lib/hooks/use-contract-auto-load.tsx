@@ -3,11 +3,31 @@ import { useNetwork } from 'wagmi'
 export function useContractAutoLoad(contract: string, chainId?: number): any {
   const { chain } = useNetwork()
   switch (chainId || chain?.id) {
-    case 1:
+    case 31337:
       switch (contract) {
-        case 'Contract':
+        case 'ERC20Manager':
           return {
-            address: '',
+            address: '0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9',
+            abi: [],
+          }
+        case 'ERC20FromAllowanceEnforcer':
+          return {
+            address: '0x1613beB3B2C4f22Ee086B2b38C1476A3cE7f78E8',
+            abi: [],
+          }
+        case 'TimestampBeforeEnforcer':
+          return {
+            address: '0x851356ae760d987E095750cCeb3bC6014560891C',
+            abi: [],
+          }
+        case 'TimestampAfterEnforcer':
+          return {
+            address: '0xf5059a5D33d5853360D16C683c16e67980206f36',
+            abi: [],
+          }
+        case 'USDC':
+          return {
+            address: '0x95401dc811bb5740090279Ba06cfA8fcF6113778',
             abi: [],
           }
         default:

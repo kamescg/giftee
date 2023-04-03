@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { useSigner } from 'wagmi'
+import { useNetwork, useSigner } from 'wagmi'
 import * as yup from 'yup'
 
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
@@ -34,6 +34,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
 
   const contractUSDC = useContractAutoLoad('USDC')
 
+  const { chain } = useNetwork()
   const signer = useSigner()
 
   const { write } = useErc20ManagerInvoke({
@@ -77,7 +78,8 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       delegationData.delegations.signedDelegation,
       contract.address,
       approveTrxPopulated?.data as string,
-      transferTrxPopulated?.data as string
+      transferTrxPopulated?.data as string,
+      chain?.id as number
     )
 
     console.log(intention, 'intention')
