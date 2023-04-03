@@ -40,7 +40,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
   const { write } = useErc20ManagerInvoke({
     address: contract.address,
     args: [[intentionData]],
-    overrides: { gasLimit: BigNumber.from(1000000)},
+    overrides: { gasLimit: BigNumber.from(1000000) },
     // @ts-ignore
     enabled: Boolean(intentionData),
   })

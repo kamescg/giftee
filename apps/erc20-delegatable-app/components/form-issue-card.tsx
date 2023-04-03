@@ -95,11 +95,11 @@ export function FormIssueCard() {
 
     const { v, r, s } = await getPermitSignature(
       signer.data,
-      {address: contractUSDCAddress.address},
+      { address: contractUSDCAddress.address },
       contract.address,
       rawUSDCAmount,
       BigNumber.from(1990549033),
-      "USD Coin (PoS)",
+      'USD Coin (PoS)'
     )
 
     console.log(v, r, s)

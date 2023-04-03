@@ -1,4 +1,4 @@
-import { useNetwork, erc20ABI } from 'wagmi'
+import { erc20ABI, useNetwork } from 'wagmi'
 
 export function useContractAutoLoad(contract: string, chainId?: number): any {
   const { chain } = useNetwork()
