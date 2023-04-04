@@ -9,7 +9,7 @@ contract TokenPermit is ERC20, ERC20Permit {
     _mint(msg.sender, 100000 * 10**decimals());
   }
 
-  function decimals() public view virtual override returns (uint8) {
-    return 6;
-  }
+  // function decimals() public view virtual override returns (uint8) {
+  //   return 6;
+  // }
 }
