@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 
 import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { useNetwork, useSigner } from 'wagmi'
+import { useAccount, useNetwork, useSigner } from 'wagmi'
 import * as yup from 'yup'
 
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { appCardIssue } from '@/lib/app/app-card-issue'
-import { useErc20Manager } from '@/lib/blockchain'
+import { useErc20Manager, useErc20PermitNonces } from '@/lib/blockchain'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createDelegation } from '@/lib/utils/create-delegation'
@@ -38,6 +38,10 @@ export function FormIssueCard() {
 
   const contractUSDCAddress = useContractAutoLoad('USDC')
 
+  const { address: issuerAddress } = useAccount()
+
+  const {data: permitNonce} = useErc20PermitNonces({ address: contractUSDCAddress.address, args: [issuerAddress as `0x${string}`] })
+
   const { chain } = useNetwork()
   const signer = useSigner()
 
@@ -45,6 +49,8 @@ export function FormIssueCard() {
     setIsSubmitting(true)
 
     console.log('data input', data)
+
+    console.log('permit nonce', permitNonce?.toString())
 
     // check if valid send to address
     if (!ethers.utils.isAddress(data.to)) {
@@ -99,7 +105,8 @@ export function FormIssueCard() {
       contract.address,
       rawUSDCAmount,
       BigNumber.from(1990549033),
-      'USD Coin (PoS)'
+      'USD Coin (PoS)',
+      permitNonce as BigNumber,
     )
 
     console.log(v, r, s)
