@@ -40,7 +40,7 @@ export function FormIssueCard() {
 
   const { address: issuerAddress } = useAccount()
 
-  const {data: permitNonce} = useErc20PermitNonces({ address: contractUSDCAddress.address, args: [issuerAddress as `0x${string}`] })
+  const { data: permitNonce } = useErc20PermitNonces({ address: contractUSDCAddress.address, args: [issuerAddress as `0x${string}`] })
 
   const { chain } = useNetwork()
   const signer = useSigner()
@@ -106,7 +106,7 @@ export function FormIssueCard() {
       rawUSDCAmount,
       BigNumber.from(1990549033),
       'USD Coin (PoS)',
-      permitNonce as BigNumber,
+      permitNonce as BigNumber
     )
 
     console.log(v, r, s)
