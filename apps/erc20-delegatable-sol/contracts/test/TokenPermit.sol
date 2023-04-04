@@ -8,4 +8,8 @@ contract TokenPermit is ERC20, ERC20Permit {
   constructor() ERC20("MyToken", "MTK") ERC20Permit("MyToken") {
     _mint(msg.sender, 100000 * 10**decimals());
   }
+
+  function decimals() public view virtual override returns (uint8) {
+    return 6;
+  }
 }
