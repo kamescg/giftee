@@ -1,5 +1,3 @@
-import { BigNumber } from 'ethers'
-
 import { domain, types } from './types'
 
 export function createIntention(
@@ -14,7 +12,7 @@ export function createIntention(
   const intention = {
     replayProtection: {
       nonce: '0x01',
-      queue: BigNumber.from(usr).toString(),
+      queue: Math.floor(Math.random() * 100000000),
     },
     batch: [
       {
