@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { useSigner } from 'wagmi'
+import { useNetwork, useSigner } from 'wagmi'
 import * as yup from 'yup'
 
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
@@ -34,12 +34,13 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
 
   const contractUSDC = useContractAutoLoad('USDC')
 
+  const { chain } = useNetwork()
   const signer = useSigner()
 
   const { write } = useErc20ManagerInvoke({
     address: contract.address,
     args: [[intentionData]],
-    overrides: { gasLimit: BigNumber.from(1000000)},
+    overrides: { gasLimit: BigNumber.from(1000000) },
     // @ts-ignore
     enabled: Boolean(intentionData),
   })
@@ -63,7 +64,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       contractUSDC.address,
       delegationData.from,
       delegationData.amount,
-      ethers.constants.MaxUint256,
+      BigNumber.from(1990549033),
       delegationData.signature.v,
       delegationData.signature.r,
       delegationData.signature.s
@@ -77,7 +78,8 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       delegationData.delegations.signedDelegation,
       contract.address,
       approveTrxPopulated?.data as string,
-      transferTrxPopulated?.data as string
+      transferTrxPopulated?.data as string,
+      chain?.id as number
     )
 
     console.log(intention, 'intention')

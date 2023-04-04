@@ -37,4 +37,16 @@ export default async function deploy(hardhat: HardhatRuntimeEnvironment) {
     skipIfAlreadyDeployed: false,
     log: true,
   });
+
+  /*
+  for dev testing
+    */
+  await deploy("TokenPermit", {
+    contract: "TokenPermit",
+    from: deployer,
+    args: [],
+    skipIfAlreadyDeployed: false,
+    log: true,
+  });
+
 }

@@ -1,14 +1,34 @@
-import { useNetwork } from 'wagmi'
+import { erc20ABI, useNetwork } from 'wagmi'
 
 export function useContractAutoLoad(contract: string, chainId?: number): any {
   const { chain } = useNetwork()
   switch (chainId || chain?.id) {
-    case 1:
+    case 31337:
       switch (contract) {
-        case 'Contract':
+        case 'ERC20Manager':
           return {
-            address: '',
+            address: '0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9',
             abi: [],
+          }
+        case 'ERC20FromAllowanceEnforcer':
+          return {
+            address: '0x1613beB3B2C4f22Ee086B2b38C1476A3cE7f78E8',
+            abi: [],
+          }
+        case 'TimestampBeforeEnforcer':
+          return {
+            address: '0x851356ae760d987E095750cCeb3bC6014560891C',
+            abi: [],
+          }
+        case 'TimestampAfterEnforcer':
+          return {
+            address: '0xf5059a5D33d5853360D16C683c16e67980206f36',
+            abi: [],
+          }
+        case 'USDC':
+          return {
+            address: '0x95401dc811bb5740090279Ba06cfA8fcF6113778',
+            abi: erc20ABI,
           }
         default:
         // throw new Error(`Unknown contract ${contract}`)
@@ -38,7 +58,7 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
         case 'USDC':
           return {
             address: '0x7F5c764cBc14f9669B88837ca1490cCa17c31607',
-            abi: [],
+            abi: erc20ABI,
           }
         default:
         // throw new Error(`Unknown contract ${contract}`)
@@ -68,7 +88,38 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
         case 'USDC':
           return {
             address: '0x0000000000000000000000000000000000000000',
+            abi: erc20ABI,
+          }
+        default:
+        // throw new Error(`Unknown contract ${contract}`)
+      }
+
+    case 137:
+      switch (contract) {
+        case 'ERC20Manager':
+          return {
+            address: '0x09269D9dB99Ca2edbeaf3B4bc6D8F66821b73D74',
             abi: [],
+          }
+        case 'ERC20FromAllowanceEnforcer':
+          return {
+            address: '0xA0CB45B1e3C94202f1CadAB0a78D6B4139918C0F',
+            abi: [],
+          }
+        case 'TimestampBeforeEnforcer':
+          return {
+            address: '0x48Eb355d745DF1C11D70513eE7E43887eAc2681F',
+            abi: [],
+          }
+        case 'TimestampAfterEnforcer':
+          return {
+            address: '0x70069Bd09d1840Db56356323dBcf6716e05B771E',
+            abi: [],
+          }
+        case 'USDC':
+          return {
+            address: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+            abi: erc20ABI,
           }
         default:
         // throw new Error(`Unknown contract ${contract}`)
