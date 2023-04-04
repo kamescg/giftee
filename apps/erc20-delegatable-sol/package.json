@@ -18,7 +18,7 @@
     "deploy:goerli": "hardhat deploy --write true --network goerli",
     "deploy:polygon:mainnet": "hardhat deploy --write true --network polygonMainnet",
     "deploy:polygon:testnet": "hardhat deploy --write true --network polygonTestnet",
-    "deploy:optimism:mainnet": "hardhat deploy --write true --network optimismMainnet",
+    "deploy:optimism:mainnet": "hardhat deploy --write true --network optimism",
     "deploy:optimism:testnet": "hardhat deploy --write true --network optimismTestnet",
     "deploy:base:testnet": "hardhat deploy --write true --network baseTestnet",
     "verify": "hardhat etherscan-verify --license MIT --solc-input --network",

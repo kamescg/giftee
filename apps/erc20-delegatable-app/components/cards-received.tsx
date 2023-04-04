@@ -4,13 +4,13 @@ import classNames from 'clsx'
 import { ethers, utils } from 'ethers'
 
 import { useAppUserCardsReceived } from '@/lib/hooks/app/use-app-users-cards-received'
+import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 
 import CardRender from './card-render'
 import { FormClaimCard } from './form-claim-card'
 import TimeFromEpoch from './shared/time-from-epoch'
 import { TimeFromUtc } from './shared/time-from-utc'
 import { Dialog, DialogContent, DialogContentXL, DialogTrigger } from './ui/dialog'
-import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 
 interface CardsReceivedProps {
   className?: string
@@ -22,15 +22,15 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
 
   const contractTimestampBeforeEnforcer = useContractAutoLoad('TimestampBeforeEnforcer')
   const contractTimestampAfterEnforcer = useContractAutoLoad('TimestampAfterEnforcer')
-  
+
   return (
     <>
       {data?.content?.map((received, index) => {
         console.log('received', received)
 
         // get time enforcer details
-        let startTime;
-        let endTime;
+        let startTime
+        let endTime
         received?.delegations?.delegation?.caveats.forEach((caveat: any) => {
           if (caveat.enforcer === contractTimestampBeforeEnforcer.address) {
             endTime = ethers.BigNumber.from(caveat.terms).toNumber()
@@ -85,12 +85,10 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
                             </div>
                             <div className="flex items-center justify-between text-xs">
                               <span className="text-xs font-semibold">Expiration</span>
-                              <span className="text-xs">
-                                {endTime ? <TimeFromEpoch epoch={endTime} /> : 'Never'}
-                              </span>
+                              <span className="text-xs">{endTime ? <TimeFromEpoch epoch={endTime} /> : 'Never'}</span>
                             </div>
                           </div>
-                          <FormClaimCard delegationData={received}/>
+                          <FormClaimCard delegationData={received} />
                         </div>
                       </div>
                     </DialogContentXL>

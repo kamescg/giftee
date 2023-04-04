@@ -18,7 +18,7 @@ export default function Home() {
       <section className="lg:py-12">
         <div className="container mx-auto mb-4 flex max-w-screen-xl items-center justify-between">
           <span className="flex items-center gap-x-2 text-xl font-semibold">
-            <img className="h-8 w-8 rounded-full" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png" />
+            <img className="h-8 w-8 rounded-full" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png" alt="usdc logo" />
             <span className="">USDC Balance</span>
           </span>
           <USDCBalanceMultiChain className="text-gradient-primary rounded-full bg-white px-8 py-3 text-5xl font-bold shadow-sm dark:bg-slate-700" />

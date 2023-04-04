@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 
+import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
+import { useSigner } from 'wagmi'
 import * as yup from 'yup'
 
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
+import { useErc20Manager, useErc20ManagerInvoke } from '@/lib/blockchain'
+import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
+import { createIntention } from '@/lib/utils/create-intention'
 
 import { WalletConnect } from './blockchain/wallet-connect'
 import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
-import { ethers } from 'ethers'
-import { useSigner } from 'wagmi'
-import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
-import { useErc20Manager, useErc20ManagerInvoke } from '@/lib/blockchain'
-import { createIntention } from '@/lib/utils/create-intention'
 
 const validationSchema = yup.object({
   to: yup.string(),
@@ -29,14 +29,18 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
 
   const [intentionData, setIntentionData] = useState<any>()
 
-  const contract = useContractAutoLoad("ERC20Manager")
-  const managerContract = useErc20Manager({address: contract.address})
+  const contract = useContractAutoLoad('ERC20Manager')
+  const managerContract = useErc20Manager({ address: contract.address })
+
+  const contractUSDC = useContractAutoLoad('USDC')
 
   const signer = useSigner()
 
   const { write } = useErc20ManagerInvoke({
     address: contract.address,
     args: [[intentionData]],
+    overrides: { gasLimit: BigNumber.from(1000000)},
+    // @ts-ignore
     enabled: Boolean(intentionData),
   })
 
@@ -56,46 +60,37 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
     const method = 'eth_signTypedData_v4'
 
     const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
-      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
+      contractUSDC.address,
       delegationData.from,
       delegationData.amount,
       ethers.constants.MaxUint256,
       delegationData.signature.v,
       delegationData.signature.r,
       delegationData.signature.s
-    );
+    )
 
-    const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(
-      '0x0000000000000000000000000000000000000000', // fill with correct USDC token address
-      sendToAddress,
-      delegationData.amount
-    );
+    const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(contractUSDC.address, sendToAddress, delegationData.amount)
 
     const intention = createIntention(
       sendToAddress,
       delegationData.delegations.delegation,
       delegationData.delegations.signedDelegation,
       contract.address,
-      approveTrxPopulated.data,
-      transferTrxPopulated.data
-    );
-    
+      approveTrxPopulated?.data as string,
+      transferTrxPopulated?.data as string
+    )
+
     console.log(intention, 'intention')
 
     // @ts-ignore
-    const signedIntention = await signer.data?.provider.send(method, [
-      await signer.data?.getAddress(),
-      intention.string,
-    ]);
+    const signedIntention = await signer.data?.provider.send(method, [await signer.data?.getAddress(), intention.string])
 
     console.log('signedIntention', signedIntention)
 
-    setIntentionData({invocations: {...intention.intention}, signature: signedIntention})
-
-    // write()
+    setIntentionData({ invocations: { ...intention.intention }, signature: signedIntention })
   }
 
-  useEffect( () => { 
+  useEffect(() => {
     if (intentionData && write) {
       write()
     }
