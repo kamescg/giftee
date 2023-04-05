@@ -10,7 +10,7 @@ import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { appCardIssue } from '@/lib/app/app-card-issue'
-import { useErc20Manager, useErc20PermitNonces } from '@/lib/blockchain'
+import { useErc20Manager, useErc20PermitAllowance, useErc20PermitNonces } from '@/lib/blockchain'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createDelegation } from '@/lib/utils/create-delegation'
@@ -41,6 +41,8 @@ export function FormIssueCard() {
   const { address: issuerAddress } = useAccount()
 
   const { data: permitNonce } = useErc20PermitNonces({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`] })
+
+  const { data: allowance } = useErc20PermitAllowance({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`, contract.address] })
 
   const { chain } = useNetwork()
   const signer = useSigner()
@@ -109,17 +111,34 @@ export function FormIssueCard() {
 
     const me = await signer.data?.getAddress()
 
-    const { v, r, s } = await getPermitSignature(
-      signer.data,
-      { address: contractUSDCAddress.address },
-      contract.address,
-      rawUSDCAmount,
-      BigNumber.from(1990549033),
-      'USD Coin (PoS)',
-      permitNonce as BigNumber
-    )
+    let v: number;
+    let r: string;
+    let s: string;
+    let signature:any
 
-    console.log(v, r, s)
+    const allowanceAmount = BigNumber.from(1000 * 10 ** 6)
+    if (!allowance || allowance.isZero() || allowance.lt(rawUSDCAmount)) {
+      const sig = await getPermitSignature(
+        signer.data,
+        { address: contractUSDCAddress.address },
+        contract.address,
+        allowanceAmount,
+        BigNumber.from(1990549033),
+        'USD Coin (PoS)',
+        permitNonce as BigNumber
+      )
+
+      const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
+        contractUSDCAddress.address,
+        me as `0x${string}`,
+        allowanceAmount,
+        BigNumber.from(1990549033),
+        sig.v,
+        sig.r as `0x${string}`,
+        sig.s as `0x${string}`,
+      )
+      signature = sig
+    }
 
     const delegation = createDelegation(data.to, contract.address, chain?.id as number, enforcers)
 
@@ -143,7 +162,7 @@ export function FormIssueCard() {
         ...delegation,
         signedDelegation: signedDelegation,
       },
-      signature: { v, r, s },
+      signature,
     }
     appCardIssue(formData)
     setIsSubmitting(false)
