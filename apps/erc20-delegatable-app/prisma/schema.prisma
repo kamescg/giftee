@@ -25,4 +25,8 @@ model Card {
   amount      String
   delegations Json?
   signature   Json?
+  isClaimed   Boolean  @default(false)
+  hash        String?
+  transaction Json?
+  receipt     Json?
 }

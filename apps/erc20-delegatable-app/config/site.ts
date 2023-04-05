@@ -7,7 +7,6 @@ interface SiteConfig {
   tagline: string
   emoji: string
   description: string
-  previewImg: string
   localeDefault: string
   links: {
     twitter: string
@@ -18,15 +17,14 @@ interface SiteConfig {
 export const SITE_CANONICAL = 'https://turboeth.xyz'
 
 export const siteConfig: SiteConfig = {
-  name: 'gifty',
-  title: 'gifty 🧧 magical gift cards',
-  tagline: 'Magical Gift Cards',
-  emoji: '🧧',
+  name: 'coincards',
+  title: 'coincards 🪙 magical gift cards',
+  tagline: 'magical gift cards',
+  emoji: '🪙',
   description: 'a magical way to send USDC gift cards.',
-  previewImg: `${SITE_CANONICAL}/preview.png`,
   localeDefault: 'en',
   links: {
     twitter: 'https://twitter.com/mcoso_',
-    github: 'https://github.com/mcoso',
+    github: 'https://github.com/mcoso/coincards',
   },
 }

@@ -38,7 +38,7 @@ export function Header(props: Props) {
       <ResponsiveMobileAndDesktop>
         <>
           <div className="flex w-full justify-between p-4">
-            <LinkComponent href="/" className="flex flex-1 items-center ">
+            <LinkComponent href="/" className="flex flex-1 items-center">
               {siteConfig.emoji ? (
                 <span className="text-2xl font-bold">
                   {siteConfig.emoji} {siteConfig.name}
@@ -66,7 +66,8 @@ export function Header(props: Props) {
               </BranchColorMode>
             )}
             <h1 className="text-gradient-sand ml-2 text-2xl font-bold">
-              {siteConfig.name} <span className="text-lg font-normal">{siteConfig.tagline}</span>{' '}
+              {siteConfig.name} 
+              {/* <span className="text-lg font-normal">{siteConfig.tagline}</span>{' '} */}
             </h1>
           </LinkComponent>
           <div className="flex flex-1 justify-center lg:px-10">

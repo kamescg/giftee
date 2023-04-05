@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { BigNumber, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { useNetwork, useSigner } from 'wagmi'
+import { useNetwork, useSigner, useWaitForTransaction } from 'wagmi'
 import * as yup from 'yup'
 
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
@@ -14,30 +14,32 @@ import { createIntention } from '@/lib/utils/create-intention'
 import { WalletConnect } from './blockchain/wallet-connect'
 import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
+import { appCardUpdate } from '@/lib/app/app-card-update'
 
 const validationSchema = yup.object({
   to: yup.string(),
 })
 
 interface FormClaimCardProps {
+  cid: string
   delegationData: any
 }
 
-export function FormClaimCard({ delegationData }: FormClaimCardProps) {
+export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
   const resolver = useYupValidationResolver(validationSchema)
-  const { handleSubmit, register, setValue, setError, ...rest } = useForm({ resolver })
+  const { handleSubmit, register, setValue, setError, formState } = useForm({ resolver })
 
   const [intentionData, setIntentionData] = useState<any>()
 
   const contract = useContractAutoLoad('ERC20Manager')
-  const managerContract = useErc20Manager({ address: contract.address })
+  const managerContract = useErc20Manager({ address: contract?.address })
 
   const contractUSDC = useContractAutoLoad('USDC')
 
   const { chain } = useNetwork()
   const signer = useSigner()
 
-  const { write } = useErc20ManagerInvoke({
+  const { write, data } = useErc20ManagerInvoke({
     address: contract.address,
     args: [[intentionData]],
     overrides: { gasLimit: BigNumber.from(1000000) },
@@ -45,11 +47,33 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
     enabled: Boolean(intentionData),
   })
 
-  console.log('intentionData', intentionData)
+  useEffect( () => { 
+    console.log(data, cid, 'data')
+    appCardUpdate({
+      id: cid,
+      hash: data?.hash,
+    })
+  }, [data])
+
+  const {isSuccess, ...rest} =useWaitForTransaction({
+    hash: data?.hash,
+  })
+
+  useEffect(() => {
+    console.log(isSuccess, rest)
+    if (isSuccess) {
+      appCardUpdate({
+        id: cid,
+        isClaimed: true,
+      })
+    }
+  }, [isSuccess])
+
+
+
+  console.log('rest', rest)
 
   const onSubmit = async (data: any) => {
-    console.log('data input', data)
-
     // check if valid send to address
     if (data.to && !ethers.utils.isAddress(data.to)) {
       setError('to', { type: 'manual', message: 'Invalid address' })
@@ -57,9 +81,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
     }
 
     const sendToAddress = data.to ? data.to : await signer.data?.getAddress()
-
     const method = 'eth_signTypedData_v4'
-
     const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
       contractUSDC.address,
       delegationData.from,
@@ -71,7 +93,6 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
     )
 
     const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(contractUSDC.address, sendToAddress, delegationData.amount)
-
     const intention = createIntention(
       sendToAddress,
       delegationData.delegations.delegation,
@@ -81,14 +102,8 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       transferTrxPopulated?.data as string,
       chain?.id as number
     )
-
-    console.log(intention, 'intention')
-
     // @ts-ignore
     const signedIntention = await signer.data?.provider.send(method, [await signer.data?.getAddress(), intention.string])
-
-    console.log('signedIntention', signedIntention)
-
     setIntentionData({ invocations: { ...intention.intention }, signature: signedIntention })
   }
 
@@ -112,7 +127,7 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="0x000...000"
           />
-          {rest.formState.errors.to && <p className="text-xs italic text-red-500">{rest.formState.errors.to.message as string}</p>}
+          {formState.errors.to && <p className="text-xs italic text-red-500">{formState.errors.to.message as string}</p>}
           <p className="mt-2 text-center text-xs">Leave this field blank if you want to claim your USDC to your wallet.</p>
         </div>
       </div>
@@ -120,13 +135,13 @@ export function FormClaimCard({ delegationData }: FormClaimCardProps) {
       <div className="">
         <BranchIsAuthenticated>
           <BranchIsWalletConnected>
-            {rest.formState.isSubmitted ? (
+            {formState.isSubmitted ? (
               <button type="button" className="btn btn-emerald">
                 Submitting the Transaction
               </button>
             ) : (
               <button type="submit" className="btn btn-emerald w-full">
-                {rest.formState.isSubmitting ? (
+                {formState.isSubmitting ? (
                   <svg className="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v1a7 7 0 00-7 7h1z"></path>

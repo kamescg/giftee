@@ -25,13 +25,10 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
 
   return (
     <>
-      {data?.content?.map((received, index) => {
-        console.log('received', received)
-
-        // get time enforcer details
+      {data?.content?.map((card, index) => {
         let startTime
         let endTime
-        received?.delegations?.delegation?.caveats.forEach((caveat: any) => {
+        card?.delegations?.delegation?.caveats.forEach((caveat: any) => {
           if (caveat.enforcer === contractTimestampBeforeEnforcer.address) {
             endTime = ethers.BigNumber.from(caveat.terms).toNumber()
           }
@@ -47,7 +44,7 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
               <div className="absolute right-0 top-6 z-0 h-48 w-48 bg-[url('https://cryptologos.cc/logos/usd-coin-usdc-logo.png')] bg-cover opacity-10"></div>
               <div className="z-10 flex flex-1 justify-between">
                 <div className="">
-                  <h3 className="text-4xl font-normal lg:text-6xl">{utils.formatUnits(received.amount, received.decimals)}</h3>
+                  <h3 className="text-4xl font-normal lg:text-6xl">{utils.formatUnits(card.amount, card.decimals)}</h3>
                   <span className="text-xs">USDC Amount</span>
                 </div>
                 <span className="">
@@ -75,12 +72,12 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
                           </div>
                         </div>
                         <div className="col-span-12 lg:col-span-7">
-                          <CardRender to={received.to} amount={received.amount} decimals={received.decimals} />
+                          <CardRender to={card.to} amount={card.amount} decimals={card.decimals} />
                           <div className="my-4 flex flex-col gap-2">
                             <div className="flex items-center justify-between">
                               <span className="text-xs font-semibold">Start</span>
                               <span className="text-xs">
-                                {startTime ? <TimeFromEpoch epoch={startTime} /> : <TimeFromUtc date={received.createdAt} />}
+                                {startTime ? <TimeFromEpoch epoch={startTime} /> : <TimeFromUtc date={card.createdAt} />}
                               </span>
                             </div>
                             <div className="flex items-center justify-between text-xs">
@@ -88,7 +85,7 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
                               <span className="text-xs">{endTime ? <TimeFromEpoch epoch={endTime} /> : 'Never'}</span>
                             </div>
                           </div>
-                          <FormClaimCard delegationData={received} />
+                          <FormClaimCard cid={card.id} delegationData={card} />
                         </div>
                       </div>
                     </DialogContentXL>
@@ -99,7 +96,7 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
                 <div className="">
                   <span className="text-xs">
                     <span className="font-bold">from</span> <br />
-                    {received.from}
+                    {card.from}
                   </span>
                 </div>
               </div>

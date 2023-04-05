@@ -4,7 +4,6 @@
 import * as React from 'react'
 
 import Image from 'next/image'
-import Link from 'next/link'
 
 import {
   NavigationMenu,
@@ -13,7 +12,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import { cn } from '@/lib/utils'
 
@@ -34,11 +32,10 @@ export function NavigationMenuGeneral() {
                     <div className="absolute -top-6 right-0 z-0 h-48 w-48 bg-[url('https://em-content.zobj.net/thumbs/120/google/350/magic-wand_1fa84.png')] bg-cover opacity-20" />
                     <div className="z-10">
                       <div className="z-10 mb-2 mt-4 text-lg font-medium text-white">
-                        {/* 🪄 */}
                         <br /> A Magical Experience
                       </div>
                       <p className="mb-3 text-sm leading-tight text-white/90">
-                        Gifty is a digital gift card platform that allows you to send and receive gift cards from your favorite Web3 wallet without
+                        Coincards is a digital gift card platform that allows you to send and receive gift cards from your favorite Web3 wallet without
                         submittig an onchain transaction.
                       </p>
                       <p className="text-sm font-bold leading-tight text-white/90">A new world of possibilities!</p>
@@ -48,7 +45,7 @@ export function NavigationMenuGeneral() {
               </li>
               <LinkComponent href="https://delegatable.org/">
                 <div className="card">
-                  <h3 className="text-lg font-normal">Developer Documentation</h3>
+                  <h3 className="text-lg font-bold">Developer Documentation</h3>
                   <div className="my-2" />
                   <p className="text-xs">
                     Delegatable is a Solidity framework for extending smart contracts with counterfactual revocable-delegation

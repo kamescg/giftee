@@ -30,7 +30,7 @@ export function FormIssueCard() {
   const [signatures, setSignatures] = useState<any>()
 
   const contract = useContractAutoLoad('ERC20Manager')
-  const managerContract = useErc20Manager({ address: contract.address })
+  const managerContract = useErc20Manager({ address: contract?.address })
 
   const contractAllowanceEnforcer = useContractAutoLoad('ERC20FromAllowanceEnforcer')
   const contractTimestampBeforeEnforcer = useContractAutoLoad('TimestampBeforeEnforcer')
@@ -40,7 +40,7 @@ export function FormIssueCard() {
 
   const { address: issuerAddress } = useAccount()
 
-  const { data: permitNonce } = useErc20PermitNonces({ address: contractUSDCAddress.address, args: [issuerAddress as `0x${string}`] })
+  const { data: permitNonce } = useErc20PermitNonces({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`] })
 
   const { chain } = useNetwork()
   const signer = useSigner()
