@@ -40,7 +40,7 @@ export default async function deploy(hardhat: HardhatRuntimeEnvironment) {
 
   /*
   for dev testing
-    */
+
   await deploy("TokenPermit", {
     contract: "TokenPermit",
     from: deployer,
@@ -48,5 +48,7 @@ export default async function deploy(hardhat: HardhatRuntimeEnvironment) {
     skipIfAlreadyDeployed: false,
     log: true,
   });
+
+      */
 
 }
