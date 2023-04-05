@@ -5,16 +5,15 @@ import { useForm } from 'react-hook-form'
 import { useNetwork, useSigner, useWaitForTransaction } from 'wagmi'
 import * as yup from 'yup'
 
+import { WalletConnect } from './blockchain/wallet-connect'
+import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
+import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
+import { appCardUpdate } from '@/lib/app/app-card-update'
 import { useErc20Manager, useErc20ManagerInvoke } from '@/lib/blockchain'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createIntention } from '@/lib/utils/create-intention'
-
-import { WalletConnect } from './blockchain/wallet-connect'
-import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
-import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
-import { appCardUpdate } from '@/lib/app/app-card-update'
 
 const validationSchema = yup.object({
   to: yup.string(),
@@ -47,15 +46,15 @@ export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
     enabled: Boolean(intentionData),
   })
 
-  useEffect( () => { 
+  useEffect(() => {
     console.log(data, cid, 'data')
     appCardUpdate({
       id: cid,
-      hash: data?.hash,
+      hash: data?.hash as `0x${string}`,
     })
   }, [data])
 
-  const {isSuccess, ...rest} =useWaitForTransaction({
+  const { isSuccess, ...rest } = useWaitForTransaction({
     hash: data?.hash,
   })
 
@@ -68,8 +67,6 @@ export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
       })
     }
   }, [isSuccess])
-
-
 
   console.log('rest', rest)
 

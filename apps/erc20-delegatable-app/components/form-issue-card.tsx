@@ -5,6 +5,9 @@ import { useForm } from 'react-hook-form'
 import { useAccount, useNetwork, useSigner } from 'wagmi'
 import * as yup from 'yup'
 
+import { WalletConnect } from './blockchain/wallet-connect'
+import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
+import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { appCardIssue } from '@/lib/app/app-card-issue'
 import { useErc20Manager, useErc20PermitNonces } from '@/lib/blockchain'
@@ -12,10 +15,6 @@ import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createDelegation } from '@/lib/utils/create-delegation'
 import { getPermitSignature } from '@/lib/utils/get-permit-signature'
-
-import { WalletConnect } from './blockchain/wallet-connect'
-import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
-import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 
 const validationSchema = yup.object({
   to: yup.string().required('Required'),

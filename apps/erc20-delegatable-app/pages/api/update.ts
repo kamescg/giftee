@@ -12,13 +12,13 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       }
       const data = await prisma.card.update({
         where: {
-            id: req.body.id,
-            to: address,
+          id: req.body.id,
         },
         data: {
-            hash: req.body.hash,
+          hash: req.body.hash,
+          isClaimed: req.body.isClaimed,
         },
-        })
+      })
       return res.json({ content: data, object: 'Delegation' })
     } catch (ex) {
       console.error(ex)
