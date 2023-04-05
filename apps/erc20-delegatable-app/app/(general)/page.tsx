@@ -12,7 +12,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import USDCBalanceMultiChain from '@/components/usdc-balance-multi-chain'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 
+
 export default function Home() {
+
+
   return (
     <>
       <section className="lg:py-12">
@@ -26,7 +29,7 @@ export default function Home() {
         <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4 lg:gap-10">
           <div className="col-span-12 md:col-span-4">
             <div className="card">
-              <BranchIsWalletConnected>
+              <BranchIsWalletConnected> 
                 <>
                   <h3 className="text-lg font-semibold">Wallet Connected</h3>
                   <hr className="my-2" />
@@ -43,14 +46,14 @@ export default function Home() {
                   </p>
                 </>
                 <>
-                  <div className="relative -mt-32 p-4">
+                  {/* <div className="relative -mt-32 p-4">
                     <div className="flex-center flex w-full flex-col rounded-xl bg-white px-8 pb-2 pt-8 shadow-sm">
                       <AutomaticWalletConnectQRCode />
                       <p className="my-3 text-center text-xs text-neutral-500 dark:text-neutral-700">Scan QR code to connect wallet</p>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="flex-center flex w-full">
-                    <WalletConnect />
+                    <WalletConnect full className='w-full' />
                   </div>
                   <div className="mt-4 text-xs leading-6 text-neutral-600 dark:text-white">
                     <p className="mb-2">When you connect your wallet, you will be able to issue, send, and receive cards.</p>

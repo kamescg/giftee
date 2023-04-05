@@ -1,32 +1,31 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { prisma } from '@/lib/prisma'
-
-import { withSessionRoute } from '../../lib/server'
+import { withSessionRoute } from '@/lib/server'
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
+  if (req.method === 'POST') {
     try {
       const { address } = req?.session?.siwe
       if (!address) {
         return res.status(403).json({ ok: false, message: 'Unauthorized' })
       }
-
-      const cards = await prisma.card.findMany({
+      const data = await prisma.card.update({
         where: {
-          to: address,
-          isClaimed: false,
-          hash: undefined,
+            id: req.body.id,
+            to: address,
         },
-      })
-
-      return res.json({ content: cards, Object: 'Cards' })
+        data: {
+            hash: req.body.hash,
+        },
+        })
+      return res.json({ content: data, object: 'Delegation' })
     } catch (ex) {
       console.error(ex)
       return res.json({ ok: false })
     }
   }
 
-  res.setHeader('Allow', ['GET'])
+  res.setHeader('Allow', ['POST'])
   return res.status(405).end(`Method ${req.method} Not Allowed`)
 })

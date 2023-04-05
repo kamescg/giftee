@@ -1,15 +1,21 @@
 'use client'
 import * as React from 'react'
+import classNames from 'clsx';
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 interface WalletConnectProps {
   className?: string
+  full?: boolean
 }
 
-export const WalletConnect = ({ className }: WalletConnectProps) => {
+export const WalletConnect = ({ className, full }: WalletConnectProps) => {
+ const classes = classNames(className, 'WalletConnect', {
+    'WalletConnect--full': full,
+ }); 
+
   return (
-    <span className={className}>
+    <span className={classes}>
       <ConnectButton
         showBalance={false}
         accountStatus={{
@@ -24,3 +30,4 @@ export const WalletConnect = ({ className }: WalletConnectProps) => {
     </span>
   )
 }
+
