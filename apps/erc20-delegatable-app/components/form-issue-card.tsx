@@ -14,6 +14,7 @@ import { useErc20Manager, useErc20PermitNonces } from '@/lib/blockchain'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createDelegation } from '@/lib/utils/create-delegation'
+import { createSalt } from '@/lib/utils/create-salt'
 import { getPermitSignature } from '@/lib/utils/get-permit-signature'
 
 const validationSchema = yup.object({
@@ -62,10 +63,20 @@ export function FormIssueCard() {
 
     const inputTerms = ethers.utils.hexZeroPad(rawUSDCAmount.toHexString(), 32)
 
+    console.log('input terms', inputTerms)
+
+    const salt = await createSalt(signer?.data as ethers.Signer)
+
+    console.log('salt', salt)
+
+    const termsWithSalt = ethers.utils.hexConcat([inputTerms, salt])
+
+    console.log('termsWithSalt', termsWithSalt)
+
     const enforcers = [
       {
         enforcer: contractAllowanceEnforcer.address,
-        terms: inputTerms,
+        terms: termsWithSalt,
       },
     ]
 
