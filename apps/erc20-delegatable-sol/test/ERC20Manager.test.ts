@@ -363,9 +363,12 @@ describe('ERC20Manager', () => {
 
     const inputTerms = ethers.utils.hexZeroPad(ethers.utils.parseEther('0.5').toHexString(), 32);
     const inputTerms_Timestamp = ethers.utils.hexZeroPad(
-      ethers.utils.hexValue(CURRENT_TIME + 1000),
+      ethers.utils.hexValue(CURRENT_TIME + 100000000),
       8,
     );
+
+    console.log('inputTerms_Timestamp', inputTerms_Timestamp);
+    console.log('CURRENT_TIME', CURRENT_TIME);
 
     const _delegation = generateDelegation(
       CONTRACT_NAME,
@@ -631,7 +634,7 @@ describe('ERC20Manager', () => {
 
     const inputTerms = ethers.utils.hexZeroPad(ethers.utils.parseEther('0.5').toHexString(), 32);
     const inputTerms_Timestamp = ethers.utils.hexZeroPad(
-      ethers.utils.hexValue(CURRENT_TIME + 1000),
+      ethers.utils.hexValue(CURRENT_TIME + 100000000),
       8,
     );
 
@@ -721,11 +724,11 @@ describe('ERC20Manager', () => {
 
     const inputTerms = ethers.utils.hexZeroPad(ethers.utils.parseEther('0.5').toHexString(), 32);
     const inputTerms_TimestampBefore = ethers.utils.hexZeroPad(
-      ethers.utils.hexValue(CURRENT_TIME + 1000),
+      ethers.utils.hexValue(CURRENT_TIME + 100000000),
       8,
     );
     const inputTerms_TimestampAfter = ethers.utils.hexZeroPad(
-      ethers.utils.hexValue(CURRENT_TIME - 1000),
+      ethers.utils.hexValue(CURRENT_TIME - 100000000),
       8,
     );
 
@@ -900,5 +903,179 @@ describe('ERC20Manager', () => {
         },
       ]),
     ).to.be.revertedWith('TimestampBeforeEnforcer:expired-delegation');
+  });
+
+  it('should FAIL to INVOKE transferProxy after REVOKE', async () => {
+    expect(
+      await erc20PermitToken.allowance(wallet0.address, erc20ManagerContract.address),
+    ).to.equal(0);
+    const deadline = ethers.constants.MaxUint256;
+    const totalApprovedAmount = ethers.utils.parseEther('0.5');
+    const { v, r, s } = await getPermitSignature(
+      wallet0,
+      erc20PermitToken,
+      erc20ManagerContract.address,
+      totalApprovedAmount,
+      deadline,
+    );
+
+    const inputTerms = ethers.utils.hexZeroPad(ethers.utils.parseEther('0.5').toHexString(), 32);
+
+    const _delegation = generateDelegation(
+      CONTRACT_NAME,
+      erc20ManagerContract,
+      pk0,
+      wallet1.address,
+      [
+        {
+          enforcer: erc20FromAllowanceEnforcer.address,
+          terms: inputTerms,
+        },
+      ],
+    );
+
+    const INVOCATION_MESSAGE = {
+      replayProtection: {
+        nonce: '0x01',
+        queue: '0x00',
+      },
+      batch: [
+        {
+          authority: [],
+          transaction: {
+            to: erc20ManagerContract.address,
+            gasLimit: '210000000000000000',
+            data: (
+              await erc20ManagerContract.populateTransaction.approveTransferProxy(
+                erc20PermitToken.address,
+                wallet0.address,
+                totalApprovedAmount,
+                deadline,
+                v,
+                r,
+                s,
+              )
+            ).data,
+          },
+        },
+        {
+          authority: [_delegation],
+          transaction: {
+            to: erc20ManagerContract.address,
+            gasLimit: '210000000000000000',
+            data: (
+              await erc20ManagerContract.populateTransaction.transferProxy(
+                erc20PermitToken.address,
+                wallet1.address,
+                totalApprovedAmount,
+              )
+            ).data,
+          },
+        },
+      ],
+    };
+
+    const invocation = delegatableUtils.signInvocation(INVOCATION_MESSAGE, pk1);
+
+    const domainHash = await erc20ManagerContract.domainHash();
+
+    const trxR = await erc20ManagerContract.revoke(_delegation, domainHash);
+
+    await expect(
+      erc20ManagerContract.invoke([
+        {
+          signature: invocation.signature,
+          invocations: invocation.invocations,
+        },
+      ]),
+    ).to.be.revertedWith('ERC20Manager:revoked-delegation');
+
+  });
+
+  it('should FAIL to REVOKE other signers delegation', async () => {
+    expect(
+      await erc20PermitToken.allowance(wallet0.address, erc20ManagerContract.address),
+    ).to.equal(0);
+    const deadline = ethers.constants.MaxUint256;
+    const totalApprovedAmount = ethers.utils.parseEther('0.5');
+    const { v, r, s } = await getPermitSignature(
+      wallet0,
+      erc20PermitToken,
+      erc20ManagerContract.address,
+      totalApprovedAmount,
+      deadline,
+    );
+
+    const inputTerms = ethers.utils.hexZeroPad(ethers.utils.parseEther('0.5').toHexString(), 32);
+
+    const _delegation = generateDelegation(
+      CONTRACT_NAME,
+      erc20ManagerContract,
+      pk0,
+      wallet1.address,
+      [
+        {
+          enforcer: erc20FromAllowanceEnforcer.address,
+          terms: inputTerms,
+        },
+      ],
+    );
+
+    const INVOCATION_MESSAGE = {
+      replayProtection: {
+        nonce: '0x01',
+        queue: '0x00',
+      },
+      batch: [
+        {
+          authority: [],
+          transaction: {
+            to: erc20ManagerContract.address,
+            gasLimit: '210000000000000000',
+            data: (
+              await erc20ManagerContract.populateTransaction.approveTransferProxy(
+                erc20PermitToken.address,
+                wallet0.address,
+                totalApprovedAmount,
+                deadline,
+                v,
+                r,
+                s,
+              )
+            ).data,
+          },
+        },
+        {
+          authority: [_delegation],
+          transaction: {
+            to: erc20ManagerContract.address,
+            gasLimit: '210000000000000000',
+            data: (
+              await erc20ManagerContract.populateTransaction.transferProxy(
+                erc20PermitToken.address,
+                wallet1.address,
+                totalApprovedAmount,
+              )
+            ).data,
+          },
+        },
+      ],
+    };
+
+    const invocation = delegatableUtils.signInvocation(INVOCATION_MESSAGE, pk1);
+
+    const domainHash = await erc20ManagerContract.domainHash();
+
+    await expect(
+      erc20ManagerContract.connect(wallet1).revoke(_delegation, domainHash)
+    ).to.be.revertedWith('ERC20Manager:unauthorized-revoke');
+
+    let tx = await erc20ManagerContract.invoke([
+      {
+        signature: invocation.signature,
+        invocations: invocation.invocations,
+      },
+    ]);
+    expect(await erc20PermitToken.balanceOf(wallet1.address)).to.equal(totalApprovedAmount);
   });
 });

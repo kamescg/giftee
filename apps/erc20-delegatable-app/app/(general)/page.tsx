@@ -12,10 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import USDCBalanceMultiChain from '@/components/usdc-balance-multi-chain'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 
-
 export default function Home() {
-
-
   return (
     <>
       <section className="lg:py-12">
@@ -29,7 +26,7 @@ export default function Home() {
         <div className="container mx-auto grid max-w-screen-xl grid-cols-12 gap-4 lg:gap-10">
           <div className="col-span-12 md:col-span-4">
             <div className="card">
-              <BranchIsWalletConnected> 
+              <BranchIsWalletConnected>
                 <>
                   <h3 className="text-lg font-semibold">Wallet Connected</h3>
                   <hr className="my-2" />
@@ -53,7 +50,7 @@ export default function Home() {
                     </div>
                   </div> */}
                   <div className="flex-center flex w-full">
-                    <WalletConnect full className='w-full' />
+                    <WalletConnect full className="w-full" />
                   </div>
                   <div className="mt-4 text-xs leading-6 text-neutral-600 dark:text-white">
                     <p className="mb-2">When you connect your wallet, you will be able to issue, send, and receive cards.</p>

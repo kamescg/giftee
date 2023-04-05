@@ -3,6 +3,7 @@ import * as React from 'react'
 import classNames from 'clsx'
 import QRCode from 'react-qr-code'
 import { useAccount, useConnect } from 'wagmi'
+
 import { cbAtom } from './providers/rainbow-kit'
 
 interface AutomaticWalletConnectQRCodeProps {
@@ -15,10 +16,9 @@ export const AutomaticWalletConnectQRCode = ({ className }: AutomaticWalletConne
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
   const cb = cbAtom
 
-  const [ qrCode, setQRCode ] = React.useState()
+  const [qrCode, setQRCode] = React.useState()
   React.useEffect(() => {
-    (async() => {
-
+    ;(async () => {
       console.log(connectors, '{ connector: activeConnector, isConnected }')
       // @ts-ignore
       const cb = connect({
@@ -31,14 +31,11 @@ export const AutomaticWalletConnectQRCode = ({ className }: AutomaticWalletConne
       // console.log(connector, 'connectorconnector')
       // const qr = await connector?.qrCode?.getUri()
       // setQRCode(qr)
-    })();
+    })()
   }, [connectors])
   return (
     <div className={classes}>
-      <QRCode
-        value={qrCode || ''}
-        className="max-h-[208px] w-full cursor-pointer rounded-xl bg-white p-4 shadow-md hover:shadow-lg"
-      />
+      <QRCode value={qrCode || ''} className="max-h-[208px] w-full cursor-pointer rounded-xl bg-white p-4 shadow-md hover:shadow-lg" />
     </div>
   )
 }
