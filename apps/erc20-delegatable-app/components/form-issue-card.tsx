@@ -14,8 +14,8 @@ import { useErc20Manager, useErc20PermitNonces } from '@/lib/blockchain'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createDelegation } from '@/lib/utils/create-delegation'
-import { getPermitSignature } from '@/lib/utils/get-permit-signature'
 import { createSalt } from '@/lib/utils/create-salt'
+import { getPermitSignature } from '@/lib/utils/get-permit-signature'
 
 const validationSchema = yup.object({
   to: yup.string().required('Required'),
