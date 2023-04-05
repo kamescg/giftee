@@ -10,6 +10,7 @@
   "scripts": {
     "clean": "rm -rf cache/ artifacts/",
     "compile": "hardhat --show-stack-traces --max-memory 8192 compile",
+    "console": "hardhat console --network",
     "coverage": "HIDE_DEPLOY_LOG=true OPTIMIZER_DISABLED=true hardhat coverage",
     "chain": "hardhat node --network hardhat",
     "chain:fork": "FORK_ENABLED=true hardhat node --network hardhat",
