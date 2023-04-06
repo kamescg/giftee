@@ -75,8 +75,8 @@ contract ERC20Manager is Delegatable, Ownable {
     return IERC20(_token).transferFrom(_msgSender(), _to, _amount);
   }
 
-  function revoke(SignedDelegation calldata _signedDelegation, bytes32 _domainHash) external {
-    address signer_ = verifyExternalDelegationSignature(_signedDelegation, _domainHash);
+  function revoke(SignedDelegation calldata _signedDelegation) external {
+    address signer_ = verifyExternalDelegationSignature(_signedDelegation, domainHash);
     require(msg.sender == signer_, "ERC20Manager:unauthorized-revoke");
 
     bytes32 delegationHash_ = GET_SIGNEDDELEGATION_PACKETHASH(_signedDelegation);

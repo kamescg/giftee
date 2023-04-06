@@ -23,9 +23,9 @@ export function ButtonRevokeCard({
 
   const contract = useContractAutoLoad('ERC20Manager')
   const {write, data, isLoading} = useErc20ManagerRevoke({
-    address: contract.address,
+    address: contract?.address,
     args: [{
-      delegation: delegation
+      delegation: delegation,
       signature: signature,
     }],
   })
