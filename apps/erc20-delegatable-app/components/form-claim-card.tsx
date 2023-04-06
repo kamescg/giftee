@@ -68,7 +68,6 @@ export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
     }
   }, [isSuccess])
 
-
   const onSubmit = async (data: any) => {
     // check if valid send to address
     if (data.to && !ethers.utils.isAddress(data.to)) {

@@ -132,7 +132,7 @@ export function FormIssueCard() {
         ...delegation,
         signedDelegation: signedDelegation,
       },
-      signature: { v, r, s }
+      signature: { v, r, s },
     }
     appCardIssue(formData)
     setIsSubmitting(false)
