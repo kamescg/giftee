@@ -10,13 +10,13 @@ import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { appCardIssue } from '@/lib/app/app-card-issue'
+import { appUserUpdate } from '@/lib/app/app-user-update'
 import { useErc20Manager, useErc20PermitAllowance, useErc20PermitNonces } from '@/lib/blockchain'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createDelegation } from '@/lib/utils/create-delegation'
 import { createSalt } from '@/lib/utils/create-salt'
 import { getPermitSignature } from '@/lib/utils/get-permit-signature'
-import { appUserUpdate } from '@/lib/app/app-user-update'
 
 const validationSchema = yup.object({
   to: yup.string().required('Required'),
@@ -43,7 +43,10 @@ export function FormIssueCard() {
 
   const { data: permitNonce } = useErc20PermitNonces({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`] })
 
-  const { data: allowance } = useErc20PermitAllowance({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`, contract?.address] })
+  const { data: allowance } = useErc20PermitAllowance({
+    address: contractUSDCAddress?.address,
+    args: [issuerAddress as `0x${string}`, contract?.address],
+  })
 
   console.log('allowance', allowance)
 
@@ -114,10 +117,7 @@ export function FormIssueCard() {
 
     const me = await signer.data?.getAddress()
 
-    let v: number;
-    let r: string;
-    let s: string;
-    let signature:any
+    let signature: any
 
     const allowanceAmount = BigNumber.from(1000 * 10 ** 6)
     if (!allowance || allowance.isZero() || allowance.lt(rawUSDCAmount)) {
@@ -138,13 +138,13 @@ export function FormIssueCard() {
         BigNumber.from(1990549033),
         sig.v,
         sig.r as `0x${string}`,
-        sig.s as `0x${string}`,
+        sig.s as `0x${string}`
       )
       signature = sig
 
       console.log('approveTrxPopulated data', approveTrxPopulated?.data)
 
-      appUserUpdate({allowanceTrx: approveTrxPopulated?.data})
+      appUserUpdate({ allowanceTrx: approveTrxPopulated?.data })
     }
 
     const delegation = createDelegation(data.to, contract.address, chain?.id as number, enforcers)

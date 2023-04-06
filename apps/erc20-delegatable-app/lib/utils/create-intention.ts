@@ -7,9 +7,9 @@ export function createIntention(
   verifyingContract: string,
   transferTx: string,
   chainId: number,
-  approveTx?: string,
+  approveTx?: string
 ) {
-  let batch;
+  let batch
   if (approveTx) {
     batch = [
       {
@@ -34,7 +34,7 @@ export function createIntention(
         },
       },
     ]
-  }else {
+  } else {
     batch = [
       {
         authority: [
