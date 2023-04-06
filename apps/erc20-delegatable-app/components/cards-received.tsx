@@ -28,11 +28,11 @@ export const CardsReceived = ({ className }: CardsReceivedProps) => {
         let startTime
         let endTime
         card?.delegations?.delegation?.caveats.forEach((caveat: any) => {
-          if (caveat.enforcer === contractTimestampBeforeEnforcer.address) {
-            endTime = ethers.BigNumber.from(caveat.terms).toNumber()
+          if (caveat?.enforcer === contractTimestampBeforeEnforcer?.address) {
+            endTime = ethers.BigNumber.from(caveat?.terms).toNumber()
           }
-          if (caveat.enforcer === contractTimestampAfterEnforcer.address) {
-            startTime = ethers.BigNumber.from(caveat.terms).toNumber()
+          if (caveat?.enforcer === contractTimestampAfterEnforcer?.address) {
+            startTime = ethers.BigNumber.from(caveat?.terms).toNumber()
           }
         })
 

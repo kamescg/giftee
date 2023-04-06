@@ -26,7 +26,7 @@ interface FormClaimCardProps {
 
 export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
   const resolver = useYupValidationResolver(validationSchema)
-  const { handleSubmit, register, setValue, setError, formState } = useForm({ resolver })
+  const { handleSubmit, register, setError, formState } = useForm({ resolver })
 
   const [intentionData, setIntentionData] = useState<any>()
 
@@ -47,28 +47,27 @@ export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
   })
 
   useEffect(() => {
-    console.log(data, cid, 'data')
     appCardUpdate({
       id: cid,
-      hash: data?.hash as `0x${string}`,
+      claimedHash: data?.hash as `0x${string}`,
     })
   }, [data])
 
-  const { isSuccess, ...rest } = useWaitForTransaction({
+  const { isSuccess, data: receipt } = useWaitForTransaction({
     hash: data?.hash,
   })
 
   useEffect(() => {
-    console.log(isSuccess, rest)
+    console.log(isSuccess)
     if (isSuccess) {
       appCardUpdate({
         id: cid,
         isClaimed: true,
+        claimedReceipt: receipt,
       })
     }
   }, [isSuccess])
 
-  console.log('rest', rest)
 
   const onSubmit = async (data: any) => {
     // check if valid send to address

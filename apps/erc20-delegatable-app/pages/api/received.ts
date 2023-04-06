@@ -14,8 +14,6 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       const cards = await prisma.card.findMany({
         where: {
           to: address,
-          isClaimed: false,
-          hash: undefined,
         },
       })
 

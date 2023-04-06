@@ -64,7 +64,7 @@ export function FormIssueCard() {
 
     const enforcers = [
       {
-        enforcer: contractAllowanceEnforcer.address,
+        enforcer: contractAllowanceEnforcer?.address,
         terms: inputTerms,
       },
     ]
@@ -132,7 +132,7 @@ export function FormIssueCard() {
         ...delegation,
         signedDelegation: signedDelegation,
       },
-      signature: { v, r, s },
+      signature: { v, r, s }
     }
     appCardIssue(formData)
     setIsSubmitting(false)

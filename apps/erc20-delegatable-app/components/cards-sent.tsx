@@ -66,7 +66,7 @@ export const CardsSent = ({ className }: CardsSentProps) => {
                               <span className="text-xs">None</span>
                             </div>
                           </div>
-                          <ButtonRevokeCard />
+                          <ButtonRevokeCard signature={received?.delegations?.signedDelegation} delegation={received?.delegations?.delegation} />
                         </div>
                       </div>
                     </DialogContentXL>
