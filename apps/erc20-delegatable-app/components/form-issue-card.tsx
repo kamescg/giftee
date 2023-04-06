@@ -16,6 +16,7 @@ import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createDelegation } from '@/lib/utils/create-delegation'
 import { createSalt } from '@/lib/utils/create-salt'
 import { getPermitSignature } from '@/lib/utils/get-permit-signature'
+import { appUserUpdate } from '@/lib/app/app-user-update'
 
 const validationSchema = yup.object({
   to: yup.string().required('Required'),
@@ -42,7 +43,9 @@ export function FormIssueCard() {
 
   const { data: permitNonce } = useErc20PermitNonces({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`] })
 
-  const { data: allowance } = useErc20PermitAllowance({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`, contract.address] })
+  const { data: allowance } = useErc20PermitAllowance({ address: contractUSDCAddress?.address, args: [issuerAddress as `0x${string}`, contract?.address] })
+
+  console.log('allowance', allowance)
 
   const { chain } = useNetwork()
   const signer = useSigner()
@@ -138,6 +141,10 @@ export function FormIssueCard() {
         sig.s as `0x${string}`,
       )
       signature = sig
+
+      console.log('approveTrxPopulated data', approveTrxPopulated?.data)
+
+      appUserUpdate({allowanceTrx: approveTrxPopulated?.data})
     }
 
     const delegation = createDelegation(data.to, contract.address, chain?.id as number, enforcers)

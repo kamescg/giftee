@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function appCardUpdate(user: any): Promise<
+export async function appUserUpdate(user: any): Promise<
   | {
       users?: Array<any>
     }

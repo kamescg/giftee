@@ -5,16 +5,13 @@ export function createIntention(
   delegation: any,
   signedDelegation: any,
   verifyingContract: string,
-  approveTx: string,
   transferTx: string,
-  chainId: number
+  chainId: number,
+  approveTx?: string,
 ) {
-  const intention = {
-    replayProtection: {
-      nonce: '0x01',
-      queue: Math.floor(Math.random() * 100000000),
-    },
-    batch: [
+  let batch;
+  if (approveTx) {
+    batch = [
       {
         authority: [],
         transaction: {
@@ -36,7 +33,30 @@ export function createIntention(
           data: transferTx,
         },
       },
-    ],
+    ]
+  }else {
+    batch = [
+      {
+        authority: [
+          {
+            delegation: delegation,
+            signature: signedDelegation,
+          },
+        ],
+        transaction: {
+          to: verifyingContract,
+          gasLimit: '10000000000000000',
+          data: transferTx,
+        },
+      },
+    ]
+  }
+  const intention = {
+    replayProtection: {
+      nonce: '0x01',
+      queue: Math.floor(Math.random() * 100000000),
+    },
+    batch,
   }
 
   domain.chainId = chainId
