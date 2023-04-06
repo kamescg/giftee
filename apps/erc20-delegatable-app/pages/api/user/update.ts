@@ -10,20 +10,18 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       if (!address) {
         return res.status(403).json({ ok: false, message: 'Unauthorized' })
       }
-      const data = await prisma.card.update({
+      const data = await prisma.user.update({
         where: {
-          id: req.body.id,
+          id: address,
         },
         data: {
-          // @ts-ignore
-          hash: req.body.hash,
-          isClaimed: req.body.isClaimed,
+          allowanceTrx: req.body.allowanceTrx,
         },
       })
-      return res.json({ content: data, object: 'Delegation' })
+      return res.json({ content: data, object: 'User' })
     } catch (ex) {
       console.error(ex)
-      return res.json({ ok: false })
+      return res.json({ ok: false, message: ex })
     }
   }
 
