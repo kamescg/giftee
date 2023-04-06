@@ -98,7 +98,7 @@ export function useContractAutoLoad(contract: string, chainId?: number): any {
       switch (contract) {
         case 'ERC20Manager':
           return {
-            address: '0xb22742948c4AA488B991E5047e553DfDa8Ec2cdC',
+            address: '0x9F87290F9de941668a8C26BcC04A28e306CDa890',
             abi: [],
           }
         case 'ERC20FromAllowanceEnforcer':
