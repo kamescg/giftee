@@ -10,7 +10,8 @@ import { BranchIsAuthenticated } from './shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from './shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { appCardUpdate } from '@/lib/app/app-card-update'
-import { useErc20Manager, useErc20ManagerInvoke } from '@/lib/blockchain'
+import { useErc20Manager, useErc20ManagerInvoke, useErc20PermitAllowance } from '@/lib/blockchain'
+import { useAppGetUser } from '@/lib/hooks/app/use-app-get-user'
 import { useContractAutoLoad } from '@/lib/hooks/use-contract-auto-load'
 import { useYupValidationResolver } from '@/lib/useYupValidationResolver'
 import { createIntention } from '@/lib/utils/create-intention'
@@ -37,6 +38,15 @@ export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
 
   const { chain } = useNetwork()
   const signer = useSigner()
+
+  const { data: issuerUserData } = useAppGetUser(delegationData.from)
+
+  console.log(issuerUserData, 'issuerUserData')
+
+  const { data: allowance } = useErc20PermitAllowance({
+    address: contractUSDC?.address,
+    args: [delegationData.from as `0x${string}`, contract?.address],
+  })
 
   const { write, data } = useErc20ManagerInvoke({
     address: contract.address,
@@ -79,25 +89,22 @@ export function FormClaimCard({ cid, delegationData }: FormClaimCardProps) {
 
     const sendToAddress = data.to ? data.to : await signer.data?.getAddress()
     const method = 'eth_signTypedData_v4'
-    const approveTrxPopulated = await managerContract?.populateTransaction.approveTransferProxy(
-      contractUSDC.address,
-      delegationData.from,
-      delegationData.amount,
-      BigNumber.from(1990549033),
-      delegationData.signature.v,
-      delegationData.signature.r,
-      delegationData.signature.s
-    )
+
+    let approveTrxPopulated: string | undefined = undefined
+    if (issuerUserData?.content?.allowanceTrx && (allowance?.isZero() || allowance?.lt(delegationData.amount))) {
+      approveTrxPopulated = issuerUserData?.content?.allowanceTrx
+    }
 
     const transferTrxPopulated = await managerContract?.populateTransaction.transferProxy(contractUSDC.address, sendToAddress, delegationData.amount)
+
     const intention = createIntention(
       sendToAddress,
       delegationData.delegations.delegation,
       delegationData.delegations.signedDelegation,
       contract.address,
-      approveTrxPopulated?.data as string,
       transferTrxPopulated?.data as string,
-      chain?.id as number
+      chain?.id as number,
+      approveTrxPopulated
     )
     // @ts-ignore
     const signedIntention = await signer.data?.provider.send(method, [await signer.data?.getAddress(), intention.string])
