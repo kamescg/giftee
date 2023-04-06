@@ -3,12 +3,11 @@ import * as React from 'react'
 import classNames from 'clsx'
 import { utils } from 'ethers'
 
-import { useAppUserCardsSent } from '@/lib/hooks/app/use-app-users-cards-sent'
-
 import { ButtonRevokeCard } from './button-revoke-card'
 import CardRender from './card-render'
 import { TimeFromUtc } from './shared/time-from-utc'
 import { Dialog, DialogContentXL, DialogTrigger } from './ui/dialog'
+import { useAppUserCardsSent } from '@/lib/hooks/app/use-app-users-cards-sent'
 
 interface CardsSentProps {
   className?: string
@@ -66,7 +65,7 @@ export const CardsSent = ({ className }: CardsSentProps) => {
                               <span className="text-xs">None</span>
                             </div>
                           </div>
-                          <ButtonRevokeCard />
+                          <ButtonRevokeCard signature={received?.delegations?.signedDelegation} delegation={received?.delegations?.delegation} />
                         </div>
                       </div>
                     </DialogContentXL>

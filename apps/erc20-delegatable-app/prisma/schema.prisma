@@ -16,18 +16,24 @@ model User {
 }
 
 model Card {
-  id          String   @id @default(cuid()) @map("_id")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  from        String
-  to          String
-  token       String
-  decimals    String
-  amount      String
-  delegations Json?
-  signature   Json?
-  isClaimed   Boolean  @default(false)
-  hash        String?
-  transaction Json?
-  receipt     Json?
+  id                 String   @id @default(cuid()) @map("_id")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  chainId            String  @default("137")
+  from               String
+  to                 String
+  token              String
+  decimals           String
+  amount             String
+  delegations        Json?
+  signature          Json?
+  permit             Json?
+  isClaimed          Boolean  @default(false)
+  claimedHash        String?
+  claimedTransaction Json?
+  claimedReceipt     Json?
+  isRevoked          Boolean  @default(false)
+  revokedHash        String?
+  revokedTransaction Json?
+  revokedReceipt     Json?
 }

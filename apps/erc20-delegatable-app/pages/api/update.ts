@@ -15,6 +15,7 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
           id: req.body.id,
         },
         data: {
+          // @ts-ignore
           hash: req.body.hash,
           isClaimed: req.body.isClaimed,
         },

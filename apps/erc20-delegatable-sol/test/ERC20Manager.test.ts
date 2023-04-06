@@ -977,9 +977,7 @@ describe('ERC20Manager', () => {
 
     const invocation = delegatableUtils.signInvocation(INVOCATION_MESSAGE, pk1);
 
-    const domainHash = await erc20ManagerContract.domainHash();
-
-    const trxR = await erc20ManagerContract.revoke(_delegation, domainHash);
+    const trxR = await erc20ManagerContract.revoke(_delegation);
 
     await expect(
       erc20ManagerContract.invoke([
@@ -1064,10 +1062,8 @@ describe('ERC20Manager', () => {
 
     const invocation = delegatableUtils.signInvocation(INVOCATION_MESSAGE, pk1);
 
-    const domainHash = await erc20ManagerContract.domainHash();
-
     await expect(
-      erc20ManagerContract.connect(wallet1).revoke(_delegation, domainHash)
+      erc20ManagerContract.connect(wallet1).revoke(_delegation)
     ).to.be.revertedWith('ERC20Manager:unauthorized-revoke');
 
     let tx = await erc20ManagerContract.invoke([
